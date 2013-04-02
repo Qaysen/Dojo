@@ -46,6 +46,11 @@ class Material(models.Model):
 
 class PreguntaExamen(models.Model):
 	curso =models.ForeignKey(Curso)
+	pregunta = models.CharField(max_length=200)
+	item1=models.CharField(max_length=50)
+	item2=models.CharField(max_length=50)
+	item3=models.CharField(max_length=50)
+	item4=models.CharField(max_length=50)
 	def __unicode__(self):
 		return unicode(self.curso)
 
@@ -82,17 +87,19 @@ class Matriculado(models.Model):
 	cursoabierto=models.ForeignKey(CursoAbierto)
 	alumno=models.ForeignKey(Alumno)
 	def __unicode__(self):
-		return self.cursoabierto
+		return '%s en %s' %(self.cursoabierto, self.alumno)
 
 class Pregunta(models.Model):
 	curso=models.ForeignKey(Curso)
 	alumno=models.ForeignKey(User)
+	pregunta = models.CharField(max_length=300)
 	def __unicode__(self):
 		return self.curso
 
 class Respuesta(models.Model):
 	pregunta=models.ForeignKey(Pregunta)
 	usuario_log=models.ForeignKey(User)
+	respuesta= models.CharField(max_length=200)
 	def __unicode__(self):
 		return self.pregunta
 
