@@ -12,19 +12,15 @@ User.add_to_class('genero', models.CharField(null=True,blank=True, choices=GENER
 User.add_to_class('foto', models.CharField(null=True,blank=True, max_length=500))
 User.add_to_class('estado_login',models.BooleanField(default=False))
 
-class PerfilUsuario(models.Model):
-	TIPO=(
-			('alumno','alumno'),
-			('profesor','profesor'),
-		)
-	tipo = models.CharField(max_length=20,choices=TIPO)
-	fecha_registro = models.DateField(auto_now=True) 
-	estado = models.BooleanField()
-	online = models.BooleanField()
-	usuario =models.ForeignKey(User)
-
+class Alumno(models.Model):
+	usuario=models.ForeignKey(User)
 	def __unicode__(self):
-		return '%s y %s' %(self.usuario,self.tipo)
+		return unicode(self.usuario)
+
+class Profesor(models.Model):
+	usuario= models.ForeignKey(User)
+	def __unicode__(self):
+		return unicode(self.usuario)
 
 class Curso(models.Model):
 	nombre = models.CharField(max_length=100)
@@ -36,7 +32,7 @@ class CursoAbierto(models.Model):
 	lugar = models.CharField(max_length=100)
 	fecha_inicio= models.DateField(auto_now=False)
 	cant_horas=models.IntegerField(max_length=11,default=0)
-	profesor =models.ForeignKey(User)
+	profesor =models.ForeignKey(Profesor)
 	curso =models.ForeignKey(Curso)
 	def __unicode__(self):
 		return unicode(self.lugar)	
@@ -73,7 +69,7 @@ class Horario(models.Model):
 
 class Matriculado(models.Model):
 	cursoabierto=models.ForeignKey(CursoAbierto)
-	alumno=models.ForeignKey(User)
+	alumno=models.ForeignKey(Alumno)
 	def __unicode__(self):
 		return self.cursoabierto
 

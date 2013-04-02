@@ -1,7 +1,8 @@
 from principal.models import *
 from django.contrib import admin
 
-admin.site.register(PerfilUsuario)
+admin.site.register(Alumno)
+admin.site.register(Profesor)
 admin.site.register(Curso)
 admin.site.register(Material)
 admin.site.register(PreguntaExamen)
