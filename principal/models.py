@@ -52,7 +52,7 @@ class PreguntaExamen(models.Model):
 	item3=models.CharField(max_length=50)
 	item4=models.CharField(max_length=50)
 	def __unicode__(self):
-		return unicode(self.curso)
+		return unicode(self.pregunta)
 
 class Paquete(models.Model):
 	nombre=models.CharField(max_length=100)
@@ -94,12 +94,12 @@ class Pregunta(models.Model):
 	alumno=models.ForeignKey(User)
 	pregunta = models.CharField(max_length=300)
 	def __unicode__(self):
-		return self.curso
+		return self.pregunta
 
 class Respuesta(models.Model):
 	pregunta=models.ForeignKey(Pregunta)
 	usuario_log=models.ForeignKey(User)
 	respuesta= models.CharField(max_length=200)
 	def __unicode__(self):
-		return self.pregunta
+		return self.respuesta
 
