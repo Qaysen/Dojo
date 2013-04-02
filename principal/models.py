@@ -38,7 +38,7 @@ class CursoAbierto(models.Model):
 		return unicode(self.lugar)	
 
 class Material(models.Model):
-	archivo_url=models.CharField(max_length=200)
+	archivo_url=models.FileField(upload_to='material/')
 	nombre_archivo=models.CharField(max_length=100)
 	curso =models.ForeignKey(Curso)
 	def __unicode__(self):
@@ -61,10 +61,21 @@ class CursoPaquete(models.Model):
 		return '%s en %s' %(self.curso, self.paquete)
 
 class Horario(models.Model):
-	dia=models.DateField(auto_now=False)
-	hora=models.TimeField(auto_now=False)
+	dias = (
+		('Lunes','Lunes'),
+		('Martes','Martes'),
+		('Miercoles','Miercoles'),
+		('Jueves','Jueves'),
+		('Viernes','Viernes'),
+		('Sabado','Sabado'),
+		('Domingo','Domingo')
+	)
+	dia=models.CharField(choices=dias,max_length=12)
+	hora_inicio=models.TimeField(auto_now=False)
+	hora_fin=models.TimeField(auto_now=False)
+	cursoabierto=models.ForeignKey(CursoAbierto)
 	def __unicode__(self):
-		return '%s / %s' %(self.dia, self.hora)
+		return '%s / %s' %(self.dia, self.hora_inicio)
 
 
 class Matriculado(models.Model):
