@@ -9,7 +9,6 @@ Cursos Abiertos
 
 {% block contenido %}
 
-
 <div>
     <table >
         <tr>          
@@ -17,18 +16,16 @@ Cursos Abiertos
           <th>Curso</th>
           <th>Fecha de inicio</th>
           <th>Descripcion</th>
+          <th>Url_imagen</th>
         </tr>
 
     {% for curso in cursos_ab %} 
         <tr>          
           <td><a href="/cursos/{{curso.id}}">{{curso.curso}}<a></td>
           <td>{{curso.fecha_inicio}}</td>
-            {% for item in cursos %}
-              {% if item.id == curso.curso_id %} 
-                 <td>{{item.descripcion}}</td>
-              {% endif %}
-           {% endfor %}  
-
+          <td>{{curso.curso.descripcion}}</td>
+          <td>{{curso.curso.url_imagen}}</td>
+             
         </tr>
          
     {% endfor %}

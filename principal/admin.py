@@ -13,9 +13,9 @@ admin.site.register(Horario)
 admin.site.register(Matriculado)
 admin.site.register(Pregunta)
 admin.site.register(Respuesta)
-admin.site.register(Silabo)
 admin.site.register(Tema)
-admin.site.register(SubTema)
+
+
 
 
 
