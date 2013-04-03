@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <meta charset='utf-8'>
+    <title> Reporte de  {% block titulo %}{% endblock %}</title>
+
+</head>
+<body>
+<header>
+    {% block encabezado %}{% endblock %}
+    <nav>
+        <ul>
+            <li><a href='/'>Inicio</a></li>
+            <li><a href='/cursos'>Cursos</a></li>         
+        </ul>
+    </nav>
+</header>
+ <style >
+    OL { counter-reset: item; padding-left: 10px; }
+    LI { display: block }
+    LI:before { content: counters(item, ".") " "; counter-increment: item }
+</style>
+
+<section class='contenido'>
+    {% block contenido %}{% endblock %}
+</section>
+
+<footer>
+    <p>Plataforma Educativa &copy;2012</p>
+</footer>
+</body>
+</html>

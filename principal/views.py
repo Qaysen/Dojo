@@ -37,3 +37,17 @@ def home(request):
 def cerrar(request):
 	logout(request)
 	return HttpResponseRedirect('/')
+
+def cursos(request):
+	cursos_ab = CursoAbierto.objects.all().order_by("fecha_inicio")
+	cursos=Curso.objects.all()
+	return render_to_response('cursos.html', {'cursos_ab':cursos_ab, 'cursos':cursos}, context_instance=RequestContext(request))
+
+def dato_curso_abierto(request, id_curso_ab):
+	dato = CursoAbierto.objects.get(pk=id_curso_ab)
+	cursoab = Curso.objects.get(pk=dato.curso_id)
+	silabo= Silabo.objects.get(pk=cursoab.silabo_id)
+	tema=Tema.objects.filter(silabo=silabo.id)
+	subtema=SubTema.objects.all()	
+	
+	return render_to_response('dato_curso_abierto.html',{'curso_ab':dato, 'curso':cursoab, 'silabo':silabo, 'tema':tema, 'subtema':subtema},context_instance = RequestContext(request))

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block titulo %}
+Cursos
+{% endblock titulo %}
+
+{% block encabezado %}
+Cursos Abiertos
+{% endblock encabezado %}
+
+{% block contenido %}
+
+
+<div>
+           
+          <div>Curso: {{curso_ab.curso}}</div>
+          <div>Profesor: {{curso_ab.profesor}}</div>
+          <div>Descripcion: {{curso.descripcion}}</div>
+          <div>Lugar: {{curso_ab.lugar}}    </div>     
+          <div>Fecha de inicio: {{curso_ab.fecha_inicio}}</div>
+          <div>Fecha de Termino: </div>
+          <div>Cant. Horas: {{curso_ab.cant_horas}}</div>
+        
+        <div>SILABO: {{silabo.nombre}}</div>      
+
+
+         <ol>
+                          {% for item in tema %}
+                          <li>  
+                            {{item.nombre}}
+
+                                  <ol>{% for dato in subtema %}
+                                      {% if item.id == dato.tema.id %}                                                 
+                                            <li>{{dato.nombre}}</li>
+                                      {% endif %}       
+                                    {% endfor %}
+                                    </ol>
+                          
+                          </li> 
+                            {% endfor %}
+        </ol>
+
+
+  </div> 
+
+{% endblock contenido %}
+
