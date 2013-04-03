@@ -8,6 +8,9 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import  AuthenticationForm
 
+# Pagina de inicio
+def inicio(request):
+	return render_to_response('inicio.html', context_instance=RequestContext(request))
 
 def home(request):
 	if request.method == 'POST':
