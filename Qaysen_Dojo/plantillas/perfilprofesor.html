@@ -1,0 +1,12 @@
+{% extends "home.html" %}
+
+	{% block navegador %}
+	{% endblock %}
+	{% block contenido %}
+		<p>{{dato.first_name}} {{dato.last_name}}</p>
+		<p>{{profesor.desc_laboral}}</p>
+		<p>{{profesor.profesion}}</p>
+		<a href="http://github.com/{{profesor.git}}" target="blank">git</a>
+		<a href="http://www.facebook.com/{{profesor.face}}" target="blank">face</a>		
+		<a href="http://www.twitter.com/{{profesor.twitter}}" target="blank">twitter</a>
+	{% endblock %}

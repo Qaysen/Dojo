@@ -112,6 +112,7 @@ TEMPLATE_DIRS = (
     os.path.join(RUTA_PROYECTO,'plantillas'),
 )
 
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
