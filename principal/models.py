@@ -12,19 +12,43 @@ User.add_to_class('genero', models.CharField(null=True,blank=True, choices=GENER
 User.add_to_class('foto', models.CharField(null=True,blank=True, max_length=500))
 User.add_to_class('estado_login',models.BooleanField(default=False))
 
+	
+class Silabo(models.Model):
+	fecha_creacion= models.DateField(auto_now=True)
+	nombre=models.CharField(max_length=100)
+	def __unicode__(self):
+		return self.nombre
+
+class Tema(models.Model):
+	nombre=models.CharField(max_length=100)
+	silabo=models.ForeignKey(Silabo)
+	def __unicode__(self):
+		return unicode(self.nombre)
+
+class SubTema(models.Model):
+	nombre=models.CharField(max_length=100)
+	tema=models.ForeignKey(Tema)
+	def __unicode__(self):
+		return self.nombre
+
 class Alumno(models.Model):
 	usuario=models.ForeignKey(User)
+
 	def __unicode__(self):
 		return unicode(self.usuario)
 
 class Profesor(models.Model):
 	usuario= models.ForeignKey(User)
+	desc_laboral = models.CharField(max_length=100)
+	profesion = models.CharField(max_length=100)
+
 	def __unicode__(self):
 		return unicode(self.usuario)
 
 class Curso(models.Model):
 	nombre = models.CharField(max_length=100)
-	silabo = models.CharField(max_length=100)
+	silabo = models.ForeignKey(Silabo)
+	descripcion = models.CharField(max_length=200)
 	def __unicode__(self):
 		return unicode(self.nombre)		
 
@@ -102,4 +126,9 @@ class Respuesta(models.Model):
 	respuesta= models.CharField(max_length=200)
 	def __unicode__(self):
 		return self.respuesta
+
+
+
+
+
 
