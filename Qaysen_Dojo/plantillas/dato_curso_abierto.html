@@ -20,17 +20,24 @@ Cursos Abiertos
           <div>Fecha de Termino: </div>
           <div>Cant. Horas: {{curso_ab.cant_horas}}</div>
         
-        <div>SILABO: {{silabo.nombre}}</div>
-
-          <ul>{% for tema in tema %}
-              <li>{{tema.nombre}}</li>
-              {% endfor %}
-          </ul>
+        <div>SILABO: {{silabo.nombre}}</div>      
 
 
-        
+         <ol>
+                          {% for item in tema %}
+                          <li>  
+                            {{item.nombre}}
 
-
+                                  <ol>{% for dato in subtema %}
+                                      {% if item.id == dato.tema.id %}                                                 
+                                            <li>{{dato.nombre}}</li>
+                                      {% endif %}       
+                                    {% endfor %}
+                                    </ol>
+                          
+                          </li> 
+                            {% endfor %}
+        </ol>
 
 
   </div> 
