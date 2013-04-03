@@ -13,24 +13,6 @@ User.add_to_class('foto', models.CharField(null=True,blank=True, max_length=500)
 User.add_to_class('estado_login',models.BooleanField(default=False))
 
 	
-class Silabo(models.Model):
-	fecha_creacion= models.DateField(auto_now=True)
-	nombre=models.CharField(max_length=100)
-	def __unicode__(self):
-		return self.nombre
-
-class Tema(models.Model):
-	nombre=models.CharField(max_length=100)
-	silabo=models.ForeignKey(Silabo)
-	def __unicode__(self):
-		return unicode(self.nombre)
-
-class SubTema(models.Model):
-	nombre=models.CharField(max_length=100)
-	tema=models.ForeignKey(Tema)
-	def __unicode__(self):
-		return self.nombre
-
 class Alumno(models.Model):
 	usuario=models.ForeignKey(User)
 
@@ -41,30 +23,43 @@ class Profesor(models.Model):
 	usuario= models.ForeignKey(User)
 	desc_laboral = models.CharField(max_length=100)
 	profesion = models.CharField(max_length=100)
+	git = models.CharField(max_length=100)
+	face = models.CharField(max_length=100)
+	twitter = models.CharField(max_length=100)
 
 	def __unicode__(self):
 		return unicode(self.usuario)
 
 class Curso(models.Model):
 	nombre = models.CharField(max_length=100)
-	silabo = models.ForeignKey(Silabo)
 	descripcion = models.CharField(max_length=200)
+	url_imagen= models.CharField(max_length=100)
 	def __unicode__(self):
 		return unicode(self.nombre)		
 
 class CursoAbierto(models.Model):
 	lugar = models.CharField(max_length=100)
 	fecha_inicio= models.DateField(auto_now=False)
+	fecha_termino= models.DateField(auto_now=False)
 	cant_horas=models.IntegerField(max_length=11,default=0)
 	profesor =models.ForeignKey(Profesor)
 	curso =models.ForeignKey(Curso)
 	def __unicode__(self):
 		return unicode(self.lugar)	
 
+class Tema(models.Model):
+	nombre=models.CharField(max_length=100)
+	subtema=models.ForeignKey('Tema',blank=True,null=True)
+	cursoabierto=models.ForeignKey(CursoAbierto)
+	def __unicode__(self):
+		return unicode(self.nombre)
+
 class Material(models.Model):
 	archivo_url=models.FileField(upload_to='material/')
-	nombre_archivo=models.CharField(max_length=100)
-	curso =models.ForeignKey(Curso)
+	titulo=models.CharField(max_length=100)
+	descripcion=models.CharField(max_length=100)
+	tipo=models.CharField(max_length=100)
+	tema =models.ForeignKey(Tema)
 	def __unicode__(self):
 		return unicode(self.nombre_archivo)
 

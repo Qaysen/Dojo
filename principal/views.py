@@ -44,8 +44,9 @@ def cursos(request):
 def dato_curso_abierto(request, id_curso_ab):
 	dato = CursoAbierto.objects.get(pk=id_curso_ab)
 	cursoab = Curso.objects.get(pk=dato.curso_id)
-	silabo= Silabo.objects.get(pk=cursoab.silabo_id)
-	tema=Tema.objects.filter(silabo=silabo.id)
-	subtema=SubTema.objects.all()	
+
 	
-	return render_to_response('dato_curso_abierto.html',{'curso_ab':dato, 'curso':cursoab, 'silabo':silabo, 'tema':tema, 'subtema':subtema},context_instance = RequestContext(request))
+	tema=Tema.objects.filter(cursoabierto=id_curso_ab)
+	
+	
+	return render_to_response('dato_curso_abierto.html',{'curso_ab':dato, 'curso':cursoab,  'tema':tema },context_instance = RequestContext(request))
