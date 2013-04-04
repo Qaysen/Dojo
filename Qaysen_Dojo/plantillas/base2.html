@@ -6,10 +6,14 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Code Web</title>
+        <title>{% block titulo %}{% endblock titulo %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         
+        <link href="http://fonts.googleapis.com/css?family=Asap:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/normalize.min.css">
         <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css">
@@ -17,36 +21,118 @@
         <script type="text/javascript" src="//use.typekit.net/ynr5uqj.js"></script>
         <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 
-        <header class="cabecera">
-            <h1>CodeWeb.pe</h1>
+        <aside class="oferta">
+            <a href="http://skinnyties.com/offers/">
+                <div class="centrar">
+                    <div class="titulo">Oferta</div>
+
+                    <div class="descripcion">
+                        <span>Registrate y obten gratis un curso online.Diviertete en la plataforma haciendo preguntas y respondiendo a tus compañeros!</span>
+                    </div>
+                </div>
+            </a>  
+        </aside>
+
+        <header class="cabecera ">
+            <h1>< CODEWEB ></h1>
             <nav class="derecha">
                 <ul>
-                    <li><a title="" alt="" href="">Cursos</a></li>
+                    <li><a title="" alt="" href="/cursos/">Cursos</a></li>
                     <li><a title="" alt="" href="">Lugar</a></li>
                     <li><a title="" alt="" href="">Crear cuenta</a></li>
-                    <li><a title="" alt="" href="">Login</a></li>
+                    <li class="login">
+                        <a title="" alt="" href="">Login</a>
+                        <span class="inferior"></span>
+                    </li>
                 </ul>
             </nav>
         </header>
 
-        {% block presentacion %}{% endblock presentacion %}
+        <section class="presentacion shadow_bottom">
+            <div class="bienvenida">
+                <h2>Aprende mucho, gastando poco.</h2>
+                <p>Te ayudamos a formarte como un buen profesional en el diseño y desarrollo web. Contamos con profesionales que trabajan dia a dia en perfeccionar sus habilidad y les transmitiran todo ese conocimiento.</p>
+                <a href="/cursos/">Mira nuestros cursos <i class="flecha"></i><span class="inferior"></span>
+                </a>
+            </div>
+            <div class="foto">
+                <img width="500" height="360" src="http://www.webdevelopmentgroup.com/wp-content/uploads/2013/02/slidehalf-evolve.png" class="attachment-slideshow wp-post-image" alt="slidehalf-evolve">
+            </div>
+            <span class="inferior"></span>
+        </section>
 
-        {% block cursos_inicio %}{% endblock cursos_inicio %}
+        <section class="mas_info">
+            <p><img src="http://londoncyn.ca/wp-content/themes/cyn_public/img/twitter_logo.png" alt="Twitter Logo">Cursos presenciales en Trujillo, Perú. Tambien encuentra cursos online totalmente gratis.</p>
+            <span class="color" style="height: 5px;"></span>
+        </section>
 
-        {% block cuerpo %}{% endblock cuerpo %}
+        <section class="cursos inicio">
+
+            <article>
+                <div class="imagen html5"></div>
+
+                <p class="texto_escondido" style="background-color: #be4f19;">Aprende lo nuevo que nos trae HTML5, con muchos ejemplos!</p>
+
+                <h3 class="sombra_inferior" style="background-color: #f26522">HTML</h3>
+
+                <p class="leer_mas" style="background: #be4f19 url(http://londoncyn.ca/wp-content/uploads/2012/08/icon_eating_home.png) no-repeat 91% 14px; "><strong><a href="http://londoncyn.ca/priority_areas/#post-52" class="mas">Aprende mas</a></strong></p>
+
+            </article>
+
+            <article>
+                <div class="imagen css3"></div>
+
+                <p class="texto_escondido" style="background-color: #35779a;">Bordes redondeados, sombras y muchos mas, es lo que nos trae CSS3!</p>
+
+                <h3 class="sombra_inferior" style="background-color: #4294bf">CSS3</h3>
+
+                <p class="leer_mas" style="background: #35779a url(http://londoncyn.ca/wp-content/uploads/2012/08/icon_family_home.png) no-repeat 91% 14px; "><strong><a href="http://londoncyn.ca/priority_areas/#post-52" class="mas">Aprende mas</a></strong></p>
+
+            </article>
+
+            <article>
+                <div class="imagen jquery"></div>
+
+                <p class="texto_escondido" style="background-color: rgb(35,45,55);">Eventos, transiciones, etc! Todo eso aprenderemos con Jquery!</p>
+
+                <h3 class="sombra_inferior" style="background-color: rgb(45,55,65)">Jquery</h3>
+
+                <p class="leer_mas" style="background: rgb(35,45,55) url(http://londoncyn.ca/wp-content/uploads/2012/08/icon_ending_poverty_home.png) no-repeat 91% 14px; "><strong><a href="http://londoncyn.ca/priority_areas/#post-52" class="mas">Aprende mas</a></strong></p>
+
+            </article>
+
+            <article>
+                <div class="imagen django"></div>
+
+                <p class="texto_escondido" style="background-color: #00421c;">Desarrolla aplicaciones web de manera amena y rapida gracias a Django!</p>
+
+                <h3 class="sombra_inferior" style="background-color: #005e20">Django</h3>
+
+                <p class="leer_mas" style="background: #00421c url(http://londoncyn.ca/wp-content/uploads/2012/08/icon_literacy_home.png) no-repeat 91% 14px; "><strong><a href="http://londoncyn.ca/priority_areas/#post-52" class="mas">Aprende mas</a></strong></p>
+
+            </article>
+        </section>
+
+        <div class="promocion">
+            <h3><i class="icon-comment" style="margin-top:5px"></i> Registrate y obten gratis un curso online. <a href="http://netjelly.com/plans/">Ingresa y mira lo que tenemos para ti!</a>.</h3>
+            <span class="inferior"></span>
+        </div>
 
         <footer>
-            <div class="codeweb izquierda">
-                CodeWeb.pe 2013
-            </div>
-            <div class="qaysen derecha">
-                Qaysen 2013
+            <div class="contenedor">
+                <div class="codeweb izquierda">
+                    CodeWeb.pe 2013
+                </div>
+                <div class="qaysen derecha">
+                    Qaysen 2013
+                </div>
             </div>
         </footer>
 

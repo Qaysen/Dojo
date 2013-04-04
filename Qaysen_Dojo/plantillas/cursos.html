@@ -1,39 +1,37 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
+
 {% block titulo %}
-Cursos
+Cursos de Code Web
 {% endblock titulo %}
 
-{% block encabezado %}
-Cursos Abiertos
-{% endblock encabezado %}
+{% block cuerpo %}
 
-{% block contenido %}
+<section class="lista cursos">
+    <h2>Cursos de Code Web</h2>
+    <p>Mira y navega por todos los cursos que tenemos para ti.</p>
+</section>
+{% endblock cuerpo %}
 
+    <article>
+      <h3></h3>
+    </article>
 
-<div>
-    <table >
-        <tr>          
-          
+    <table>
+        <tr>
           <th>Curso</th>
           <th>Fecha de inicio</th>
           <th>Descripcion</th>
+          <th>Url_imagen</th>
         </tr>
 
     {% for curso in cursos_ab %} 
         <tr>          
           <td><a href="/cursos/{{curso.id}}">{{curso.curso}}<a></td>
           <td>{{curso.fecha_inicio}}</td>
-            {% for item in cursos %}
-              {% if item.id == curso.curso_id %} 
-                 <td>{{item.descripcion}}</td>
-              {% endif %}
-           {% endfor %}  
-
+          <td>{{curso.curso.descripcion}}</td>
+          <td>{{curso.curso.url_imagen}}</td>
         </tr>
          
     {% endfor %}
 
     </table>
-  </div> 
-
-{% endblock contenido %}

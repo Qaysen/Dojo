@@ -24,7 +24,9 @@ def home(request):
 				if acceso.is_active:
 					login(request, acceso)
 					user.save()
-					return HttpResponseRedirect('/')
+					dato=nombreusuario(user.email)
+					return render_to_response('home.html',{'dato1':dato}, context_instance=RequestContext(request))
+
 				else:
 					return render_to_response('noactivo.html', context_instance=RequestContext(request))
 			else:
@@ -33,21 +35,38 @@ def home(request):
 		formulario = AuthenticationForm()
 	return render_to_response('home.html',{'formulario':formulario}, context_instance=RequestContext(request))
 
+def nombreusuario(correo):
+	m=correo.split('@')
+	return m[0]
+
+def perfil(request,username):
+	usuario=request.user
+	perfil= Alumno.objects.filter(usuario=usuario.id).count()
+
+	if perfil==0:
+		profesor=Profesor.objects.get(usuario=usuario)
+		dato=usuario
+		dato1=username
+		return render_to_response('perfilprofesor.html',{'dato':dato,'dato1':dato1,'profesor':profesor}, context_instance=RequestContext(request))
+	else:
+		print "la otras sea"	
+	return HttpResponseRedirect('/')
+
 @login_required(login_url='/')
 def cerrar(request):
 	logout(request)
 	return HttpResponseRedirect('/')
 
+
 def cursos(request):
-	cursos_ab = CursoAbierto.objects.all().order_by("fecha_inicio")
-	cursos=Curso.objects.all()
-	return render_to_response('cursos.html', {'cursos_ab':cursos_ab, 'cursos':cursos}, context_instance=RequestContext(request))
+	cursos_abiertos = CursoAbierto.objects.all().order_by("fecha_inicio")
+	return render_to_response('cursos.html', {'cursos_abiertos':cursos_abiertos}, context_instance=RequestContext(request))
 
 def dato_curso_abierto(request, id_curso_ab):
 	dato = CursoAbierto.objects.get(pk=id_curso_ab)
 	cursoab = Curso.objects.get(pk=dato.curso_id)
-	silabo= Silabo.objects.get(pk=cursoab.silabo_id)
-	tema=Tema.objects.filter(silabo=silabo.id)
-	subtema=SubTema.objects.all()	
+
 	
-	return render_to_response('dato_curso_abierto.html',{'curso_ab':dato, 'curso':cursoab, 'silabo':silabo, 'tema':tema, 'subtema':subtema},context_instance = RequestContext(request))
+	tema=Tema.objects.filter(cursoabierto=id_curso_ab)
+
+	return render_to_response('dato_curso_abierto.html',{'curso_ab':dato, 'curso':cursoab,  'tema':tema },context_instance = RequestContext(request))
