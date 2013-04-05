@@ -68,9 +68,5 @@ def dato_curso_abierto(request, id_curso_ab):
 	tema=Tema.objects.filter(cursoabierto=id_curso_ab)
 	
 	
-<<<<<<< HEAD
-	return render_to_response('dato_curso_abierto.html',{'curso_ab':dato, 'curso':cursoab, 'silabo':silabo, 'tema':tema, 'subtema':subtema},context_instance = RequestContext(request))
-
-=======
 	return render_to_response('dato_curso_abierto.html',{'curso_ab':dato, 'curso':cursoab,  'tema':tema },context_instance = RequestContext(request))
->>>>>>> 34b6f885194f30238d2deb2f7e4d073065eccc5e
+

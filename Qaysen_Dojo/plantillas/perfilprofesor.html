@@ -3,6 +3,7 @@
 	{% block navegador %}
 	{% endblock %}
 	{% block contenido %}
+		<p><img src='{{MEDIA_URL}}{{dato.foto}}'></p>
 		<p>{{dato.first_name}} {{dato.last_name}}</p>
 		<p>{{profesor.desc_laboral}}</p>
 		<p>{{profesor.profesion}}</p>
