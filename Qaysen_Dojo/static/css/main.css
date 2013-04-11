@@ -13,6 +13,13 @@ p {
 	margin: 0;
 	padding: 0;
 }
+a, a:hover, a:visited {
+	text-decoration: none;
+}
+ul, li {
+	margin: 0;
+	padding: 0;
+}
 /* Clases de ayuda */
 .derecha {
 	float: right;
@@ -91,15 +98,14 @@ p {
 	font-weight: 700;
 	margin-left: 50px;
 }
-.cabecera h1:hover {
-	color: #ef4136;
-}
 
 /* Navegacion */
 .cabecera nav {
 	margin-right: 50px;
 	font-size: 18px;
 	padding: 20px 0;
+}
+.cabecera ul {
 }
 .cabecera nav ul li {
 	display: inline-block;
@@ -112,14 +118,21 @@ p {
 	z-index: 2;
 	padding: 0 15px;
 }
-
+.cabecera ul, .cabecera form, .cabecera .x_cerrar {
+	display: inline-block;
+	vertical-align: top;
+}
+.x_cerrar {
+	margin-top: 10px;
+	padding: 5px;
+}
 /* Login */
 .login {
-	width: 80px;
 	height: 30px;
 	background-color: #91D6D5;
 	border-radius: 4px;
 	color: #fff;
+	border: none !important;
 }
 .login a {
 	color: #fff !important;
@@ -128,11 +141,35 @@ p {
 	color: #000 !important;
 }
 
+/* Fomulario de login */
+input {
+	background-color: #ffffff;
+border: 1px solid #cccccc;
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+-moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+-o-transition: border linear 0.2s, box-shadow linear 0.2s;
+transition: border linear 0.2s, box-shadow linear 0.2s;
+display: inline-block;
+height: 30px;
+padding: 4px 6px;
+margin-bottom: 10px;
+font-size: 14px;
+line-height: 20px;
+color: #555555;
+vertical-align: middle;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+}
+
 /* Presentacion */
 .presentacion {
 	padding-top: 10px;
 	color: white;
-	background: #EE403D;
+	background: #EE403D; /*#34AADE 	#2E88C9*/
 }
 .presentacion .bienvenida {
 	padding: 40px 0;
@@ -199,8 +236,8 @@ p {
 /* Informacion General */
 .mas_info {
 	background: #333;
-	min-height: 80px;
-	margin-bottom: 34px;
+	min-height: 50px;
+	margin-bottom: 20px;
 	text-align: center;
 }
 .mas_info p, .mas_info p a {
@@ -323,6 +360,18 @@ p {
 	margin: 0;
 }
 
+/* Mapa */
+.mapa {
+	width: 80%;
+	margin: 0 10% 40px 10%;
+}
+.mapa .informacion {
+	display: inline-block;
+	width: 30%;
+	vertical-align: top;
+	margin-right: 20px;
+}
+/* Footer */
 footer {
 	background: #313131;
 }
@@ -344,5 +393,29 @@ footer .codeweb {
 	font-size: 20px;
 	font-family: "Asap","Droid Sans","Open Sans";
 	padding: 20px;
+	color: #fff;
+}
+
+/* Cursos */
+
+.presentacion .titulo {
+	margin: 0 10%;
+	width: 80%;
+	padding: 20px;
+	text-align: center;
+}
+.presentacion .titulo h2 {
+	font-size: 40px;
+}
+
+/* Filtros */
+.mas_info ul {
+	padding: 20px;
+}
+.mas_info ul li {
+	display: inline-block;
+	margin-left: 10px;
+}
+.mas_info ul li a {
 	color: #fff;
 }

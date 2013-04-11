@@ -4,34 +4,29 @@
 Cursos de Code Web
 {% endblock titulo %}
 
-{% block cuerpo %}
+{% block presentacion %}
+        <section class="presentacion sombra_inferior">
+            <div class="bienvenida titulo">
+                <h2>Mira todos los cursos que tenemos para ti!</h2>
+            </div>
+        </section>
+{% endblock presentacion %}
 
-<section class="lista cursos">
-    <h2>Cursos de Code Web</h2>
-    <p>Mira y navega por todos los cursos que tenemos para ti.</p>
-</section>
-{% endblock cuerpo %}
+{% block mas_info %}
+        <section class="mas_info sombra_inferior">
+            <ul>
+                <li><a href="#paquetes">Paquetes</a></li>
+                <li><a href="#todos">Todos</a></li>
+                <li><a href="#lugars">Lugares</a></li>
+                <li><a href="#presenciales">Presenciales</a></li>
+                <li><a href="#online">Online</a></li>
+            </ul>
+            <span class="inferior" style="height: 5px;"></span>
+        </section>
+{% endblock mas_info %}
 
-    <article>
-      <h3></h3>
-    </article>
-
-    <table>
-        <tr>
-          <th>Curso</th>
-          <th>Fecha de inicio</th>
-          <th>Descripcion</th>
-          <th>Url_imagen</th>
-        </tr>
-
-    {% for curso in cursos_ab %} 
-        <tr>          
-          <td><a href="/cursos/{{curso.id}}">{{curso.curso}}<a></td>
-          <td>{{curso.fecha_inicio}}</td>
-          <td>{{curso.curso.descripcion}}</td>
-          <td>{{curso.curso.url_imagen}}</td>
-        </tr>
-         
-    {% endfor %}
-
-    </table>
+{% block cursos_inicio %}
+    <section class="cursos inicio">
+        Cursos que dictamos
+    </section>  
+{% endblock cursos_inicio %}

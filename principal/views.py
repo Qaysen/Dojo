@@ -10,7 +10,27 @@ from django.contrib.auth.forms import  AuthenticationForm
 
 # Pagina de inicio
 def inicio(request):
-	return render_to_response('inicio.html', context_instance=RequestContext(request))
+	if request.method == 'POST':
+		formulario = AuthenticationForm(request.POST)
+		if formulario.is_valid:
+			usuario = request.POST['username']
+			clave = request.POST['password']
+			acceso = authenticate(username=usuario, password=clave)
+			if acceso is not None:
+				user= User.objects.get(username=usuario)
+				if acceso.is_active:
+					login(request, acceso)
+					user.save()
+					dato=nombreusuario(user.email)
+					return HttpResponseRedirect('/')
+
+				else:
+					return render_to_response('noactivo.html', context_instance=RequestContext(request))
+			else:
+				return render_to_response('nousuario.html', context_instance=RequestContext(request))
+	else:
+		formulario = AuthenticationForm()
+	return render_to_response('inicio.html', {'formulario':formulario}, context_instance=RequestContext(request))
 
 def home(request):
 	if request.method == 'POST':
@@ -25,7 +45,7 @@ def home(request):
 					login(request, acceso)
 					user.save()
 					dato=nombreusuario(user.email)
-					return render_to_response('home.html',{'dato1':dato}, context_instance=RequestContext(request))
+					return HttpResponseRedirect('/')
 
 				else:
 					return render_to_response('noactivo.html', context_instance=RequestContext(request))
