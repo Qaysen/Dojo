@@ -1,0 +1,33 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form method="POST">
+		{% csrf_token %}
+		<div>
+			<label> Usuario:</label>
+			<input type='text' name='username' maxlength='20'>
+			{{ formulario.username.errors }}
+		</div>
+		<div>
+			<label>Email :</label>
+			<input type='email' name='email' maxlength='30'>
+			{{ formulario.email.errors }}
+		</div>
+		<div>
+			<label>Contraseña :</label>
+			<input type='password' name='password1' maxlength='30'>
+			{{ formulario.password1.errors }}
+		</div>
+		<div>
+			<label>Confirmar Contraseña :</label>
+			<input type='password' name='password2' maxlength='30'>
+			{{ formulario.password2.errors }}
+		</div>
+		<div>
+			<button type='submit'>Registrar</button>
+		</div>
+	</form>
+</body>
+</html>

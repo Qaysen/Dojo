@@ -1,18 +1,23 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
+
 {% block titulo %}
-Cursos
+Cursos de Code Web
 {% endblock titulo %}
 
-{% block encabezado %}
-Cursos Abiertos
-{% endblock encabezado %}
+{% block cuerpo %}
 
-{% block contenido %}
+<section class="lista cursos">
+    <h2>Cursos de Code Web</h2>
+    <p>Mira y navega por todos los cursos que tenemos para ti.</p>
+</section>
+{% endblock cuerpo %}
 
-<div>
-    <table >
-        <tr>          
-          
+    <article>
+      <h3></h3>
+    </article>
+
+    <table>
+        <tr>
           <th>Curso</th>
           <th>Fecha de inicio</th>
           <th>Descripcion</th>
@@ -25,12 +30,8 @@ Cursos Abiertos
           <td>{{curso.fecha_inicio}}</td>
           <td>{{curso.curso.descripcion}}</td>
           <td>{{curso.curso.url_imagen}}</td>
-             
         </tr>
          
     {% endfor %}
 
     </table>
-  </div> 
-
-{% endblock contenido %}

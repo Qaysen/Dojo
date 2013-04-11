@@ -5,7 +5,7 @@
 <body>
 
 	{% if user.is_authenticated %}
-		<a href="/">Bienvenido {{user.first_name|capfirst}}</a>
+		<a href="/">Bienvenido {{user.username}}</a>
         <a href="/cerrar/">Cerrar Session</a>
  
         <a href="/{{dato1}}">mi perfil</a>

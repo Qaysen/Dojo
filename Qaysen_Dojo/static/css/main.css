@@ -1,0 +1,348 @@
+body {
+	/*font-family: 'Open Sans';*/
+	font-family: "source-sans-pro";
+	background-color: #fff;
+	color: #5A5A5A;
+}
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+p {
+	margin: 0;
+	padding: 0;
+}
+/* Clases de ayuda */
+.derecha {
+	float: right;
+}
+.izquierda {
+	float: left;
+}
+.centrar {
+	margin: 0 auto;
+}
+.inferior {
+	height: 5px;
+	z-index: 9999;
+	display: block;
+	background: transparent url(http://static.colourlovers.com/images/v4.0/_/misc/10-black.png) repeat scroll 0 0;
+}
+.sombra_inferior {
+	-webkit-box-shadow: 0 6px 8px -8px #000;
+	-moz-box-shadow: 0 6px 8px -8px #000;
+	box-shadow: 0 6px 8px -8px #000;
+}
+.raise {
+	z-index: 75;
+}
+/* oferta */
+.oferta {
+	overflow: hidden;
+	display: block;
+	background: #91D6D5;
+}
+.oferta a {
+	color: #FFF;
+	text-decoration: none;
+}
+.oferta a > div {
+	width: 80%;
+	padding: 5px 0;
+}
+.oferta:hover {
+	background: #F9A5A1;
+}
+.oferta .titulo {
+	margin-right: 10px;
+	padding: 0 8px;
+	background: rgba(0,0,0,0.2);
+	font-size: 12px;
+	letter-spacing: 1px;
+	line-height: 24px;
+	text-rendering: optimizeLegibility;
+	text-transform: uppercase;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+}
+.oferta .titulo, .oferta .descripcion {
+	display: inline-block;
+}
+
+/* Logo */
+.cabecera {
+	overflow: hidden;
+	padding: 0 50px;
+	height: 100px;
+	z-index: 100;
+}
+.cabecera h1, .cabecera nav {
+	display: inline-block;
+}
+.cabecera h1 {
+	float: left;
+	text-shadow: 0 3px 5px #ccc;
+	font-family: "Asap","Droid Sans","Open Sans";
+	text-transform: uppercase;
+	font-weight: 700;
+	margin-left: 50px;
+}
+.cabecera h1:hover {
+	color: #ef4136;
+}
+
+/* Navegacion */
+.cabecera nav {
+	margin-right: 50px;
+	font-size: 18px;
+	padding: 20px 0;
+}
+.cabecera nav ul li {
+	display: inline-block;
+	margin-right: 20px;
+	font-weight: 599;
+}
+.cabecera nav ul li a {
+	text-decoration: none;
+	color: #555;
+	z-index: 2;
+	padding: 0 15px;
+}
+
+/* Login */
+.login {
+	width: 80px;
+	height: 30px;
+	background-color: #91D6D5;
+	border-radius: 4px;
+	color: #fff;
+}
+.login a {
+	color: #fff !important;
+}
+.login a:hover {
+	color: #000 !important;
+}
+
+/* Presentacion */
+.presentacion {
+	padding-top: 10px;
+	color: white;
+	background: #EE403D;
+}
+.presentacion .bienvenida {
+	padding: 40px 0;
+	margin-left: 5%;
+	width: 45%;
+}
+.presentacion .bienvenida h2{
+	margin: 0 !important;
+	padding: 0 !important;
+	/*text-shadow: 0 2px 3px #333;*/
+	font-family: "Asap","Droid Sans","Open Sans";
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 55px;
+	line-height: 55px;
+	text-align: center;
+}
+.presentacion .bienvenida p{
+	margin: 10px 0 !important;
+	padding: 10px 0 20px 0;
+	text-shadow: 0 1px 1px #333;
+	text-align: center;
+}
+.presentacion .bienvenida a{
+	width: 210px;
+	float: right;
+	margin-right: 50px;
+	padding-top: 10px;
+	background: rgba(0,0,0,0.2);
+	letter-spacing: 1px;
+	line-height: 24px;
+	text-rendering: optimizeLegibility;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	color: #fff;
+	text-decoration: none;
+	opacity: 0.5;
+	text-align: center;
+}
+.presentacion .bienvenida a:hover {
+	opacity: 1;
+}
+.presentacion .bienvenida .flecha {
+	display: inline-block;
+	vertical-align: text-top;
+	background-repeat: no-repeat;
+	width: 14px;
+	height: 14px;
+	margin: 4px 0 0 8px;
+	background-image: url("http://netjelly.com/wp-content/themes/net/img/glyphicons-halflings-white.png");
+	background-position: -264px -96px;
+}
+.presentacion .bienvenida, .presentacion .foto {
+	display: inline-block;
+	vertical-align: top;
+}
+.presentacion .foto img {
+	margin: -30px 20px 20px 20px;
+}
+
+/* Informacion General */
+.mas_info {
+	background: #333;
+	min-height: 80px;
+	margin-bottom: 34px;
+	text-align: center;
+}
+.mas_info p, .mas_info p a {
+	color: #fff;
+	margin: 0 auto;
+	padding-top: 27px;
+	padding-bottom: 24px;
+	text-shadow: 1px 1px 1px #000;
+	width: 940px;
+}
+.mas_info img {
+	margin-right: 10px;
+}
+
+/* Lista de cursos en el inicio */
+.cursos.inicio {
+	margin: 0 auto;
+	padding: 1px 0;
+	width: 90%;
+}
+
+.cursos.inicio article {
+	border: 4px solid #fff;
+	display: inline-block;
+	height: 340px;
+	margin: 31px 25px 0;
+	padding: 0;
+	position: relative;
+	width: 220px;
+	display: inline-block;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	overflow: hidden;
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+	background-color: #fff;
+	color: #444;
+}
+.cursos.inicio .imagen {
+	display: inline-block;
+	height: 340px;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	width: 212px;
+	z-index: 25;
+}
+.html5 {
+	background: url(http://www.electricmayhemsolutions.net/blog/wp-content/uploads/2013/03/HTML5_Badge_512.jpg) no-repeat top left;
+}
+.css3 {
+	background: url(http://www.diseniorweb.com.ar/wp-content/uploads/2012/08/css3.jpg) no-repeat top left;
+}
+.jquery {
+	background: url(http://majorursa.net/sites/default/files/styles/medium/public/field/image/jquery-logo1.png) no-repeat top left;
+}
+.django {
+	background: url(http://londoncyn.ca/wp-content/uploads/2012/07/priority_areas_literacy.jpg) no-repeat top left;
+}
+.cursos.inicio .texto_escondido {
+	color: #fff;
+	height: 95px;
+	overflow: hidden;
+	padding: 10px 16px 0;
+	position: absolute;
+	bottom: 31px;
+	width: 212px;
+	z-index: 20;
+	margin: 0 0 20px 0;
+}
+.cursos.inicio h3 {
+	color: #fff;
+	line-height: 40px;
+	margin: 0;
+	padding: 10px 16px;
+	position: absolute;
+	bottom: 56px;
+	left: 0;
+	text-align: left;
+	width: 212px;
+	z-index: 100;
+}
+.cursos.inicio p.leer_mas {
+	display: block;
+	height: 56px;
+	margin: 0;
+	padding: 17px 16px 0;
+	position: absolute;
+	bottom: 0;
+	width: 212px;
+	z-index: 50;
+}
+.cursos.inicio h3.slide_up { 
+	bottom: 145px; 
+}
+.cursos.inicio a.mas {
+	background: url(http://londoncyn.ca/wp-content/themes/cyn_public/img/more_arrow.png) no-repeat right -38px;
+	height: 17px;
+	padding-right: 27px;
+	width: 17px;
+	color: #fff;
+	text-decoration: none;
+}
+
+/* Promocion */
+.promocion {
+	background-color: #F7EAC3;
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: 0 -1px 1px #E8D5A2 inset;
+	color: #444;
+	font-family: proxima-nova,sans-serif;
+	text-align: center;
+	margin: 30px auto;
+	width: 82%;
+}
+.promocion h3 {
+	padding: 20px;
+	margin: 0;
+}
+
+footer {
+	background: #313131;
+}
+footer .contenedor {
+	width: 82%;
+	margin: 0 auto;
+	min-height: 65px;
+}
+footer .codeweb, footer .qaysen {
+	display: inline-block;
+}
+footer .qaysen {
+	font-size: 20px;
+	font-family: "Asap","Droid Sans","Open Sans";
+	padding: 20px;
+	color: #fff;
+}
+footer .codeweb {
+	font-size: 20px;
+	font-family: "Asap","Droid Sans","Open Sans";
+	padding: 20px;
+	color: #fff;
+}
