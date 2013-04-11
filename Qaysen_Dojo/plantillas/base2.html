@@ -46,8 +46,9 @@
                 <ul>
                     <li><a title="" alt="" href="/cursos/">Cursos</a></li>
                     <li><a title="" alt="" href="">Lugar</a></li>
-                    <li><a title="" alt="" href="">Crear cuenta</a></li>
+
                 {% if user.is_authenticated %}
+                    <li><a title="" alt="" href="/registrar">Crear cuenta</a></li>
                     <li class="login">
                         <a title="" alt="" href="/cerrar/">Cerrar Session</a>
                         <span class="inferior"></span>

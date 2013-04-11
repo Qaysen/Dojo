@@ -9,7 +9,7 @@ GENERO = (
 User.add_to_class('telefono', models.IntegerField(null=True,blank=True, max_length=7))
 User.add_to_class('direccion', models.CharField(null=True,blank=True, max_length=500))
 User.add_to_class('genero', models.CharField(null=True,blank=True, choices=GENERO, max_length=30))
-User.add_to_class('foto', models.ImageField(upload_to='fotos', verbose_name='Imagen'))
+User.add_to_class('foto', models.FileField(upload_to='fotos', verbose_name='Imagen', blank=True, null=True))
 User.add_to_class('estado_login',models.BooleanField(default=False))
 
 	
