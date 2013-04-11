@@ -1,0 +1,17 @@
+{% extends "home.html" %}
+
+	{% block navegador %}
+	{% endblock %}
+	{% block contenido %}
+		<p><img src='{{MEDIA_URL}}{{dato.foto}}'></p>
+		<p>{{dato.first_name}} {{dato.last_name}}</p>
+		<p>{{profesor.desc_laboral}}</p>
+		<p>{{profesor.profesion}}</p>
+		<a href="http://github.com/{{profesor.git}}" target="blank">git</a>
+		<a href="http://www.facebook.com/{{profesor.face}}" target="blank">face</a>		
+		<a href="http://www.twitter.com/{{profesor.twitter}}" target="blank">twitter</a>
+		<p>Curos que dicta<p>
+		{% for x in lista_cursos %}
+			<p>{{x.curso.nombre}} </p>
+		{% endfor %}	
+	{% endblock %}

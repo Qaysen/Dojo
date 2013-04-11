@@ -6,10 +6,16 @@ GENERO = (
 	('Femenino','Femenino')
 )
 
+TIPO = (
+	('Seminario','Seminario'),
+	('Curso','Curso')
+)
+
+
 User.add_to_class('telefono', models.IntegerField(null=True,blank=True, max_length=7))
 User.add_to_class('direccion', models.CharField(null=True,blank=True, max_length=500))
 User.add_to_class('genero', models.CharField(null=True,blank=True, choices=GENERO, max_length=30))
-User.add_to_class('foto', models.CharField(null=True,blank=True, max_length=500))
+User.add_to_class('foto', models.ImageField(upload_to='fotos', verbose_name='Imagen'))
 User.add_to_class('estado_login',models.BooleanField(default=False))
 
 	
@@ -34,6 +40,7 @@ class Curso(models.Model):
 	nombre = models.CharField(max_length=100)
 	descripcion = models.CharField(max_length=200)
 	archivo_url=models.FileField(upload_to='logos/')
+	tipo=models.CharField(max_length=100, choices=TIPO)
 	def __unicode__(self):
 		return unicode(self.nombre)		
 
@@ -111,7 +118,7 @@ class Matriculado(models.Model):
 
 class Pregunta(models.Model):
 	curso=models.ForeignKey(Curso)
-	alumno=models.ForeignKey(User)
+	alumno=models.ForeignKey(Alumno)
 	pregunta = models.CharField(max_length=300)
 	def __unicode__(self):
 		return self.pregunta

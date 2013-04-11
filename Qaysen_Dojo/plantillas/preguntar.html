@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block titulo %}
+Cursos
+{% endblock titulo %}
+
+{% block encabezado %}
+Cursos Abiertos
+{% endblock encabezado %}
+
+{% block contenido %}
+<div>
+<form method="POST" action="">
+  {% csrf_token %}
+  {{usuario}}--><input type="text" name="pregunta"><br><button type="submit">Enviar</button>
+</form>
+</div>
+
+{% endblock contenido %}

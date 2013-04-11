@@ -14,7 +14,7 @@ Cursos Abiertos
           <div>Curso: {{curso_ab.curso}}</div>
           <div>Profesor: {{curso_ab.profesor}}</div>
           <div>Descripcion: {{curso.descripcion}}</div>
-          <div>URL_imagen: {{curso.archivo_url}}</div>
+          <div>URL_imagen: <img src='{{MEDIA_URL}}{{curso.archivo_url}}'></div>
           <div>Lugar: {{curso_ab.lugar}}    </div>     
           <div>Fecha de inicio: {{curso_ab.fecha_inicio}}</div>
           <div>Fecha de Termino:{{curso_ab.fecha_termino}} </div>
@@ -39,10 +39,13 @@ Cursos Abiertos
         </ol>
 
 
- 
+  <div><a href="/cursos/preguntas/{{curso_ab.id}}">Preguntas y Respuestas del Curso</a></div>
+  <div><a href="/cursos/form_pre/{{curso_ab.id}}">Preguntar</a></div>
+  <div><a href="/cursos/responder/{{curso_ab.id}}">Responder</a></div>
 
 
   </div> 
+
 
 {% endblock contenido %}
 
