@@ -38,15 +38,50 @@ def cerrar(request):
 
 def cursos(request):
 	cursos_ab = CursoAbierto.objects.all().order_by("fecha_inicio")
-	cursos=Curso.objects.all()
-	return render_to_response('cursos.html', {'cursos_ab':cursos_ab, 'cursos':cursos}, context_instance=RequestContext(request))
+
+	return render_to_response('cursos.html', {'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
 
 def dato_curso_abierto(request, id_curso_ab):
 	dato = CursoAbierto.objects.get(pk=id_curso_ab)
 	cursoab = Curso.objects.get(pk=dato.curso_id)
-
-	
+		
 	tema=Tema.objects.filter(cursoabierto=id_curso_ab)
+
+	padres=tema.filter(subtema_id=None).order_by("orden")
+	hijos=tema.exclude(subtema_id=None)
+
+
+	hijoss={}
 	
-	
-	return render_to_response('dato_curso_abierto.html',{'curso_ab':dato, 'curso':cursoab,  'tema':tema },context_instance = RequestContext(request))
+
+	for i in range(len(padres)):
+		hijoss[i+1] = {}
+
+	for x in hijos:
+	  	id_padre=x.subtema_id
+	  	for y in padres:
+	  		if y.id is id_padre:
+	  			padre=y.orden
+	  			print padre
+
+	  	subhijos=tema.filter(subtema_id=id_padre)
+	  	hijoss[id_padre]={}
+	  	for y in subhijos:	
+	  		hijoss[padre][y.orden]=y 	 	
+
+	a = [hijoss[x].values() for x in hijoss]
+
+	padres_hijos=zip(padres,a)
+
+	# print a
+
+	return render_to_response('dato_curso_abierto.html',{'curso_ab':dato, 'curso':cursoab,  'temario':padres_hijos },context_instance = RequestContext(request))
+
+
+def material(request,id_subtema):
+	material = Material.objects.filter(tema_id=id_subtema)
+	print id_subtema
+	mat= Material.objects.filter(tema_id=id_subtema).count()
+	print mat	
+
+	return render_to_response('material.html',{'material':material},context_instance = RequestContext(request))

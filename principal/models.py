@@ -33,7 +33,7 @@ class Profesor(models.Model):
 class Curso(models.Model):
 	nombre = models.CharField(max_length=100)
 	descripcion = models.CharField(max_length=200)
-	url_imagen= models.CharField(max_length=100)
+	archivo_url=models.FileField(upload_to='logos/')
 	def __unicode__(self):
 		return unicode(self.nombre)		
 
@@ -45,12 +45,13 @@ class CursoAbierto(models.Model):
 	profesor =models.ForeignKey(Profesor)
 	curso =models.ForeignKey(Curso)
 	def __unicode__(self):
-		return unicode(self.lugar)	
+		return unicode(self.curso)	
 
 class Tema(models.Model):
 	nombre=models.CharField(max_length=100)
 	subtema=models.ForeignKey('Tema',blank=True,null=True)
 	cursoabierto=models.ForeignKey(CursoAbierto)
+	orden=models.DecimalField(decimal_places=0, max_digits=2)
 	def __unicode__(self):
 		return unicode(self.nombre)
 
@@ -61,7 +62,7 @@ class Material(models.Model):
 	tipo=models.CharField(max_length=100)
 	tema =models.ForeignKey(Tema)
 	def __unicode__(self):
-		return unicode(self.nombre_archivo)
+		return unicode(self.titulo)
 
 class PreguntaExamen(models.Model):
 	curso =models.ForeignKey(Curso)

@@ -24,7 +24,7 @@ Cursos Abiertos
           <td><a href="/cursos/{{curso.id}}">{{curso.curso}}<a></td>
           <td>{{curso.fecha_inicio}}</td>
           <td>{{curso.curso.descripcion}}</td>
-          <td>{{curso.curso.url_imagen}}</td>
+          <td><img src='{{MEDIA_URL}}/{{curso.curso.archivo_url}}'>{{curso.curso.archivo_url}}</td>
              
         </tr>
          

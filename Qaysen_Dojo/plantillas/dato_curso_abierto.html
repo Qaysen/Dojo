@@ -14,7 +14,7 @@ Cursos Abiertos
           <div>Curso: {{curso_ab.curso}}</div>
           <div>Profesor: {{curso_ab.profesor}}</div>
           <div>Descripcion: {{curso.descripcion}}</div>
-          <div>URL_imagen: {{curso.url_imagen}}</div>
+          <div>URL_imagen: {{curso.archivo_url}}</div>
           <div>Lugar: {{curso_ab.lugar}}    </div>     
           <div>Fecha de inicio: {{curso_ab.fecha_inicio}}</div>
           <div>Fecha de Termino:{{curso_ab.fecha_termino}} </div>
@@ -22,21 +22,24 @@ Cursos Abiertos
         
 
 
-         <ol>
-                          {% for item in tema %}
+        <ol>
+                        {% for tema,subtemas in temario %}
                           <li>  
-                            {{item.nombre}}
-
-                                  <ol>{% for dato in tema %}
-                                      {% if item.id == dato.tema.id %}                                                 
-                                            <li>{{dato.nombre}}</li>
-                                      {% endif %}       
-                                    {% endfor %}
-                                    </ol>
+                            {{tema.nombre}}
+                            
+                            {% for subtema in subtemas %}
+                              <ol>
+                                <li><a href="/cursos/tema/{{subtema.id}}">{{subtema.nombre}}</a></li>
+                              </ol>
+                            {%endfor%}
+                                  
                           
                           </li> 
                             {% endfor %}
         </ol>
+
+
+ 
 
 
   </div> 
