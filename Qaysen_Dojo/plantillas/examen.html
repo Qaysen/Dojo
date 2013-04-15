@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block titulo %}
+Cursos
+{% endblock titulo %}
+
+{% block encabezado %}
+Cursos Abiertos
+{% endblock encabezado %}
+
+{% block contenido %}
+<div>
+		
+		<ul>
+			<!-- {% for pregunta in examen %} -->
+			<li>
+				{{pregunta.pregunta}}	
+						
+							{% for alternativa in alternativas %}
+											
+	   						<div>{{alternativa.alternativa}}</div> 
+	   					 	{% endfor %}				
+						<button type="submit">Saltar</button>
+						<button type="submit">Siguiente</button>						
+			</li>
+			<!-- {% endfor %} -->
+
+		</ul>
+		
+		
+ 
+</div>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        
+
+ <script>
+// $(document).on("ready", inicio);
+
+// function inicio()
+// {
+//   $( "button" ).on( "click", evento);
+//   $( "#1" ).on( "click", evento);
+// }
+
+// function evento()
+// {
+//     console.log("sdklfds");
+
+// }
+
+// </script>
+
+{% endblock contenido %}
+
