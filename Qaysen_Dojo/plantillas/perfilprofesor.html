@@ -1,17 +1,43 @@
-{% extends "home.html" %}
+{% extends "base3.html" %}
 
-	{% block navegador %}
-	{% endblock %}
-	{% block contenido %}
-		<p><img src='{{MEDIA_URL}}{{dato.foto}}'></p>
-		<p>{{dato.first_name}} {{dato.last_name}}</p>
-		<p>{{profesor.desc_laboral}}</p>
-		<p>{{profesor.profesion}}</p>
-		<a href="http://github.com/{{profesor.git}}" target="blank">git</a>
-		<a href="http://www.facebook.com/{{profesor.face}}" target="blank">face</a>		
-		<a href="http://www.twitter.com/{{profesor.twitter}}" target="blank">twitter</a>
-		<p>Curos que dicta<p>
-		{% for x in lista_cursos %}
-			<p>{{x.curso.nombre}} </p>
-		{% endfor %}	
-	{% endblock %}
+{% block titulo %}
+	{{dato.username}}
+{% endblock %}
+
+{% block perfil %}
+	<section class="perfil">
+		<div class="centrar">
+			<img src='http://www.gravatar.com/avatar/a7b4a6cc1ecfd3fadc72c9aa336b8ee2?d=retro&s=170'>
+
+			<div class="info">
+				<h1>{{dato.first_name|capfirst}} {{dato.last_name|capfirst}}</h1>
+				<p>{{profesor.desc_laboral}}</p>
+				<p>{{profesor.profesion}}</p>
+			</div>
+			<div class="social">
+				<a href="http://github.com/{{profesor.git}}" target="blank">git</a>
+				<a href="http://www.facebook.com/{{profesor.face}}" target="blank">face</a>		
+				<a href="http://www.twitter.com/{{profesor.twitter}}" target="blank">twitter</a>
+			</div>	
+		</div>
+	</section>
+	<section class="cursos">
+		<div class="lista_cursos total">
+            <legend>Cursos que dicto:</legend>
+            {% for curso in lista_cursos %} 
+            <article>
+                <img src='{{MEDIA_URL}}{{curso.curso.archivo_url}}' width="100">
+                <div class="informacion_curso">
+                    <h3><a href="/cursos/{{curso.id}}">{{curso.curso}}</a></h3>
+                    <p>{{curso.curso.descripcion}}</p>
+                    <p>{{curso.fecha_inicio}}</p>
+                </div>
+                <div class="fondito">
+                    <span>{{curso.lugar}}</span>
+                    <span class="inferior"></span>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+	</section>
+{% endblock %}

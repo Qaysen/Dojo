@@ -5,28 +5,56 @@ Cursos de Code Web
 {% endblock titulo %}
 
 {% block presentacion %}
-        <section class="presentacion sombra_inferior">
+        <section class="presentacion">
             <div class="bienvenida titulo">
                 <h2>Mira todos los cursos que tenemos para ti!</h2>
             </div>
+            
         </section>
 {% endblock presentacion %}
 
 {% block mas_info %}
-        <section class="mas_info sombra_inferior">
-            <ul>
-                <li><a href="#paquetes">Paquetes</a></li>
-                <li><a href="#todos">Todos</a></li>
-                <li><a href="#lugars">Lugares</a></li>
-                <li><a href="#presenciales">Presenciales</a></li>
-                <li><a href="#online">Online</a></li>
-            </ul>
-            <span class="inferior" style="height: 5px;"></span>
-        </section>
+
 {% endblock mas_info %}
 
 {% block cursos_inicio %}
-    <section class="cursos inicio">
-        Cursos que dictamos
+    <section class="cursos general">
+        <div class="filtros">
+            <legend>Filtrar</legend>
+            <ul>
+                Diseño Web:
+                <li><input type="checkbox"> HTML5</li>
+                <li><input type="checkbox"> CSS3</li>
+                <li><input type="checkbox"> Jquery</li>
+                <li><input type="checkbox"> Javascript</li>
+                Desarrollo Web:
+                <li><input type="checkbox"> Django</li>
+                <li><input type="checkbox"> Rails</li>
+                <li><input type="checkbox"> Symfony</li>
+                <li><input type="checkbox"> Sinatra</li>
+                Lugar:
+                <li><input type="checkbox"> Trujillo</li>
+                <li><input type="checkbox"> Chimbote</li>
+                <li><input type="checkbox"> Piura</li>
+                <li><input type="checkbox"> Chiclayo</li>
+                <li><input type="checkbox"> Cajamarca</li>
+            </ul>
+        </div>
+        <div class="lista_cursos">
+            {% for curso in cursos_ab %} 
+            <article>
+                <img src='{{MEDIA_URL}}{{curso.curso.archivo_url}}' width="100">
+                <div class="informacion_curso">
+                    <h3><a href="/cursos/{{curso.id}}">{{curso.curso}}</a></h3>
+                    <p>{{curso.curso.descripcion}}</p>
+                    <p>{{curso.fecha_inicio}}</p>
+                </div>
+                <div class="fondito">
+                    <span>{{curso.lugar}}</span>
+                    <span class="inferior"></span>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
     </section>  
 {% endblock cursos_inicio %}

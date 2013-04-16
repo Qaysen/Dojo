@@ -6,6 +6,12 @@ GENERO = (
 	('Femenino','Femenino')
 )
 
+TIPO = (
+	('Seminario','Seminario'),
+	('Curso','Curso')
+)
+
+
 User.add_to_class('telefono', models.IntegerField(null=True,blank=True, max_length=7))
 User.add_to_class('direccion', models.CharField(null=True,blank=True, max_length=500))
 User.add_to_class('genero', models.CharField(null=True,blank=True, choices=GENERO, max_length=30))
@@ -33,7 +39,8 @@ class Profesor(models.Model):
 class Curso(models.Model):
 	nombre = models.CharField(max_length=100)
 	descripcion = models.CharField(max_length=200)
-	url_imagen= models.CharField(max_length=100)
+	archivo_url=models.FileField(upload_to='logos/')
+	tipo=models.CharField(max_length=100, choices=TIPO)
 	def __unicode__(self):
 		return unicode(self.nombre)		
 
@@ -45,12 +52,13 @@ class CursoAbierto(models.Model):
 	profesor =models.ForeignKey(Profesor)
 	curso =models.ForeignKey(Curso)
 	def __unicode__(self):
-		return unicode(self.lugar)	
+		return unicode(self.curso)	
 
 class Tema(models.Model):
 	nombre=models.CharField(max_length=100)
 	subtema=models.ForeignKey('Tema',blank=True,null=True)
 	cursoabierto=models.ForeignKey(CursoAbierto)
+	orden=models.DecimalField(decimal_places=0, max_digits=2)
 	def __unicode__(self):
 		return unicode(self.nombre)
 
@@ -61,7 +69,7 @@ class Material(models.Model):
 	tipo=models.CharField(max_length=100)
 	tema =models.ForeignKey(Tema)
 	def __unicode__(self):
-		return unicode(self.nombre_archivo)
+		return unicode(self.titulo)
 
 class PreguntaExamen(models.Model):
 	curso =models.ForeignKey(Curso)
@@ -110,7 +118,7 @@ class Matriculado(models.Model):
 
 class Pregunta(models.Model):
 	curso=models.ForeignKey(Curso)
-	alumno=models.ForeignKey(User)
+	alumno=models.ForeignKey(Alumno)
 	pregunta = models.CharField(max_length=300)
 	def __unicode__(self):
 		return self.pregunta

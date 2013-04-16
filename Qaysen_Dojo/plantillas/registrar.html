@@ -1,33 +1,59 @@
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	<form method="POST">
-		{% csrf_token %}
-		<div>
-			<label> Usuario:</label>
-			<input type='text' name='username' maxlength='20'>
-			{{ formulario.username.errors }}
-		</div>
-		<div>
-			<label>Email :</label>
-			<input type='email' name='email' maxlength='30'>
-			{{ formulario.email.errors }}
-		</div>
-		<div>
-			<label>Contraseña :</label>
-			<input type='password' name='password1' maxlength='30'>
-			{{ formulario.password1.errors }}
-		</div>
-		<div>
-			<label>Confirmar Contraseña :</label>
-			<input type='password' name='password2' maxlength='30'>
-			{{ formulario.password2.errors }}
-		</div>
-		<div>
-			<button type='submit'>Registrar</button>
-		</div>
-	</form>
-</body>
-</html>
+{% extends "base2.html" %}
+
+{% block titulo %}
+	Registrarse en CodeWeb
+{% endblock titulo %}
+
+{% block presentacion %}
+        <section class="presentacion sombra_inferior">
+            <div class="bienvenida titulo">
+                <h2>Registrate y enterate de los nuevos cursos y seminarios que tenemos para ti!</h2>
+            </div>
+        </section>
+{% endblock presentacion %}
+
+{% block mas_info %}
+		<section class="mas_info">
+            <p><img src="http://londoncyn.ca/wp-content/themes/cyn_public/img/twitter_logo.png" alt="Twitter Logo">No te olvides de seguirnos en Facebook, Twitter, Google+ y Github.</p>
+            <span class="color" style="height: 5px;"></span>
+        </section>
+{% endblock mas_info %}
+
+{% block formulario %}
+		<section class="registrar">
+			<form method="POST">
+				<legend>Registrarse</legend>
+				{% csrf_token %}
+				<div>
+					<label> Usuario:</label>
+					<input type='text' name='username' maxlength='20'>
+					{{ formulario.username.errors }}
+				</div>
+				<div>
+					<label>Email :</label>
+					<input type='email' name='email' maxlength='30'>
+					{{ formulario.email.errors }}
+				</div>
+				<div>
+					<label>Contraseña :</label>
+					<input type='password' name='password1' maxlength='30'>
+					{{ formulario.password1.errors }}
+				</div>
+				<div>
+					<label>Confirmar Contraseña :</label>
+					<input type='password' name='password2' maxlength='30'>
+					{{ formulario.password2.errors }}
+				</div>
+				<br>
+				<button class="login">
+                   	Registrar
+                    <span class="inferior"></span>
+				</button>
+			</form>
+		</section>
+		<div class="promocion hola">
+            <h3><i class="icon-comment" style="margin-top:5px"></i> Registrate y obten gratis un curso online. <a href="http://netjelly.com/plans/">Ingresa y mira lo que tenemos para ti!</a>.</h3>
+            <p>Ten en cuenta que tenemos seminarios y cursos abiertos en todo el año.</p>
+            <span class="inferior"></span>
+        </div>
+{% endblock formulario %}

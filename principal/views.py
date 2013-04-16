@@ -11,6 +11,7 @@ from django.contrib.auth.forms import  AuthenticationForm
 
 # Pagina de inicio
 def inicio(request):
+	cursos_ab = CursoAbierto.objects.all().order_by("fecha_inicio")
 	if request.method == 'POST':
 		formulario = AuthenticationForm(request.POST)
 		if formulario.is_valid:
@@ -31,29 +32,29 @@ def inicio(request):
 				return render_to_response('nousuario.html', context_instance=RequestContext(request))
 	else:
 		formulario = AuthenticationForm()
-	return render_to_response('inicio.html', {'formulario':formulario}, context_instance=RequestContext(request))
+	return render_to_response('inicio.html', {'formulario':formulario, 'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
 
-def home(request):
-	if request.method == 'POST':
-		formulario = AuthenticationForm(request.POST)
-		if formulario.is_valid:
-			usuario = request.POST['username']
-			clave = request.POST['password']
-			acceso = authenticate(username=usuario, password=clave)
-			if acceso is not None:
-				user= User.objects.get(username=usuario)
-				if acceso.is_active:
-					login(request, acceso)
-					user.save()
-					dato=usuario
-					return render_to_response('home.html',{'dato1':dato}, context_instance=RequestContext(request))
-				else:
-					return render_to_response('noactivo.html', context_instance=RequestContext(request))
-			else:
-				return render_to_response('nousuario.html', context_instance=RequestContext(request))
-	else:
-		formulario = AuthenticationForm()
-	return render_to_response('home.html',{'formulario':formulario}, context_instance=RequestContext(request))
+# def home(request):
+# 	if request.method == 'POST':
+# 		formulario = AuthenticationForm(request.POST)
+# 		if formulario.is_valid:
+# 			usuario = request.POST['username']
+# 			clave = request.POST['password']
+# 			acceso = authenticate(username=usuario, password=clave)
+# 			if acceso is not None:
+# 				user= User.objects.get(username=usuario)
+# 				if acceso.is_active:
+# 					login(request, acceso)
+# 					user.save()
+# 					dato=usuario
+# 					return render_to_response('home.html',{'dato1':dato}, context_instance=RequestContext(request))
+# 				else:
+# 					return render_to_response('noactivo.html', context_instance=RequestContext(request))
+# 			else:
+# 				return render_to_response('nousuario.html', context_instance=RequestContext(request))
+# 	else:
+# 		formulario = AuthenticationForm()
+# 	return render_to_response('home.html',{'formulario':formulario}, context_instance=RequestContext(request))
 
 def nombreusuario(correo):
 	m=correo.split('@')
@@ -80,17 +81,50 @@ def cerrar(request):
 
 
 def cursos(request):
-	cursos_abiertos = CursoAbierto.objects.all().order_by("fecha_inicio")
-	return render_to_response('cursos.html', {'cursos_abiertos':cursos_abiertos}, context_instance=RequestContext(request))
+	cursos_ab = CursoAbierto.objects.all().order_by("fecha_inicio")
+	return render_to_response('cursos.html', {'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
+
 
 def dato_curso_abierto(request, id_curso_ab):
 	dato = CursoAbierto.objects.get(pk=id_curso_ab)
 	cursoab = Curso.objects.get(pk=dato.curso_id)
-
-
+	
 	tema=Tema.objects.filter(cursoabierto=id_curso_ab)
 
-	return render_to_response('dato_curso_abierto.html',{'curso_ab':dato, 'curso':cursoab,  'tema':tema },context_instance = RequestContext(request))
+	padres=tema.filter(subtema_id=None).order_by("orden")
+	hijos=tema.exclude(subtema_id=None)
+
+
+	hijoss={}
+	
+
+	for i in range(len(padres)):
+		hijoss[i+1] = {}
+
+	for x in hijos:
+	  	id_padre=x.subtema_id
+	  	for y in padres:
+	  		if y.id is id_padre:
+	  			padre=y.orden
+	  			print padre
+
+	  	subhijos=tema.filter(subtema_id=id_padre)
+	  	hijoss[id_padre]={}
+	  	for y in subhijos:	
+	  		hijoss[padre][y.orden]=y 	 	
+
+	a = [hijoss[x].values() for x in hijoss]
+
+	padres_hijos=zip(padres,a)
+
+	# print a
+
+	return render_to_response('dato_curso_abierto.html',{'curso_ab':dato, 'curso':cursoab,  'temario':padres_hijos },context_instance = RequestContext(request))
+
+
+def material(request,id_subtema):
+	material = Material.objects.filter(tema_id=id_subtema)
+	return render_to_response('material.html',{'material':material},context_instance = RequestContext(request))
 
 def registrarse(request):
 	if request.method=='POST':
@@ -125,3 +159,26 @@ def actualizar_password(request):
 			usuario.set_password(request.POST['password1'])
 			usuario.save();
 	return render_to_response('cambiarpassword.html', {'dato1':usuario.username, 'usuario':usuario}, context_instance=RequestContext(request))
+
+
+def preguntas_curso(request,id_curso):
+	usuario=request.user
+	pregunta=Pregunta.objects.filter(curso_id=id_curso)
+	respuesta=Respuesta.objects.all()
+
+	return render_to_response('preg_resp.html', {'usuario':usuario,'pregunta':pregunta,'respuesta':respuesta}, context_instance=RequestContext(request))
+
+def form_pregunta(request,id_curso):
+	usuario=request.user
+	if request.method=='POST':
+		alumno=Alumno.objects.get(usuario_id=usuario.id)
+		Pregunta.objects.create(curso_id=id_curso,pregunta=request.POST['pregunta'],alumno_id=alumno.id)
+	return render_to_response('preguntar.html', {'usuario':usuario},context_instance=RequestContext(request))
+
+
+def responder(request,id_curso):
+	usuario=request.user
+	if request.method=='POST':
+		Respuesta.objects.create(respuesta=request.POST['respuesta'],usuario_log_id=usuario.id,pregunta_id=request.POST['pregunta'])
+	pregunta=Pregunta.objects.filter(curso_id=id_curso)
+	return render_to_response('responder.html', {'pregunta':pregunta,'usuario':usuario},context_instance=RequestContext(request))

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block titulo %}
+Cursos
+{% endblock titulo %}
+
+{% block encabezado %}
+Cursos Abiertos
+{% endblock encabezado %}
+
+{% block contenido %}
+
+<div>
+     <ul>
+       {% for pregunta in pregunta %}
+       <li>
+              {{pregunta.alumno.usuario}}::{{pregunta.pregunta}}
+
+              {% for respuesta in respuesta %}
+              <ul>
+                {% if respuesta.pregunta_id == pregunta.id %}
+                  <li>
+                    {{respuesta.usuario_log}}::::{{respuesta.respuesta}}
+                  </li> 
+                {% endif %}
+              </ul>
+              {% endfor %}
+
+       </li>
+       {% endfor %}
+     </ul>
+        
+</div> 
+
+
+{% endblock contenido %}
+

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block titulo %}
+Cursos
+{% endblock titulo %}
+
+{% block encabezado %}
+Cursos Abiertos
+{% endblock encabezado %}
+
+{% block contenido %}
+<div>
+<form method="POST">
+  {% csrf_token %}
+ Pregunta:<select name="pregunta"> 
+ 	{% for item in pregunta %}
+   <option value="{{item.id}}">{{item.pregunta}}</option> 
+   {% endfor %}
+</select> 
+
+  {{usuario}}--><input type="text" name="respuesta"><br><button type="submit">Enviar</button>
+</form>
+</div>
+
+{% endblock contenido %}
