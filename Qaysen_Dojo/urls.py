@@ -20,6 +20,7 @@ urlpatterns = patterns('',
 	url(r'^cursos/preguntas/(?P<id_curso>\d+)$','principal.views.preguntas_curso'),
 	url(r'^cursos/form_pre/(?P<id_curso>\d+)$','principal.views.form_pregunta'),
 	url(r'^cursos/responder/(?P<id_curso>\d+)$','principal.views.responder'),
+	url(r'^cursos/examen/(?P<id_curso>\d+)$','principal.views.examen'),
 
 	url(r'^cursos/(?P<id_curso_ab>\d+)$','principal.views.dato_curso_abierto'),
 	url(r'^cursos/tema/(?P<id_subtema>\d+)$','principal.views.material'),

@@ -182,3 +182,23 @@ def responder(request,id_curso):
 		Respuesta.objects.create(respuesta=request.POST['respuesta'],usuario_log_id=usuario.id,pregunta_id=request.POST['pregunta'])
 	pregunta=Pregunta.objects.filter(curso_id=id_curso)
 	return render_to_response('responder.html', {'pregunta':pregunta,'usuario':usuario},context_instance=RequestContext(request))
+
+
+def examen(request,id_curso):
+	usuario=request.user
+	examen=PreguntaExamen.objects.filter(curso_id=id_curso).order_by('?')[:1]
+	print examen[0].id
+	print examen[0].id
+	print examen[0].id
+
+	for x in examen:
+		print x.pregunta
+		print x.id	
+
+	alternativas=Alternativa.objects.filter(pregunta_id=examen[0].id).order_by('?')
+
+	return render_to_response('examen.html', {'examen':examen,'alternativas':alternativas,'usuario':usuario},context_instance=RequestContext(request))
+
+
+
+

@@ -74,12 +74,15 @@ class Material(models.Model):
 class PreguntaExamen(models.Model):
 	curso =models.ForeignKey(Curso)
 	pregunta = models.CharField(max_length=200)
-	item1=models.CharField(max_length=50)
-	item2=models.CharField(max_length=50)
-	item3=models.CharField(max_length=50)
-	item4=models.CharField(max_length=50)
 	def __unicode__(self):
 		return unicode(self.pregunta)
+
+class Alternativa(models.Model):
+	pregunta =models.ForeignKey(PreguntaExamen)
+	alternativa = models.CharField(max_length=200)
+	estado=models.BooleanField()
+	def __unicode__(self):
+		return unicode(self.alternativa)
 
 class Paquete(models.Model):
 	nombre=models.CharField(max_length=100)
