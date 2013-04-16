@@ -6,8 +6,10 @@ from django.template import RequestContext
 from principal.forms import *
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-
+from django.core.servers.basehttp import FileWrapper
 from django.contrib.auth.forms import  AuthenticationForm
+from reportlab.pdfgen import canvas
+
 
 # Pagina de inicio
 def inicio(request):
@@ -60,7 +62,11 @@ def cerrar(request):
 
 
 def cursos(request):
-	cursos_ab = CursoAbierto.objects.all().order_by("fecha_inicio")
+	cursos_ab = CursoAbierto.objects.filter(tipo="Curso").order_by("fecha_inicio")
+	return render_to_response('cursos.html', {'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
+
+def seminarios(request):
+	cursos_ab = CursoAbierto.objects.filter(tipo="Seminario").order_by("fecha_inicio")
 	return render_to_response('cursos.html', {'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
 
 
@@ -179,6 +185,25 @@ def examen(request,id_curso):
 
 	return render_to_response('examen.html', {'examen':examen,'alternativas':alternativas,'usuario':usuario},context_instance=RequestContext(request))
 
+     
+def descargar(request,pathy):
+	path="Qaysen_Dojo/cargas/"+pathy+""
+	response = HttpResponse(mimetype='application/pdf')
+	response['Content-Disposition'] = 'attachment; filename='+pathy+''
+	with open(path, 'rb') as fichero: contenido = fichero.read()
+	response.write(contenido)
+	return response
 
+def pdf(request):	
+	response = HttpResponse(mimetype='application/pdf')
+	response['Content-Disposition'] = 'attachment; filename=hello.pdf'
+	p=canvas.Canvas(response)
 
+	p.drawString(0,800,"Hello Word")
+	p.showPage()
+	p.save()
+	return response
 
+def ver(request,path):
+	print path
+	return render_to_response('ver.html', {'path':path} ,context_instance=RequestContext(request))

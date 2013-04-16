@@ -40,7 +40,7 @@ class Curso(models.Model):
 	nombre = models.CharField(max_length=100)
 	descripcion = models.CharField(max_length=200)
 	archivo_url=models.FileField(upload_to='logos/')
-	tipo=models.CharField(max_length=100, choices=TIPO)
+	
 	def __unicode__(self):
 		return unicode(self.nombre)		
 
@@ -49,6 +49,7 @@ class CursoAbierto(models.Model):
 	fecha_inicio= models.DateField(auto_now=False)
 	fecha_termino= models.DateField(auto_now=False)
 	cant_horas=models.IntegerField(max_length=11,default=0)
+	tipo=models.CharField(max_length=100, choices=TIPO)
 	profesor =models.ForeignKey(Profesor)
 	curso =models.ForeignKey(Curso)
 	def __unicode__(self):
