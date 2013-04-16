@@ -4,60 +4,57 @@
 Cursos de Code Web
 {% endblock titulo %}
 
-{% block encabezado %}
-Registrate y obten gratis un curso online.Diviertete en la plataforma haciendo preguntas y respondiendo a tus compañeros!{
-{% endblock encabezado %}
-
-{% block cursoabierto %}
-    
- 
-              {% for curso in cursos_ab %} 
+{% block presentacion %}
+        <section class="presentacion">
+            <div class="bienvenida titulo">
+                <h2>Mira todos los cursos que tenemos para ti!</h2>
+            </div>
             
-              <article>
-               <div class="imagen"><img src='{{MEDIA_URL}}{{curso.curso.archivo_url}}'></div>
-                
-                <p class="texto_escondido" style="background-color: #be4f19;">{{curso.curso.descripcion}}<br> {{curso.fecha_inicio}}</p>
+        </section>
+{% endblock presentacion %}
 
-                <h3 class="sombra_inferior" style="background-color: #f26522"><a href="/cursos/{{curso.id}}">{{curso.curso}}<a>
-               
-                </h3>
+{% block mas_info %}
 
-                <p class="leer_mas" style="background: #be4f19 url(http://londoncyn.ca/wp-content/uploads/2012/08/icon_eating_home.png) no-repeat 91% 14px; "><strong><a href="/cursos/{{curso.id}}" class="mas">Aprende mas</a></strong></p>
+{% endblock mas_info %}
 
-              </article>
-
-            <!-- <article>
-                <div class="imagen css3"></div>
-
-                <p class="texto_escondido" style="background-color: #35779a;">Bordes redondeados, sombras y muchos mas, es lo que nos trae CSS3!</p>
-
-                <h3 class="sombra_inferior" style="background-color: #4294bf">CSS3</h3>
-
-                <p class="leer_mas" style="background: #35779a url(http://londoncyn.ca/wp-content/uploads/2012/08/icon_family_home.png) no-repeat 91% 14px; "><strong><a href="http://londoncyn.ca/priority_areas/#post-52" class="mas">Aprende mas</a></strong></p>
-
-            </article>
-
+{% block cursos_inicio %}
+    <section class="cursos general">
+        <div class="filtros">
+            <legend>Filtrar</legend>
+            <ul>
+                Diseño Web:
+                <li><input type="checkbox"> HTML5</li>
+                <li><input type="checkbox"> CSS3</li>
+                <li><input type="checkbox"> Jquery</li>
+                <li><input type="checkbox"> Javascript</li>
+                Desarrollo Web:
+                <li><input type="checkbox"> Django</li>
+                <li><input type="checkbox"> Rails</li>
+                <li><input type="checkbox"> Symfony</li>
+                <li><input type="checkbox"> Sinatra</li>
+                Lugar:
+                <li><input type="checkbox"> Trujillo</li>
+                <li><input type="checkbox"> Chimbote</li>
+                <li><input type="checkbox"> Piura</li>
+                <li><input type="checkbox"> Chiclayo</li>
+                <li><input type="checkbox"> Cajamarca</li>
+            </ul>
+        </div>
+        <div class="lista_cursos">
+            {% for curso in cursos_ab %} 
             <article>
-                <div class="imagen jquery"></div>
-
-                <p class="texto_escondido" style="background-color: rgb(35,45,55);">Eventos, transiciones, etc! Todo eso aprenderemos con Jquery!</p>
-
-                <h3 class="sombra_inferior" style="background-color: rgb(45,55,65)">Jquery</h3>
-
-                <p class="leer_mas" style="background: rgb(35,45,55) url(http://londoncyn.ca/wp-content/uploads/2012/08/icon_ending_poverty_home.png) no-repeat 91% 14px; "><strong><a href="http://londoncyn.ca/priority_areas/#post-52" class="mas">Aprende mas</a></strong></p>
-
+                <img src='{{MEDIA_URL}}{{curso.curso.archivo_url}}' width="100">
+                <div class="informacion_curso">
+                    <h3><a href="/cursos/{{curso.id}}">{{curso.curso}}</a></h3>
+                    <p>{{curso.curso.descripcion}}</p>
+                    <p>{{curso.fecha_inicio}}</p>
+                </div>
+                <div class="fondito">
+                    <span>{{curso.lugar}}</span>
+                    <span class="inferior"></span>
+                </div>
             </article>
-
-            <article>
-                <div class="imagen django"></div>
-
-                <p class="texto_escondido" style="background-color: #00421c;">Desarrolla aplicaciones web de manera amena y rapida gracias a Django!</p>
-
-                <h3 class="sombra_inferior" style="background-color: #005e20">Django</h3>
-
-                <p class="leer_mas" style="background: #00421c url(http://londoncyn.ca/wp-content/uploads/2012/08/icon_literacy_home.png) no-repeat 91% 14px; "><strong><a href="http://londoncyn.ca/priority_areas/#post-52" class="mas">Aprende mas</a></strong></p>
-
-            </article>-->
-             {% endfor %}
-
-{% endblock cursoabierto %}
+            {% endfor %}
+        </div>
+    </section>  
+{% endblock cursos_inicio %}

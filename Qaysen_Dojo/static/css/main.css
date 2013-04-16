@@ -13,6 +13,15 @@ p {
 	margin: 0;
 	padding: 0;
 }
+a, a:hover, a:visited {
+	color: black;
+	text-decoration: none;
+}
+ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
 /* Clases de ayuda */
 .derecha {
 	float: right;
@@ -91,15 +100,14 @@ p {
 	font-weight: 700;
 	margin-left: 50px;
 }
-.cabecera h1:hover {
-	color: #ef4136;
-}
 
 /* Navegacion */
 .cabecera nav {
 	margin-right: 50px;
 	font-size: 18px;
 	padding: 20px 0;
+}
+.cabecera ul {
 }
 .cabecera nav ul li {
 	display: inline-block;
@@ -112,14 +120,21 @@ p {
 	z-index: 2;
 	padding: 0 15px;
 }
-
+.cabecera ul, .cabecera form, .cabecera .x_cerrar {
+	display: inline-block;
+	vertical-align: top;
+}
+.x_cerrar {
+	margin-top: 10px;
+	padding: 5px;
+}
 /* Login */
 .login {
-	width: 80px;
 	height: 30px;
 	background-color: #91D6D5;
 	border-radius: 4px;
 	color: #fff;
+	border: none !important;
 }
 .login a {
 	color: #fff !important;
@@ -128,11 +143,36 @@ p {
 	color: #000 !important;
 }
 
+/* Fomulario de login */
+input {
+	background-color: #ffffff;
+border: 1px solid #cccccc;
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+-moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+-o-transition: border linear 0.2s, box-shadow linear 0.2s;
+transition: border linear 0.2s, box-shadow linear 0.2s;
+display: inline-block;
+height: 30px;
+padding: 4px 6px;
+margin-bottom: 10px;
+font-size: 14px;
+line-height: 20px;
+color: #555555;
+vertical-align: middle;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+}
+
 /* Presentacion */
 .presentacion {
-	padding-top: 10px;
 	color: white;
-	background: #EE403D;
+	background: #EE403D; /*#34AADE 	#2E88C9*/
+	-webkit-box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+	overflow: hidden;
 }
 .presentacion .bienvenida {
 	padding: 40px 0;
@@ -199,8 +239,8 @@ p {
 /* Informacion General */
 .mas_info {
 	background: #333;
-	min-height: 80px;
-	margin-bottom: 34px;
+	min-height: 50px;
+	margin-bottom: 20px;
 	text-align: center;
 }
 .mas_info p, .mas_info p a {
@@ -216,13 +256,13 @@ p {
 }
 
 /* Lista de cursos en el inicio */
-.cursos.inicio {
-	margin: 0 auto;
+.cursos {
+	margin: 30px auto;
 	padding: 1px 0;
 	width: 90%;
 }
 
-.cursos.inicio article {
+/*.cursos.inicio article {
 	border: 4px solid #fff;
 	display: inline-block;
 	height: 340px;
@@ -305,7 +345,7 @@ p {
 	width: 17px;
 	color: #fff;
 	text-decoration: none;
-}
+}*/
 
 /* Promocion */
 .promocion {
@@ -323,7 +363,20 @@ p {
 	margin: 0;
 }
 
+/* Mapa */
+.mapa {
+	width: 80%;
+	margin: 0 10% 40px 10%;
+}
+.mapa .informacion {
+	display: inline-block;
+	width: 30%;
+	vertical-align: top;
+	margin-right: 20px;
+}
+/* Footer */
 footer {
+	margin-top: 50px;
 	background: #313131;
 }
 footer .contenedor {
@@ -345,4 +398,262 @@ footer .codeweb {
 	font-family: "Asap","Droid Sans","Open Sans";
 	padding: 20px;
 	color: #fff;
+}
+
+/* Cursos */
+
+.presentacion .titulo {
+	margin: 0 10%;
+	width: 80%;
+	padding: 20px;
+	text-align: center;
+}
+.presentacion .titulo h2 {
+	font-size: 40px;
+}
+
+/* Filtros */
+.mas_info ul {
+	padding: 20px;
+}
+.mas_info ul li {
+	display: inline-block;
+	margin-left: 10px;
+}
+.mas_info ul li a {
+	color: #fff;
+}
+
+/* Formulario Registrar */
+
+.registrar {
+	margin-left: 10%;
+	width: 50%;
+	padding: 20px;
+}
+.registrar label {
+	width: 50%;
+	display: inline-block;
+}
+.registrar input {
+	width: 49%;
+}
+.registrar .login {
+	width: 100%;
+	text-align: center;
+	font-size: 19px;
+	padding: 0;
+}
+
+/* Registrar y promocion */
+.registrar, .hola {
+	display: inline-block;
+	vertical-align: top;
+}
+.hola {
+	width: 30%;
+	margin: 20px;	
+}
+.promocion p {
+	font-size: 12px;
+	margin: 0;
+	padding: 5px 20px;
+}
+legend {
+	display: block;
+	width: 100%;
+	padding: 0;
+	margin-bottom: 20px;
+	font-size: 21px;
+	line-height: 40px;
+	color: #333333;
+	border: 0;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+/* Cursos general */
+
+.filtros {
+	width: 20%;
+	margin-right: 30px;
+}
+.filtros ul li {
+	padding-left: 20px;
+}
+.filtros input {
+	margin: 0;
+	padding: 0;
+}
+.filtros, .lista_cursos {
+	display: inline-block;
+	vertical-align: top;
+}
+.lista_cursos {
+	width: 75%;
+}
+.lista_cursos article {
+	margin: 20px 0px;
+	border: 1px solid #ccc;
+	padding: 10px;
+
+	position: relative;
+	z-index: 1;
+
+	background: #fcfcfc;
+border: 1px solid #c8c8c8;
+-webkit-box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
+-moz-box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
+box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+-ms-border-radius: 4px;
+-o-border-radius: 4px;
+border-radius: 4px;
+}
+.lista_cursos h3 {
+	margin: 0;
+	padding: 0;
+}
+.lista_cursos p {
+	display: block;
+}
+.lista_cursos .informacion_curso, .lista_cursos img {
+	display: inline-block;
+	vertical-align: top;
+}
+.lista_cursos .informacion_curso {
+	margin-left: 20px;
+}
+.fondito {
+	font-size: 18px;
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	background: #37a883;
+	color: white;
+	border-radius: 4px;
+	width: 120px;
+	text-align: center;
+}
+
+/* Silabus */
+.silabus {
+	width: 67%;
+}
+.silabus h3 {
+	font-size: 18px;
+	color: #302820;
+}
+.silabus p {
+	font-size: 14px;
+	line-height: 1.3em;
+	color: #504134;
+	margin: -0.75em 0 1.25em;
+	padding: 0;
+}
+.silabus ul li ul li {
+	position: relative;
+	background: #f3f3e9;
+	margin-bottom: 1px;
+	padding: 15px 20px;
+}
+.silabus ul li ul li:first-child {
+	border-radius: 5px 5px 0 0;
+}
+.silabus ul li ul li:last-child {
+	border-radius: 0px 0px 5px 5px;
+}
+.silabus h4 {
+	margin: 0;
+	padding: 0;
+}
+.detalle_info {
+	width: 25%;
+	margin: 0 3% 0 3%;
+}
+.detalle_info .img {
+	width: 100%;
+	margin: 0 auto;
+	border-radius: 6px;
+}
+.silabus, .detalle_info {
+	display: inline-block;
+	vertical-align: top;
+}
+.social {
+	width: 150px;
+	margin: 0 auto;
+}
+.share {
+	opacity: 0.6;
+}
+.share:hover {
+	opacity: 1;
+}
+li .icon {
+	background-size: cover;
+	float: left;
+	height: 19px;
+	margin: 2px 10px 0 0;
+	opacity: 0.6;
+	width: 19px;
+}
+.detalle_info ul:hover li .icon {
+	opacity: 1;
+}
+li .icon.start {
+	background-image: url("https://www.edx.org/static/images/portal-icons/calendar-icon.7efd89b95ce5.png");
+}
+li .icon.end {	
+	background-image: url("https://www.edx.org/static/images/portal-icons/calendar-icon.7efd89b95ce5.png");
+}
+li .icon.effort {	
+	background-image: url("https://www.edx.org/static/images/portal-icons/pencil-icon.ac041b75a530.png");
+}
+li .icon.prereq {
+	background-image: url("https://www.edx.org/static/images/portal-icons/prerec-icon.fc881726469c.png");
+}
+.detalle_info ul li {
+	width: 100%;
+}
+.detalle_info ul li .icon, .detalle_info ul li p, .detalle_info ul li span {
+	display: inline-block;
+	vertical-align: top;
+}
+.detalle_info ul li span {
+	float: right;
+}
+
+/* Cursos abiertos inicio */
+
+.cursos_abiertos {
+	width: 45%;
+}
+.seminarios_abiertos {
+	margin-left: 3%;	
+	width: 45%;
+}
+
+/* Perfil */
+.perfil {
+	border: 1px solid #d2d2d2;
+	background-color: #f5f5f5;
+}
+.perfil .centrar {
+	width: 90%;
+	margin: 30px auto;
+}
+.perfil img, .perfil .info {
+	display: inline-block;
+	vertical-align: top;
+}
+.perfil .info {
+	margin: 0 0 0 30px;
+	padding: 0;
+}
+.perfil h1, .perfil p {
+	display: block;
+}
+.total {
+	width: 100%;
 }

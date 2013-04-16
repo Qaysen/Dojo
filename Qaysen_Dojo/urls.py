@@ -11,11 +11,11 @@ urlpatterns = patterns('',
 		{'document_root':settings.MEDIA_ROOT,}
 	),
 	# Pagina de Inicio
-	#url(r'^$', 'principal.views.inicio'),
+	url(r'^$', 'principal.views.inicio'),
 	url(r'^registrar/$', 'principal.views.registrarse'),
 	url(r'^settings/perfil/$', 'principal.views.actualizar_perfil'),
 	url(r'^settings/password/$', 'principal.views.actualizar_password'),
-	url(r'^$','principal.views.home'),
+	#url(r'^$','principal.views.home'),
 	url(r'^cursos/$','principal.views.cursos'),
 	url(r'^seminarios/$','principal.views.seminarios'),
 	# url(r'^(?P<pathy>.*)$', 'principal.views.ver'),

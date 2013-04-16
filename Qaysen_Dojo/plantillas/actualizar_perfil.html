@@ -3,17 +3,7 @@
 {% block contenido %}
 <form method="POST">
 	{% csrf_token %}
-	<label>Usuario</label>
-	<input type="text" name="username" value="{{usuario.username}}"><br>
-
-	<label>Nombre</label>
-	<input type="text" name="first_name" value="{{usuario.first_name}}"><br>
-	<label>Apellidos</label>
-	<input type="text" name="last_name" value="{{usuario.last_name}}"><br>
-	<label>Email</label>
-	<input type="email" name="email" value="{{usuario.email}}"><br>
-	<label>Foto</label>
-	{{formulario.foto}}
+	{{formulario.as_p}}
 	<button type="submit">Actualizar</button>
 {% endblock %}
 </form>

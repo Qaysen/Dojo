@@ -13,9 +13,7 @@ from reportlab.pdfgen import canvas
 
 # Pagina de inicio
 def inicio(request):
-	return render_to_response('inicio.html', context_instance=RequestContext(request))
-
-def home(request):
+	cursos_ab = CursoAbierto.objects.all().order_by("fecha_inicio")
 	if request.method == 'POST':
 		formulario = AuthenticationForm(request.POST)
 		if formulario.is_valid:
@@ -27,15 +25,38 @@ def home(request):
 				if acceso.is_active:
 					login(request, acceso)
 					user.save()
-					dato=usuario
-					return render_to_response('home.html',{'dato1':dato}, context_instance=RequestContext(request))
+					dato=nombreusuario(user.email)
+					return HttpResponseRedirect('/')
+
 				else:
 					return render_to_response('noactivo.html', context_instance=RequestContext(request))
 			else:
 				return render_to_response('nousuario.html', context_instance=RequestContext(request))
 	else:
 		formulario = AuthenticationForm()
-	return render_to_response('home.html',{'formulario':formulario}, context_instance=RequestContext(request))
+	return render_to_response('inicio.html', {'formulario':formulario, 'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
+
+# def home(request):
+# 	if request.method == 'POST':
+# 		formulario = AuthenticationForm(request.POST)
+# 		if formulario.is_valid:
+# 			usuario = request.POST['username']
+# 			clave = request.POST['password']
+# 			acceso = authenticate(username=usuario, password=clave)
+# 			if acceso is not None:
+# 				user= User.objects.get(username=usuario)
+# 				if acceso.is_active:
+# 					login(request, acceso)
+# 					user.save()
+# 					dato=usuario
+# 					return render_to_response('home.html',{'dato1':dato}, context_instance=RequestContext(request))
+# 				else:
+# 					return render_to_response('noactivo.html', context_instance=RequestContext(request))
+# 			else:
+# 				return render_to_response('nousuario.html', context_instance=RequestContext(request))
+# 	else:
+# 		formulario = AuthenticationForm()
+# 	return render_to_response('home.html',{'formulario':formulario}, context_instance=RequestContext(request))
 
 def nombreusuario(correo):
 	m=correo.split('@')
@@ -127,10 +148,9 @@ def registrarse(request):
 def actualizar_perfil(request):
 	usuario = User.objects.get(pk = request.user.id)
 	if request.method=='POST':
-		formulario = EditarUser(request.POST,request.FILES,instance = usuario)
-		if formulario.is_valid():
-			print formulario.cleaned_data['foto']
-
+		formulario = EditarUser(request.POST, request.FILES, instance = usuario)
+		if formulario.is_valid:
+			print formulario
 			formulario.save()
 			return HttpResponseRedirect('/')
 	else:
