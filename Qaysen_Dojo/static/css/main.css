@@ -657,3 +657,39 @@ li .icon.prereq {
 .total {
 	width: 100%;
 }
+.foto2{
+	width: 10em;
+	height: 10em;
+	position: relative;
+	top:2em;
+}
+.ordenar{
+	background: #000;
+	margin: 1em 1em 1em 1em;
+	width: 100%;
+	display: inline-block;
+	color:#fff;
+}
+.ordenar_uno{
+	
+	display: inline-block;
+	width: 33em;
+
+
+}
+.ordenararriba{
+	display: inline-block;
+
+
+}
+.ordenar_dos{
+	
+	width: 33em;
+}
+.ordenar1{
+	display: inline-block;
+
+}
+.li1{
+	width: 12em;
+}

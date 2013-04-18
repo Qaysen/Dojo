@@ -83,7 +83,8 @@ def cerrar(request):
 def cursos(request):
 	cursos_ab = CursoAbierto.objects.all().order_by("fecha_inicio")
 	return render_to_response('cursos.html', {'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
-
+def seminarios(request):
+	return render_to_response('seminarios.html', context_instance=RequestContext(request))
 
 def dato_curso_abierto(request, id_curso_ab):
 	dato = CursoAbierto.objects.get(pk=id_curso_ab)
