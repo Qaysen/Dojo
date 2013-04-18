@@ -1,0 +1,19 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	{% for x in profesores %}
+		<div>
+			{{x.first_name}} {{x.last_name}}
+
+			
+				<img src="{{MEDIA_URL}}{{x.user.get_profile.foto}}">
+				
+		
+
+		</div>
+	{% endfor %}
+
+</body>
+</html>

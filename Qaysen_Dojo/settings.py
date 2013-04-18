@@ -102,6 +102,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'Qaysen_Dojo.urls'
 
+AUTH_PROFILE_MODULE = 'home.userProfile'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'Qaysen_Dojo.wsgi.application'
 
@@ -124,8 +125,9 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
+    'home',
     'principal',
-    'south',
+    #'south',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

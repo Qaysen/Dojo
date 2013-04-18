@@ -1,27 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-GENERO = (
-	('Masculino','Masculino'),
-	('Femenino','Femenino')
-)
-
 TIPO = (
 	('Seminario','Seminario'),
 	('Curso','Curso')
 )
 
-
-User.add_to_class('telefono', models.IntegerField(null=True,blank=True, max_length=7))
-User.add_to_class('direccion', models.CharField(null=True,blank=True, max_length=500))
-User.add_to_class('genero', models.CharField(null=True,blank=True, choices=GENERO, max_length=30))
-User.add_to_class('foto', models.FileField(upload_to='fotos', verbose_name='Imagen', blank=True, null=True))
-User.add_to_class('estado_login',models.BooleanField(default=False))
-
 	
-class Alumno(models.Model):
-	usuario=models.ForeignKey(User)
 
+class Alumno(models.Model):
+	usuario 	=models.ForeignKey(User)
+	sobre_mi	=models.CharField(max_length=5000,null=True,blank=True)
 	def __unicode__(self):
 		return unicode(self.usuario)
 
@@ -29,10 +18,6 @@ class Profesor(models.Model):
 	usuario= models.ForeignKey(User)
 	desc_laboral = models.CharField(max_length=100)
 	profesion = models.CharField(max_length=100)
-	git = models.CharField(max_length=100)
-	face = models.CharField(max_length=100)
-	twitter = models.CharField(max_length=100)
-
 	def __unicode__(self):
 		return unicode(self.usuario)
 
