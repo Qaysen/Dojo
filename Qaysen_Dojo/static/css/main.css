@@ -85,12 +85,7 @@ ul, li {
 /* Logo */
 .cabecera {
 	overflow: hidden;
-	padding: 0 50px;
-	height: 100px;
 	z-index: 100;
-}
-.cabecera h1, .cabecera nav {
-	display: inline-block;
 }
 .cabecera h1 {
 	float: left;
@@ -98,16 +93,15 @@ ul, li {
 	font-family: "Asap","Droid Sans","Open Sans";
 	text-transform: uppercase;
 	font-weight: 700;
-	margin-left: 50px;
 }
 
 /* Navegacion */
 .cabecera nav {
-	margin-right: 50px;
 	font-size: 18px;
 	padding: 20px 0;
 }
 .cabecera ul {
+	float: right !important;
 }
 .cabecera nav ul li {
 	display: inline-block;
@@ -146,25 +140,25 @@ ul, li {
 /* Fomulario de login */
 input {
 	background-color: #ffffff;
-border: 1px solid #cccccc;
--webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
--moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
--webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
--moz-transition: border linear 0.2s, box-shadow linear 0.2s;
--o-transition: border linear 0.2s, box-shadow linear 0.2s;
-transition: border linear 0.2s, box-shadow linear 0.2s;
-display: inline-block;
-height: 30px;
-padding: 4px 6px;
-margin-bottom: 10px;
-font-size: 14px;
-line-height: 20px;
-color: #555555;
-vertical-align: middle;
--webkit-border-radius: 4px;
--moz-border-radius: 4px;
-border-radius: 4px;
+	border: 1px solid #cccccc;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+	-moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+	-o-transition: border linear 0.2s, box-shadow linear 0.2s;
+	transition: border linear 0.2s, box-shadow linear 0.2s;
+	display: inline-block;
+	height: 30px;
+	padding: 4px 6px;
+	margin-bottom: 10px;
+	font-size: 14px;
+	line-height: 20px;
+	color: #555555;
+	vertical-align: middle;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
 }
 
 /* Presentacion */
@@ -176,8 +170,6 @@ border-radius: 4px;
 }
 .presentacion .bienvenida {
 	padding: 40px 0;
-	margin-left: 5%;
-	width: 45%;
 }
 .presentacion .bienvenida h2{
 	margin: 0 !important;
@@ -186,7 +178,7 @@ border-radius: 4px;
 	font-family: "Asap","Droid Sans","Open Sans";
 	text-transform: uppercase;
 	font-weight: 700;
-	font-size: 55px;
+	font-size: 3em;
 	line-height: 55px;
 	text-align: center;
 }
@@ -233,23 +225,20 @@ border-radius: 4px;
 	vertical-align: top;
 }
 .presentacion .foto img {
+	width: 100%;
 	margin: -30px 20px 20px 20px;
 }
 
 /* Informacion General */
 .mas_info {
 	background: #333;
-	min-height: 50px;
-	margin-bottom: 20px;
+	min-height: 70px;
 	text-align: center;
 }
 .mas_info p, .mas_info p a {
 	color: #fff;
-	margin: 0 auto;
-	padding-top: 27px;
-	padding-bottom: 24px;
+	padding-top: 20px;
 	text-shadow: 1px 1px 1px #000;
-	width: 940px;
 }
 .mas_info img {
 	margin-right: 10px;
@@ -258,94 +247,7 @@ border-radius: 4px;
 /* Lista de cursos en el inicio */
 .cursos {
 	margin: 30px auto;
-	padding: 1px 0;
-	width: 90%;
 }
-
-/*.cursos.inicio article {
-	border: 4px solid #fff;
-	display: inline-block;
-	height: 340px;
-	margin: 31px 25px 0;
-	padding: 0;
-	position: relative;
-	width: 220px;
-	display: inline-block;
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	overflow: hidden;
-	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
-	box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
-	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
-	background-color: #fff;
-	color: #444;
-}
-.cursos.inicio .imagen {
-	display: inline-block;
-	height: 340px;
-	margin: 0;
-	padding: 0;
-	position: relative;
-	width: 212px;
-	z-index: 25;
-}
-.html5 {
-	background: url(http://www.electricmayhemsolutions.net/blog/wp-content/uploads/2013/03/HTML5_Badge_512.jpg) no-repeat top left;
-}
-.css3 {
-	background: url(http://www.diseniorweb.com.ar/wp-content/uploads/2012/08/css3.jpg) no-repeat top left;
-}
-.jquery {
-	background: url(http://majorursa.net/sites/default/files/styles/medium/public/field/image/jquery-logo1.png) no-repeat top left;
-}
-.django {
-	background: url(http://londoncyn.ca/wp-content/uploads/2012/07/priority_areas_literacy.jpg) no-repeat top left;
-}
-.cursos.inicio .texto_escondido {
-	color: #fff;
-	height: 95px;
-	overflow: hidden;
-	padding: 10px 16px 0;
-	position: absolute;
-	bottom: 31px;
-	width: 212px;
-	z-index: 20;
-	margin: 0 0 20px 0;
-}
-.cursos.inicio h3 {
-	color: #fff;
-	line-height: 40px;
-	margin: 0;
-	padding: 10px 16px;
-	position: absolute;
-	bottom: 56px;
-	left: 0;
-	text-align: left;
-	width: 212px;
-	z-index: 100;
-}
-.cursos.inicio p.leer_mas {
-	display: block;
-	height: 56px;
-	margin: 0;
-	padding: 17px 16px 0;
-	position: absolute;
-	bottom: 0;
-	width: 212px;
-	z-index: 50;
-}
-.cursos.inicio h3.slide_up { 
-	bottom: 145px; 
-}
-.cursos.inicio a.mas {
-	background: url(http://londoncyn.ca/wp-content/themes/cyn_public/img/more_arrow.png) no-repeat right -38px;
-	height: 17px;
-	padding-right: 27px;
-	width: 17px;
-	color: #fff;
-	text-decoration: none;
-}*/
 
 /* Promocion */
 .promocion {
@@ -357,6 +259,7 @@ border-radius: 4px;
 	text-align: center;
 	margin: 30px auto;
 	width: 82%;
+	overflow: hidden;
 }
 .promocion h3 {
 	padding: 20px;
@@ -488,27 +391,26 @@ legend {
 	display: inline-block;
 	vertical-align: top;
 }
-.lista_cursos {
-	width: 75%;
+.lista_cursos article img{
+	width: 100%;
 }
 .lista_cursos article {
 	margin: 20px 0px;
 	border: 1px solid #ccc;
 	padding: 10px;
-
+	overflow: hidden;
 	position: relative;
 	z-index: 1;
-
 	background: #fcfcfc;
-border: 1px solid #c8c8c8;
--webkit-box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
--moz-box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
-box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
--webkit-border-radius: 4px;
--moz-border-radius: 4px;
--ms-border-radius: 4px;
--o-border-radius: 4px;
-border-radius: 4px;
+	border: 1px solid #c8c8c8;
+	-webkit-box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
 }
 .lista_cursos h3 {
 	margin: 0;
@@ -517,14 +419,8 @@ border-radius: 4px;
 .lista_cursos p {
 	display: block;
 }
-.lista_cursos .informacion_curso, .lista_cursos img {
-	display: inline-block;
-	vertical-align: top;
-}
-.lista_cursos .informacion_curso {
-	margin-left: 20px;
-}
 .fondito {
+	overflow: visible !important;
 	font-size: 18px;
 	position: absolute;
 	top: -10px;
@@ -624,16 +520,6 @@ li .icon.prereq {
 	float: right;
 }
 
-/* Cursos abiertos inicio */
-
-.cursos_abiertos {
-	width: 45%;
-}
-.seminarios_abiertos {
-	margin-left: 3%;	
-	width: 45%;
-}
-
 /* Perfil */
 .perfil {
 	border: 1px solid #d2d2d2;
@@ -656,4 +542,21 @@ li .icon.prereq {
 }
 .total {
 	width: 100%;
+}
+@media (max-width:767px){
+	.presentacion {
+		margin: 0 -20px 0 -20px;
+		padding: 0 20px 0 20px;
+	}
+	.lista_cursos .span3 {
+		width: 30% !important;
+	}
+	.lista_cursos .span9 {
+		width: 60% !important;
+		margin-left: 5%;
+	}
+	.span3, .span9 {
+		display: inline-block !important;
+		vertical-align: top;
+	}
 }
