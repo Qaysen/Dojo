@@ -82,20 +82,35 @@ def cerrar(request):
 	return HttpResponseRedirect('/')
 
 
-def cursos(request):
-	cursos_ab = CursoAbierto.objects.filter(tipo="Curso").order_by("fecha_inicio")
-	return render_to_response('cursos.html', {'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
+def Catcursos(request):
+	cursos = Curso.objects.all()
+	return render_to_response('cursos.html', {'cursos':cursos}, context_instance=RequestContext(request))
+
+def xcursos_abiertos(request, nomcurso):
+	print nomcurso
+	curso=Curso.objects.get(slug=nomcurso)	
+	print curso
+	id_curso_ab=curso.id
+	cursos_ab = CursoAbierto.objects.filter(curso=id_curso_ab).order_by("fecha_inicio")
+	return render_to_response('curso_abierto.html', {'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
 
 def seminarios(request):
 	cursos_ab = CursoAbierto.objects.filter(tipo="Seminario").order_by("fecha_inicio")
 	return render_to_response('cursos.html', {'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
 
 
-def dato_curso_abierto(request, id_curso_ab):
+def dato_curso_abierto(request, nomcurso):
+	
+	print nomcurso
+	curso=Curso.objects.get(slug=nomcurso)	
+	print curso
+	id_curso_ab=curso.id
+	print id_curso_ab
 	dato = CursoAbierto.objects.get(pk=id_curso_ab)
 	cursoab = Curso.objects.get(pk=dato.curso_id)
 	
 	tema=Tema.objects.filter(cursoabierto=id_curso_ab)
+	horario=Horario.objects.filter(cursoabierto=id_curso_ab)
 
 	padres=tema.filter(subtema_id=None).order_by("orden")
 	hijos=tema.exclude(subtema_id=None)
@@ -125,7 +140,7 @@ def dato_curso_abierto(request, id_curso_ab):
 
 	# print a
 
-	return render_to_response('dato_curso_abierto.html',{'curso_ab':dato, 'curso':cursoab,  'temario':padres_hijos },context_instance = RequestContext(request))
+	return render_to_response('dato_curso_abierto.html',{'horario':horario,'curso_ab':dato, 'curso':cursoab,  'temario':padres_hijos },context_instance = RequestContext(request))
 
 
 def material(request,id_subtema):

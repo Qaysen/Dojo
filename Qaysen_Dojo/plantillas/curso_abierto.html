@@ -41,16 +41,16 @@ Cursos de Code Web
             </ul>
         </div>
         <div class="lista_cursos">
-            {% for curso in cursos %} 
+            {% for curso in cursos_ab %} 
             <article>
-                <img src='{{MEDIA_URL}}{{curso.archivo_url}}' width="100">
+                <img src='{{MEDIA_URL}}{{curso.curso.archivo_url}}' width="100">
                 <div class="informacion_curso">
-                    <h3><a href="/cursos/{{curso.slug}}/">{{curso.nombre}}</a></h3>
-                    <p>{{curso.descripcion}}</p>
-                  <!--   <p>{{curso.fecha_inicio}}</p> -->
+                    <h3><a href="/cursos/{{curso.curso.slug}}/">{{curso.curso}}</a></h3>
+                    <p>{{curso.curso.descripcion}}</p>
+                    <p>{{curso.fecha_inicio}}</p>
                 </div>
                 <div class="fondito">
-                    <!-- <span>{{curso.lugar}}</span> -->
+                    <span>{{curso.lugar}}</span>
                     <span class="inferior"></span>
                 </div>
             </article>

@@ -48,7 +48,23 @@
             <li><div class="icon prereq"></div><p>Profesor</p><span class="start-date">{{curso_ab.profesor.usuario.email}}</span></li>
           </ul>
 
-          <ol>
+          <legend>Horario</legend>
+          <table>
+            <tr>
+              <td>Dia</td>
+              <td>Hora inicio</td>
+              <td>Hora término</td>
+            </tr>
+            {% for horario in horario %}
+            <tr>
+              <td>{{horario.dia}}</td>
+              <td>{{horario.hora_inicio}}</td>
+              <td>{{horario.hora_fin}}</td>
+            </tr>
+            {% endfor %}
+          </table>
+
+      <!--     <ol>
           {% for tema,subtemas in temario %}
             <li>
               {{tema.nombre}}
@@ -60,7 +76,7 @@
               {%endfor%}
             </li> 
           {% endfor %}
-          </ol>
+          </ol> -->
         </div>
 
         <div class="silabus">
@@ -68,25 +84,30 @@
             <legend>Temario del curso</legend>
 
             <ul class="units">
+              {% for tema,subtemas in temario %}
               <li id="unit-1" class="unit unit_item">
+
                 <h3 class="title">
                   <span class="number">1</span>
-                  Introduction to HTML
+                   {{tema.nombre}}
                 </h3>
                 <div class="description">
-                  <p>This unit will introduce you to the basics of HTML, the language used to create websites.</p>
+                  <p>{{tema.descripcion}}</p>
                 </div>
+               
                 <ul class="unit_courses">
+                   {% for subtema in subtemas %}
                     <li class="not_started">
-                      <h4>
-                        HTML Basics
-                        <span class="author">Leng Lee</span>
-                        <span class="progress">
+                      <h4>                       
+                        <span class="author"><a href="/cursos/tema/{{subtema.id}}">{{subtema.nombre}}</a></span>
+                        <!-- <span class="progress">
                           13 Ejercicios
-                        </span>
+                        </span> -->
                       </h4>
+                      
                     </li>
-                    <li class="not_started secondary">
+
+                   <!--  <li class="not_started secondary">
                       <h4>
                         Project: Build Your Own Webpage
                         <span class="author">Eric Weinstein</span>
@@ -94,137 +115,14 @@
                           6 Ejercicios
                         </span>
                       </h4>
-                    </li>
+                    </li> -->
+                    {%endfor%}
                 </ul>
+                 
               </li>
-
-              <li id="unit-2" class="unit unit_item">
-                <h3 class="title">
-                  <span class="number">2</span>
-                  HTML Structure: Using Lists
-                </h3>
-                <div class="description">
-                  <p>In this unit, we'll cover more advanced HTML structure and begin customizing your pages.</p>
-                </div>
-                <ul class="unit_courses">
-                    <li class="not_started">
-                      <h4>
-                        HTML Basics II
-                          <span class="author">Leng Lee</span>
-                        <span class="progress">
-                          16 Ejercicios
-                        </span>
-                      </h4>
-                    </li>
-                    <li class="not_started secondary">
-                      <h4>
-                          Project:
-                        Social Networking Profile
-                          <span class="author">Eric Weinstein</span>
-                        <span class="progress">
-                          7 Ejercicios
-                        </span>
-                      </h4>
-                    </li>
-                </ul>
-              </li>
-
-              <li id="unit-3" class="unit 5057a18a02def4000202efc3 unit_item">
-                <h3 class="title">
-                  <span class="number">3</span>
-                  
-                  HTML Structure: Tables, Divs, and Spans
-                </h3>
-                <div class="description">
-                  <p>In this unit, we'll use tables, divs, and spans to flesh out our pages and make them capable of a wide range of content and style.</p>
-                </div>
-                <ul class="unit_courses">
-                    <li class="not_started">
-                      <h4>
-                        HTML Basics III
-                          <span class="author">Leng Lee</span>
-                        <span class="progress">
-                          15 Ejercicios
-                        </span>
-                      </h4>
-                    </li>
-                    <li class="not_started secondary">
-                      <h4>
-                          Project:
-                        Clickable Photo Page
-                          <span class="author">Eric Weinstein</span>
-                        <span class="progress">
-                          7 Ejercicios
-                        </span>
-                      </h4>
-                    </li>
-                </ul>
-              </li>
-
-              <li id="unit-4" class="unit 5057a2445411230002030ab5 unit_item">
-                <h3 class="title">
-                  <span class="number">4</span>
-                  
-                  Introduction to CSS
-                </h3>
-                <div class="description">
-                  <p>CSS is what makes web pages shine: it's the skin over the bones of HTML. In this unit, we'll begin learning how to style our webpages.</p>
-                </div>
-                <ul class="unit_courses">
-                    <li class="not_started">
-                      <h4>
-                        CSS: An Overview
-                          <span class="author">Eric Weinstein</span>
-                        <span class="progress">
-                          26 Ejercicios
-                        </span>
-                      </h4>
-                    </li>
-                    <li class="not_started secondary">
-                      <h4>
-                          Project:
-                        Design a Button for Your Website
-                          <span class="author">Eric Weinstein</span>
-                        <span class="progress">
-                          6 Ejercicios
-                        </span>
-                      </h4>
-                    </li>
-                </ul>
-              </li>
-
-              <li id="unit-5" class="unit 5057a32a8ccf950002031528 unit_item">
-                <h3 class="title">
-                  <span class="number">5</span>
-                  
-                  CSS Classes and IDs
-                </h3>
-                <div class="description">
-                  <p>In this unit, we'll cover how to group CSS selectors into classes or identify a single selector by ID.</p>
-                </div>
-                <ul class="unit_courses">
-                    <li class="not_started">
-                      <h4>
-                        CSS Selectors
-                          <span class="author">Eric Weinstein</span>
-                        <span class="progress">
-                          23 Ejercicios
-                        </span>
-                      </h4>
-                    </li>
-                    <li class="not_started secondary">
-                      <h4>
-                          Project:
-                        Sorting Your Friends
-                          <span class="author">Eric Weinstein</span>
-                        <span class="progress">
-                          8 Ejercicios
-                        </span>
-                      </h4>
-                    </li>
-                </ul>
-              </li>
+              {%endfor%}
             </ul>
+             
         </div>
 
 
