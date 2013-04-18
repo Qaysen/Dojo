@@ -6,25 +6,33 @@ from django.template import RequestContext
 from principal.forms import *
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from urllib import unquote
 
 from django.contrib.auth.forms import  AuthenticationForm
 
-# Pagina de inicio
-def inicio(request):
-	cursos_ab = CursoAbierto.objects.all().order_by("fecha_inicio")
+def loginto(request):
+	for elemento in request:
+		print elemento
+
 	if request.method == 'POST':
 		formulario = AuthenticationForm(request.POST)
+
 		if formulario.is_valid:
+			
 			usuario = request.POST['username']
 			clave = request.POST['password']
+			anterior = request.POST['anterior']
+
 			acceso = authenticate(username=usuario, password=clave)
+
 			if acceso is not None:
 				user= User.objects.get(username=usuario)
+
 				if acceso.is_active:
 					login(request, acceso)
 					user.save()
-					dato=nombreusuario(user.email)
-					return HttpResponseRedirect('/')
+					dato = nombreusuario(user.email)
+					return HttpResponseRedirect(anterior)
 
 				else:
 					return render_to_response('noactivo.html', context_instance=RequestContext(request))
@@ -32,29 +40,13 @@ def inicio(request):
 				return render_to_response('nousuario.html', context_instance=RequestContext(request))
 	else:
 		formulario = AuthenticationForm()
-	return render_to_response('inicio.html', {'formulario':formulario, 'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
 
-# def home(request):
-# 	if request.method == 'POST':
-# 		formulario = AuthenticationForm(request.POST)
-# 		if formulario.is_valid:
-# 			usuario = request.POST['username']
-# 			clave = request.POST['password']
-# 			acceso = authenticate(username=usuario, password=clave)
-# 			if acceso is not None:
-# 				user= User.objects.get(username=usuario)
-# 				if acceso.is_active:
-# 					login(request, acceso)
-# 					user.save()
-# 					dato=usuario
-# 					return render_to_response('home.html',{'dato1':dato}, context_instance=RequestContext(request))
-# 				else:
-# 					return render_to_response('noactivo.html', context_instance=RequestContext(request))
-# 			else:
-# 				return render_to_response('nousuario.html', context_instance=RequestContext(request))
-# 	else:
-# 		formulario = AuthenticationForm()
-# 	return render_to_response('home.html',{'formulario':formulario}, context_instance=RequestContext(request))
+	return HttpResponseRedirect('/')
+
+# Pagina de inicio
+def inicio(request):
+	cursos_abiertos = CursoAbierto.objects.all().order_by("fecha_inicio")
+	return render_to_response('inicio.html', {'cursos_abiertos':cursos_abiertos}, context_instance=RequestContext(request))
 
 def nombreusuario(correo):
 	m=correo.split('@')
@@ -199,6 +191,26 @@ def examen(request,id_curso):
 
 	return render_to_response('examen.html', {'examen':examen,'alternativas':alternativas,'usuario':usuario},context_instance=RequestContext(request))
 
-
+# def home(request):
+# 	if request.method == 'POST':
+# 		formulario = AuthenticationForm(request.POST)
+# 		if formulario.is_valid:
+# 			usuario = request.POST['username']
+# 			clave = request.POST['password']
+# 			acceso = authenticate(username=usuario, password=clave)
+# 			if acceso is not None:
+# 				user= User.objects.get(username=usuario)
+# 				if acceso.is_active:
+# 					login(request, acceso)
+# 					user.save()
+# 					dato=usuario
+# 					return render_to_response('home.html',{'dato1':dato}, context_instance=RequestContext(request))
+# 				else:
+# 					return render_to_response('noactivo.html', context_instance=RequestContext(request))
+# 			else:
+# 				return render_to_response('nousuario.html', context_instance=RequestContext(request))
+# 	else:
+# 		formulario = AuthenticationForm()
+# 	return render_to_response('home.html',{'formulario':formulario}, context_instance=RequestContext(request))
 
 

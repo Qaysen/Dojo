@@ -18,6 +18,9 @@ Cursos de Code Web
 {% endblock mas_info %}
 
 {% block cursos_inicio %}
+    {% if user.is_authenticated%}
+        <p>Hola {{user}}</p>
+    {% endif %}
     <section class="cursos general">
         <div class="filtros">
             <legend>Filtrar</legend>
