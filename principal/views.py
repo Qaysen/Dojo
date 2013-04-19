@@ -48,7 +48,7 @@ def loginto(request):
 
 # Pagina de inicio
 def inicio(request):
-	cursos_abiertos = CursoAbierto.objects.all().order_by("fecha_inicio")
+	cursos_abiertos = Curso.objects.all().order_by("fecha_inicio")
 	return render_to_response('inicio.html', {'cursos_abiertos':cursos_abiertos}, context_instance=RequestContext(request))
 
 def nombreusuario(correo):
@@ -79,9 +79,11 @@ def cerrar(request):
 
 
 def categcursos(request):
-	categoria = Categoria.objects.all()
+	categorias = Categoria.objects.all()
+	lugares = list(Localizacion.objects.all().values('distrito'))
 	protocurso = ProtoCurso.objects.filter(tipo="Curso")
-	return render_to_response('categorias.html', {'categoria':categoria,'protocurso':protocurso}, context_instance=RequestContext(request))
+	print(lugares)
+	return render_to_response('categorias.html', {'lugares':lugares,'categorias':categorias,'protocurso':protocurso}, context_instance=RequestContext(request))
 
 # def detallecurso(request, nomcurso):
 # 	print nomcurso
@@ -92,7 +94,7 @@ def categcursos(request):
 # 	return render_to_response('curso_abierto.html', {'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
 
 def seminarios(request):
-	cursos_ab = CursoAbierto.objects.filter(tipo="Seminario").order_by("fecha_inicio")
+	cursos_ab = Curso.objects.filter(tipo="Seminario").order_by("fecha_inicio")
 	return render_to_response('cursos.html', {'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
 
 

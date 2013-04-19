@@ -1,6 +1,5 @@
 *.pyc
 *.db
 *~
-principal/migrations/
 
 .DS_Store
