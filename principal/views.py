@@ -80,7 +80,7 @@ def cerrar(request):
 
 def categcursos(request):
 	categoria = Categoria.objects.all()
-	protocurso = ProtoCurso.objects.all()
+	protocurso = ProtoCurso.objects.filter(tipo="Curso")
 	return render_to_response('categorias.html', {'categoria':categoria,'protocurso':protocurso}, context_instance=RequestContext(request))
 
 # def detallecurso(request, nomcurso):
