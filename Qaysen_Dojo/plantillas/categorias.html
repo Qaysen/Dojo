@@ -29,6 +29,14 @@ Cursos de Code Web
                 {% endfor %}
                
             </ul>
+            <br>
+            <ul>
+                Localizacion:
+                 {% for localizacion in localizacion %} 
+                <li><input type="checkbox"> {{localizacion.distrito}}</li>
+                {% endfor %}
+               
+            </ul>
         </div>
 
         <div class="lista_cursos">

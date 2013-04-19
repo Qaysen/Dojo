@@ -46,10 +46,11 @@
             <li><div class="icon end"></div><p>Termino</p><span class="final-date">{{curso.fecha_termino}}</span></li>
             <li><div class="icon effort"></div><p>Horas</p><span class="start-date">{{curso.cant_horas}} horas/mes</span></li>
             <li><div class="icon prereq"></div><p>Pre requisitos</p><span class="start-date">Si</span></li>
-            <li><div class="icon prereq"></div><p>Lugar</p><span class="start-date">{{curso.lugar}}</span></li>
+            <li><div class="icon prereq"></div><p>Lugar</p><span class="start-date">{{curso.localizacion.direccion}}</span></li>
             <li><div class="icon prereq"></div><p>Profesor</p><span class="start-date">{{curso.profesor.usuario.email}}</span></li>
+            <li><div class="icon prereq"></div><p>Precio</p><span class="start-date">{{curso.precio}}</span></li>
           </ul>
-
+          <br>
                 <legend>Horario</legend>
                 <table>
                   <tr>
