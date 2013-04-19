@@ -60,14 +60,16 @@
                         <span class="inferior"></span>
                     </li>
                 </ul>
-                <form method="POST" style="display: none; margin-top: 10px;">
+                <form action="/loginto" method="POST" style="display: none; margin-top: 10px;">
                 {% csrf_token %}
                     <input type="text" name="username" placeholder="Usuario">
                     <input type="password" name ="password" placeholder="Contraseña">
-                    <input class="login" type="submit" value="Login">
+                    <input type="text" name="anterior" value="{{request.path}}" hidden>
+                    <input class="login" type="submit" value="login">
                 </form>
                 <a class="x_cerrar login" style="display: none;">X</a>
                 {% endif %}
+                
             </nav>
         </header>
 

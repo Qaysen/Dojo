@@ -15,9 +15,12 @@ urlpatterns = patterns('',
 	url(r'^registrar/$', 'principal.views.registrarse'),
 	url(r'^settings/perfil/$', 'principal.views.actualizar_perfil'),
 	url(r'^settings/password/$', 'principal.views.actualizar_password'),
+	url(r'^loginto', 'principal.views.loginto'),
 	#url(r'^$','principal.views.home'),
-	url(r'^cursos/$','principal.views.Catcursos'),
-	url(r'^cursos/(?P<nomcurso>[-\w]+)/$','principal.views.xcursos_abiertos'),
+	
+
+	url(r'^cursos/$','principal.views.categcursos'),
+	url(r'^cursos/(?P<nomcurso>[-\w]+)/$','principal.views.detallecurso'),
 
 	url(r'^seminarios/$','principal.views.seminarios'),
 	# url(r'^(?P<pathy>.*)$', 'principal.views.ver'),

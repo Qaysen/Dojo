@@ -7,26 +7,34 @@ from principal.forms import *
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.core.servers.basehttp import FileWrapper
+from urllib import unquote
 from django.contrib.auth.forms import  AuthenticationForm
 from reportlab.pdfgen import canvas
 
 
-# Pagina de inicio
-def inicio(request):
-	cursos_ab = CursoAbierto.objects.all().order_by("fecha_inicio")
+def loginto(request):
+	for elemento in request:
+		print elemento
+
 	if request.method == 'POST':
 		formulario = AuthenticationForm(request.POST)
+
 		if formulario.is_valid:
+			
 			usuario = request.POST['username']
 			clave = request.POST['password']
+			anterior = request.POST['anterior']
+
 			acceso = authenticate(username=usuario, password=clave)
+
 			if acceso is not None:
 				user= User.objects.get(username=usuario)
+
 				if acceso.is_active:
 					login(request, acceso)
 					user.save()
-					dato=nombreusuario(user.email)
-					return HttpResponseRedirect('/')
+					dato = nombreusuario(user.email)
+					return HttpResponseRedirect(anterior)
 
 				else:
 					return render_to_response('noactivo.html', context_instance=RequestContext(request))
@@ -34,29 +42,13 @@ def inicio(request):
 				return render_to_response('nousuario.html', context_instance=RequestContext(request))
 	else:
 		formulario = AuthenticationForm()
-	return render_to_response('inicio.html', {'formulario':formulario, 'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
 
-# def home(request):
-# 	if request.method == 'POST':
-# 		formulario = AuthenticationForm(request.POST)
-# 		if formulario.is_valid:
-# 			usuario = request.POST['username']
-# 			clave = request.POST['password']
-# 			acceso = authenticate(username=usuario, password=clave)
-# 			if acceso is not None:
-# 				user= User.objects.get(username=usuario)
-# 				if acceso.is_active:
-# 					login(request, acceso)
-# 					user.save()
-# 					dato=usuario
-# 					return render_to_response('home.html',{'dato1':dato}, context_instance=RequestContext(request))
-# 				else:
-# 					return render_to_response('noactivo.html', context_instance=RequestContext(request))
-# 			else:
-# 				return render_to_response('nousuario.html', context_instance=RequestContext(request))
-# 	else:
-# 		formulario = AuthenticationForm()
-# 	return render_to_response('home.html',{'formulario':formulario}, context_instance=RequestContext(request))
+	return HttpResponseRedirect('/')
+
+# Pagina de inicio
+def inicio(request):
+	cursos_abiertos = CursoAbierto.objects.all().order_by("fecha_inicio")
+	return render_to_response('inicio.html', {'cursos_abiertos':cursos_abiertos}, context_instance=RequestContext(request))
 
 def nombreusuario(correo):
 	m=correo.split('@')
@@ -82,39 +74,31 @@ def cerrar(request):
 	return HttpResponseRedirect('/')
 
 
-def Catcursos(request):
-	cursos = Curso.objects.all()
-	return render_to_response('cursos.html', {'cursos':cursos}, context_instance=RequestContext(request))
+def categcursos(request):
+	categoria = Categoria.objects.all()
+	protocurso = ProtoCurso.objects.all()
+	return render_to_response('categorias.html', {'categoria':categoria,'protocurso':protocurso}, context_instance=RequestContext(request))
 
-def xcursos_abiertos(request, nomcurso):
-	print nomcurso
-	curso=Curso.objects.get(slug=nomcurso)	
-	print curso
-	id_curso_ab=curso.id
-	cursos_ab = CursoAbierto.objects.filter(curso=id_curso_ab).order_by("fecha_inicio")
-	return render_to_response('curso_abierto.html', {'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
+# def detallecurso(request, nomcurso):
+# 	print nomcurso
+# 	curso=Curso.objects.get(slug=nomcurso)	
+# 	print curso
+# 	id_curso_ab=curso.id
+# 	cursos_ab = CursoAbierto.objects.filter(curso=id_curso_ab).order_by("fecha_inicio")
+# 	return render_to_response('curso_abierto.html', {'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
 
 def seminarios(request):
 	cursos_ab = CursoAbierto.objects.filter(tipo="Seminario").order_by("fecha_inicio")
 	return render_to_response('cursos.html', {'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
 
 
-def dato_curso_abierto(request, nomcurso):
-	
-	print nomcurso
-	curso=Curso.objects.get(slug=nomcurso)	
-	print curso
-	id_curso_ab=curso.id
-	print id_curso_ab
-	dato = CursoAbierto.objects.get(pk=id_curso_ab)
-	cursoab = Curso.objects.get(pk=dato.curso_id)
-	
-	tema=Tema.objects.filter(cursoabierto=id_curso_ab)
-	horario=Horario.objects.filter(cursoabierto=id_curso_ab)
-
+def detallecurso(request, nomcurso):
+	protocurso=ProtoCurso.objects.get(slug=nomcurso)
+	curso=Curso.objects.filter(protoCurso=protocurso.id)			
+	tema=Tema.objects.filter(protoCurso=protocurso.id)
+	horario=Horario.objects.all()
 	padres=tema.filter(subtema_id=None).order_by("orden")
 	hijos=tema.exclude(subtema_id=None)
-
 
 	hijoss={}
 	
@@ -139,8 +123,9 @@ def dato_curso_abierto(request, nomcurso):
 	padres_hijos=zip(padres,a)
 
 	# print a
+	
 
-	return render_to_response('dato_curso_abierto.html',{'horario':horario,'curso_ab':dato, 'curso':cursoab,  'temario':padres_hijos },context_instance = RequestContext(request))
+	return render_to_response('detalle_curso.html',{ 'protocurso':protocurso, 'curso':curso,'temario':padres_hijos },context_instance = RequestContext(request))
 
 
 def material(request,id_subtema):
@@ -219,6 +204,7 @@ def examen(request,id_curso):
 	alternativas=Alternativa.objects.filter(pregunta_id=examen[0].id).order_by('?')
 
 	return render_to_response('examen.html', {'examen':examen,'alternativas':alternativas,'usuario':usuario},context_instance=RequestContext(request))
+
 
      
 def descargar(request,pathy):

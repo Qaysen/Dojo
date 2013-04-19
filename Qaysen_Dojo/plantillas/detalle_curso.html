@@ -1,0 +1,149 @@
+{% extends "base2.html" %}
+
+{% block titulo %}
+    Curso presencial de {{protocurso.nombre}} 
+{% endblock titulo %}
+
+{% block presentacion %}
+        <section class="presentacion sombra_inferior">
+            <div class="bienvenida titulo">
+                <h2>Curso presencial de {{protocurso.nombre}} </h2>
+            </div>
+            <span class="inferior"></span>
+        </section>
+{% endblock presentacion %}
+
+{% block mas_info %}
+    <section class="mas_info">
+            <p><img src="http://londoncyn.ca/wp-content/themes/cyn_public/img/twitter_logo.png" alt="Twitter Logo">{{protocurso.descripcion}}</p>
+            <span class="color" style="height: 5px;"></span>
+        </section>
+{% endblock mas_info %}
+
+{% block cursos_inicio %}
+    <section class="cursos detalle">
+
+        <div class="detalle_info">
+          <legend>{{protocurso.nombre}} </legend>
+          <img class="img" src='{{MEDIA_URL}}{{protocurso.archivo_url}}'>
+          <br><br>
+          <div class="social">
+              <a href="" class="share">
+                  <img src="https://www.edx.org/static/images/social/twitter-sharing.b637ddbd06cb.png">
+              </a>
+              <a href="http://www.facebook.com/EdxOnline" class="share">
+                  <img src="https://www.edx.org/static/images/social/facebook-sharing.ef6d12f8c0ab.png">
+              </a>
+              <a href="" class="share">
+                  <img src="https://www.edx.org/static/images/social/google-plus-sharing.947c2e39edb9.png">
+              </a>
+          </div>
+          <br>
+
+        {% for curso in curso %}          
+          <ul>
+            <li><div class="icon start"></div><p>Comienzo</p><span class="start-date">{{curso.fecha_inicio}}</span></li>
+            <li><div class="icon end"></div><p>Termino</p><span class="final-date">{{curso.fecha_termino}}</span></li>
+            <li><div class="icon effort"></div><p>Horas</p><span class="start-date">{{curso.cant_horas}} horas/mes</span></li>
+            <li><div class="icon prereq"></div><p>Pre requisitos</p><span class="start-date">Si</span></li>
+            <li><div class="icon prereq"></div><p>Lugar</p><span class="start-date">{{curso.lugar}}</span></li>
+            <li><div class="icon prereq"></div><p>Profesor</p><span class="start-date">{{curso.profesor.usuario.email}}</span></li>
+          </ul>
+
+                <legend>Horario</legend>
+                <table>
+                  <tr>
+                    <td>Dia</td>
+                    <td>Hora inicio</td>
+                    <td>Hora término</td>
+                  </tr>
+                  {% for horario in horario %}
+                  <tr>
+                    <td>{{horario.dia}}</td>
+                    <td>{{horario.hora_inicio}}</td>
+                    <td>{{horario.hora_fin}}</td>
+                  </tr>
+                  {% endfor %}
+                </table>
+
+          {% endfor %} 
+
+      <!--     <ol>
+          {% for tema,subtemas in temario %}
+            <li>
+              {{tema.nombre}}
+              
+              {% for subtema in subtemas %}
+                <ol>
+                  <li><a href="/cursos/tema/{{subtema.id}}">{{subtema.nombre}}</a></li>
+                </ol>
+              {%endfor%}
+            </li> 
+          {% endfor %}
+          </ol> -->
+        </div>
+
+        <div class="silabus">
+
+            <legend>Temario del curso</legend>
+
+            <ul class="units">
+              {% for tema,subtemas in temario %}
+              <li id="unit-1" class="unit unit_item">
+
+                <h3 class="title">
+                  <span class="number">1</span>
+                   {{tema.nombre}}
+                </h3>
+                <div class="description">
+                  <p>{{tema.descripcion}}</p>
+                </div>
+               
+                <ul class="unit_courses">
+                   {% for subtema in subtemas %}
+                    <li class="not_started">
+                      <h4>                       
+                        <span class="author"><a href="/cursos/tema/{{subtema.id}}">{{subtema.nombre}}</a></span>
+                        <!-- <span class="progress">
+                          13 Ejercicios
+                        </span> -->
+                      </h4>
+                      
+                    </li>
+
+                   <!--  <li class="not_started secondary">
+                      <h4>
+                        Project: Build Your Own Webpage
+                        <span class="author">Eric Weinstein</span>
+                        <span class="progress">
+                          6 Ejercicios
+                        </span>
+                      </h4>
+                    </li> -->
+                    {%endfor%}
+                </ul>
+                 
+              </li>
+              {%endfor%}
+            </ul>
+             
+        </div>
+
+
+        <!-- <div><a href="/cursos/preguntas/{{curso_ab.id}}">Preguntas y Respuestas del Curso</a></div>
+        <div><a href="/cursos/form_pre/{{curso_ab.id}}">Preguntar</a></div>
+        <div><a href="/cursos/responder/{{curso_ab.id}}">Responder</a></div> -->
+    </section>  
+{% endblock cursos_inicio %}
+
+{% block mapa %}
+        <!--<div class="mapa">
+            <legend>Este curso se dictara en Trujillo:</legend>
+            <div class="informacion">
+                <h4>Ubicacion Qaysen</h4>
+                <p>Encuentranos de Lunes a Viernes en Av Vera Enriquez 154, 2º Piso (Frente a la Piscina Olimpica).</p>
+            </div>
+            <iframe width="640" height="480" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com.pe/maps/ms?msa=0&amp;msid=211545789502788773932.0004d98a43d091ff166a4&amp;hl=es&amp;ie=UTF8&amp;t=m&amp;ll=-8.105968,-79.029121&amp;spn=0.010197,0.013733&amp;z=16&amp;output=embed"></iframe>
+        </div>-->
+{% endblock mapa %}
+

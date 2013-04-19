@@ -53,6 +53,16 @@ class ProtoCurso(models.Model):
 		return unicode(self.nombre)	
 
 
+class Localizacion(models.Model):
+	departamento = models.CharField(max_length=100)
+	distrito = models.CharField(max_length=100)
+	direccion = models.CharField(max_length=100)
+	google_map = models.CharField(max_length=100)
+		
+	
+	def __unicode__(self):
+		return unicode(self.distrito)	
+		
 class Curso(models.Model):
 	lugar = models.CharField(max_length=100)
 	fecha_inicio= models.DateField(auto_now=False)
@@ -60,9 +70,13 @@ class Curso(models.Model):
 	cant_horas=models.IntegerField(max_length=3,default=0)	
 	profesor =models.ForeignKey(Profesor)
 	protoCurso =models.ForeignKey(ProtoCurso)
+	localizacion =models.ForeignKey(Localizacion)
+	precio=models.IntegerField(max_length=3,default=0)	
 	
 	def __unicode__(self):
 		return unicode(self.protoCurso)	
+
+
 
 class Categoria(models.Model):
 	nombre = models.CharField(max_length=100)
@@ -137,7 +151,7 @@ class Horario(models.Model):
 	dia=models.CharField(choices=dias,max_length=12)
 	hora_inicio=models.TimeField(auto_now=False)
 	hora_fin=models.TimeField(auto_now=False)
-	protoCurso=models.ForeignKey(ProtoCurso)
+	curso=models.ForeignKey(Curso)
 	def __unicode__(self):
 		return '%s / %s' %(self.dia, self.hora_inicio)
 
