@@ -49,7 +49,6 @@ class Localizacion(models.Model):
 		return unicode(self.distrito)	
 		
 class Curso(models.Model):
-	lugar = models.CharField(max_length=100)
 	fecha_inicio= models.DateField(auto_now=False)
 	fecha_termino= models.DateField(auto_now=False)
 	cant_horas=models.IntegerField(max_length=3,default=0)	
@@ -59,8 +58,7 @@ class Curso(models.Model):
 	precio=models.IntegerField(max_length=3,default=0)	
 	
 	def __unicode__(self):
-		return unicode(self.protoCurso)	
-
+		return '%s / %s' %(self.protoCurso, self.localizacion)
 
 
 class Categoria(models.Model):
