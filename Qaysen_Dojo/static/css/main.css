@@ -602,3 +602,11 @@ li .icon.prereq {
 		width: 50%;
 	}
 }
+/*circulos para las imagenes*/
+.circle{
+	-moz-border-radius: 500px;
+	-webkit-border-radius: 500px;
+	-o-border-radius: 500px;
+	border-radius: 500px;
+	box-shadow: 0em 0em 1em #77ADEB;
+}
