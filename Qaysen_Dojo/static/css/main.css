@@ -22,6 +22,17 @@ ul, li {
 	padding: 0;
 	list-style: none;
 }
+legend {
+	display: block;
+	width: 100%;
+	padding: 0;
+	margin-bottom: 20px;
+	font-size: 21px;
+	line-height: 40px;
+	color: #333333;
+	border: 0;
+	border-bottom: 1px solid #e5e5e5;
+}
 /* Clases de ayuda */
 .derecha {
 	float: right;
@@ -245,9 +256,7 @@ input {
 }
 
 /* Lista de cursos en el inicio */
-.cursos {
-	margin: 30px auto;
-}
+
 
 /* Promocion */
 .promocion {
@@ -266,17 +275,6 @@ input {
 	margin: 0;
 }
 
-/* Mapa */
-.mapa {
-	width: 80%;
-	margin: 0 10% 40px 10%;
-}
-.mapa .informacion {
-	display: inline-block;
-	width: 30%;
-	vertical-align: top;
-	margin-right: 20px;
-}
 /* Footer */
 footer {
 	margin-top: 50px;
@@ -362,17 +360,6 @@ footer .codeweb {
 	margin: 0;
 	padding: 5px 20px;
 }
-legend {
-	display: block;
-	width: 100%;
-	padding: 0;
-	margin-bottom: 20px;
-	font-size: 21px;
-	line-height: 40px;
-	color: #333333;
-	border: 0;
-	border-bottom: 1px solid #e5e5e5;
-}
 
 /* Cursos general */
 
@@ -391,13 +378,11 @@ legend {
 	display: inline-block;
 	vertical-align: top;
 }
-.lista_cursos article img{
-	width: 100%;
-}
+
 .lista_cursos article {
-	margin: 20px 0px;
+	margin: 10px 0px;
 	border: 1px solid #ccc;
-	padding: 10px;
+	padding: 10px 0;
 	overflow: hidden;
 	position: relative;
 	z-index: 1;
@@ -434,7 +419,6 @@ legend {
 
 /* Silabus */
 .silabus {
-	width: 67%;
 }
 .silabus h3 {
 	font-size: 18px;
@@ -463,18 +447,10 @@ legend {
 	margin: 0;
 	padding: 0;
 }
-.detalle_info {
-	width: 25%;
-	margin: 0 3% 0 3%;
-}
+
 .detalle_info .img {
 	width: 100%;
-	margin: 0 auto;
 	border-radius: 6px;
-}
-.silabus, .detalle_info {
-	display: inline-block;
-	vertical-align: top;
 }
 .social {
 	width: 150px;
@@ -525,23 +501,29 @@ li .icon.prereq {
 	border: 1px solid #d2d2d2;
 	background-color: #f5f5f5;
 }
-.perfil .centrar {
-	width: 90%;
-	margin: 30px auto;
+.perfil > div {
+	padding: 20px 0;
 }
-.perfil img, .perfil .info {
-	display: inline-block;
-	vertical-align: top;
-}
-.perfil .info {
-	margin: 0 0 0 30px;
-	padding: 0;
-}
-.perfil h1, .perfil p {
-	display: block;
-}
-.total {
+.perfil img {
 	width: 100%;
+}
+@media (max-width: 479px) {
+	.tablet_img {
+		width: 75%;
+		margin: 0 auto;
+	}
+}
+@media (min-width:480px) and (max-width:767px) {
+	.tablet_img {
+		width: 40%;
+	}
+	.tablet_info {
+		width: 58%;
+	}
+	.tablet_img, .tablet_info {
+		display: inline-block;
+		vertical-align: top;
+	}
 }
 <<<<<<< HEAD
 .foto2{
@@ -582,19 +564,41 @@ li .icon.prereq {
 }
 
 @media (max-width:767px){
-	.presentacion {
+	.presentacion, .mas_info, footer {
 		margin: 0 -20px 0 -20px;
 		padding: 0 20px 0 20px;
 	}
-	.lista_cursos .span3 {
-		width: 30% !important;
+	.lista_cursos .span2 {
+		width: 25% !important;
+		margin-left: 2%;
 	}
-	.lista_cursos .span9 {
-		width: 60% !important;
+	.lista_cursos .span4 {
+		width: 65% !important;
 		margin-left: 5%;
 	}
-	.span3, .span9 {
+	.span2, .span4 {
 		display: inline-block !important;
 		vertical-align: top;
+	}
+	.lista_cursos article img{
+		width: 100%;
+	}
+}
+@media (min-width:768px){
+	.cursos_todos {
+		width: 48%;
+		display: inline-block;
+		vertical-align: top;
+		min-height: 145px;
+		margin-left: 1% !important;
+	}
+	.lista_cursos .span2 {
+		margin: 0 0 0 2% !important;
+	}
+	.lista_cursos .span4 {
+		margin: 0 0 0 -10% !important;
+	}
+	.lista_cursos article img{
+		width: 50%;
 	}
 }

@@ -1,13 +1,13 @@
 {% extends "base2.html" %}
 
 {% block titulo %}
-    Curso presencial de {{curso_ab.curso}} en {{curso_ab.lugar}}
+    Curso de {{curso_ab.curso}}
 {% endblock titulo %}
 
 {% block presentacion %}
         <section class="presentacion sombra_inferior">
             <div class="bienvenida titulo">
-                <h2>Curso presencial de {{curso_ab.curso}} en {{curso_ab.lugar}}</h2>
+                <h2>Curso de {{curso_ab.curso}}</h2>
             </div>
             <span class="inferior"></span>
         </section>
@@ -21,34 +21,39 @@
 {% endblock mas_info %}
 
 {% block cursos_inicio %}
-    <section class="cursos detalle">
+    <br>
+    <section>
 
-        <div class="detalle_info">
+        <div class="detalle_info span3">
           <legend>{{curso_ab.curso}} en {{curso_ab.lugar}}</legend>
-          <img class="img" src='{{MEDIA_URL}}{{curso.archivo_url}}'>
-          <br><br>
-          <div class="social">
-              <a href="" class="share">
-                  <img src="https://www.edx.org/static/images/social/twitter-sharing.b637ddbd06cb.png">
-              </a>
-              <a href="http://www.facebook.com/EdxOnline" class="share">
-                  <img src="https://www.edx.org/static/images/social/facebook-sharing.ef6d12f8c0ab.png">
-              </a>
-              <a href="" class="share">
-                  <img src="https://www.edx.org/static/images/social/google-plus-sharing.947c2e39edb9.png">
-              </a>
+          <div class="tablet_img">
+              <img class="img" src='{{MEDIA_URL}}{{curso.archivo_url}}'>
+              <br><br>
           </div>
-          <br>
-          <ul>
-            <li><div class="icon start"></div><p>Comienzo</p><span class="start-date">{{curso_ab.fecha_inicio}}</span></li>
-            <li><div class="icon end"></div><p>Termino</p><span class="final-date">{{curso_ab.fecha_termino}}</span></li>
-            <li><div class="icon effort"></div><p>Horas</p><span class="start-date">{{curso_ab.cant_horas}} horas/mes</span></li>
-            <li><div class="icon prereq"></div><p>Pre requisitos</p><span class="start-date">Si</span></li>
-            <li><div class="icon prereq"></div><p>Lugar</p><span class="start-date">{{curso_ab.lugar}}</span></li>
-            <li><div class="icon prereq"></div><p>Profesor</p><span class="start-date">{{curso_ab.profesor.usuario.email}}</span></li>
-          </ul>
+          <div class="tablet_info">
+              <div class="social">
+                <a href="" class="share">
+                    <img src="https://www.edx.org/static/images/social/twitter-sharing.b637ddbd06cb.png">
+                </a>
+                <a href="http://www.facebook.com/EdxOnline" class="share">
+                    <img src="https://www.edx.org/static/images/social/facebook-sharing.ef6d12f8c0ab.png">
+                </a>
+                <a href="" class="share">
+                    <img src="https://www.edx.org/static/images/social/google-plus-sharing.947c2e39edb9.png">
+                </a>
+              </div>
+              <ul>
+                <br>
+                <li><div class="icon start"></div><p>Comienzo</p><span class="start-date">{{curso_ab.fecha_inicio}}</span></li>
+                <li><div class="icon end"></div><p>Termino</p><span class="final-date">{{curso_ab.fecha_termino}}</span></li>
+                <li><div class="icon effort"></div><p>Horas</p><span class="start-date">{{curso_ab.cant_horas}} horas/mes</span></li>
+                <li><div class="icon prereq"></div><p>Pre requisitos</p><span class="start-date">Si</span></li>
+                <li><div class="icon prereq"></div><p>Lugar</p><span class="start-date">{{curso_ab.lugar}}</span></li>
+                <li><div class="icon prereq"></div><p>Profesor</p><span class="start-date">{{curso_ab.profesor.usuario.email}}</span></li>
+              </ul>
+            </div>
 
-          <ol>
+          <!--<ol>
           {% for tema,subtemas in temario %}
             <li>
               {{tema.nombre}}
@@ -60,10 +65,10 @@
               {%endfor%}
             </li> 
           {% endfor %}
-          </ol>
+          </ol>-->
         </div>
 
-        <div class="silabus">
+        <div class="silabus span8">
 
             <legend>Temario del curso</legend>
 
@@ -235,13 +240,14 @@
 {% endblock cursos_inicio %}
 
 {% block mapa %}
-        <!--<div class="mapa">
+        <br>
+        <!--<div class="container">
             <legend>Este curso se dictara en Trujillo:</legend>
-            <div class="informacion">
+            <div class="span3">
                 <h4>Ubicacion Qaysen</h4>
                 <p>Encuentranos de Lunes a Viernes en Av Vera Enriquez 154, 2º Piso (Frente a la Piscina Olimpica).</p>
             </div>
-            <iframe width="640" height="480" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com.pe/maps/ms?msa=0&amp;msid=211545789502788773932.0004d98a43d091ff166a4&amp;hl=es&amp;ie=UTF8&amp;t=m&amp;ll=-8.105968,-79.029121&amp;spn=0.010197,0.013733&amp;z=16&amp;output=embed"></iframe>
+            <iframe class="span8" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com.pe/maps/ms?msa=0&amp;msid=211545789502788773932.0004d98a43d091ff166a4&amp;hl=es&amp;ie=UTF8&amp;t=m&amp;ll=-8.105968,-79.029121&amp;spn=0.010197,0.013733&amp;z=16&amp;output=embed"></iframe>
         </div>-->
 {% endblock mapa %}
 
