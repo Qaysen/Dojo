@@ -8,26 +8,19 @@ Material por subtema
 {% endblock encabezado %}
 
 {% block contenido %}
-
 <div>
-           
-          
-
-           <ol>
-                        {% for matxstema in material %}
+      <ol>
+                    {% for matxstema in material %}
                           <li>  
-                              <div>Archivo URL: {{matxstema.archivo_url}}</div>
+                              <div><a href="/descargar/{{matxstema.archivo_url}}">Archivo URL: {{matxstema.archivo_url}}</a></div>
+                              <div><embed src="{{MEDIA_URL}}{{matxstema.archivo_url}}" width="800" height="500">VER</div>
                               <div>Titulo: {{matxstema.titulo}}</div>
                               <div>Descripcion: {{matxstema.descripcion}}</div>
-                              <div>Tipo: {{matxstema.tipo}}</div>  
-                                                      
+                              <div>Tipo: {{matxstema.tipo}}</div>                                             
                           
                           </li> 
-                            {% endfor %}
-        </ol>
-
- 
+                    {% endfor %}
+      </ol> 
   </div> 
-
 {% endblock contenido %}
 

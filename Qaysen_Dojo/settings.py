@@ -102,6 +102,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'Qaysen_Dojo.urls'
 
+AUTH_PROFILE_MODULE = 'home.userProfile'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'Qaysen_Dojo.wsgi.application'
 
@@ -124,9 +125,21 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
+    'home',
     'principal',
     'south',
 )
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    "django.core.context_processors.request",
+    )
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

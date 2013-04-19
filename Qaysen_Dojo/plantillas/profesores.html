@@ -1,0 +1,14 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	{% for profesor in profesores %}
+		<div>
+			{{profesor.usuario.id}} {{profesor.usuario.username}}
+			<img src="{{MEDIA_URL}}{{x.user.get_profile.foto}}">
+		</div>
+	{% endfor %}
+
+</body>
+</html>

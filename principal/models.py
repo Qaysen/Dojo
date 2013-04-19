@@ -1,27 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-GENERO = (
-	('Masculino','Masculino'),
-	('Femenino','Femenino')
-)
+from django.template import defaultfilters
 
 TIPO = (
 	('Seminario','Seminario'),
 	('Curso','Curso')
 )
 
-
-User.add_to_class('telefono', models.IntegerField(null=True,blank=True, max_length=7))
-User.add_to_class('direccion', models.CharField(null=True,blank=True, max_length=500))
-User.add_to_class('genero', models.CharField(null=True,blank=True, choices=GENERO, max_length=30))
-User.add_to_class('foto', models.FileField(upload_to='fotos', verbose_name='Imagen', blank=True, null=True))
-User.add_to_class('estado_login',models.BooleanField(default=False))
-
 	
-class Alumno(models.Model):
-	usuario=models.ForeignKey(User)
 
+class Alumno(models.Model):
+	usuario 	=models.ForeignKey(User)
+	sobre_mi	=models.CharField(max_length=5000,null=True,blank=True)
 	def __unicode__(self):
 		return unicode(self.usuario)
 
@@ -29,36 +19,72 @@ class Profesor(models.Model):
 	usuario= models.ForeignKey(User)
 	desc_laboral = models.CharField(max_length=100)
 	profesion = models.CharField(max_length=100)
-	git = models.CharField(max_length=100)
-	face = models.CharField(max_length=100)
-	twitter = models.CharField(max_length=100)
-
 	def __unicode__(self):
 		return unicode(self.usuario)
 
-class Curso(models.Model):
+class ProtoCurso(models.Model):
 	nombre = models.CharField(max_length=100)
 	descripcion = models.CharField(max_length=200)
-	archivo_url=models.FileField(upload_to='logos/')
 	tipo=models.CharField(max_length=100, choices=TIPO)
-	def __unicode__(self):
-		return unicode(self.nombre)		
+	archivo_url=models.FileField(upload_to='logos/')
+	slug = models.SlugField(max_length=100)
+	nivel=models.IntegerField(max_length=1,default=0)
 
-class CursoAbierto(models.Model):
-	lugar = models.CharField(max_length=100)
+	def save(self, *args, **kwargs):
+		self.slug = defaultfilters.slugify(self.nombre)
+		super(ProtoCurso, self).save(*args, **kwargs)
+
+	def __unicode__(self):
+		return unicode(self.nombre)	
+
+
+class Localizacion(models.Model):
+	departamento = models.CharField(max_length=100)
+	distrito = models.CharField(max_length=100)
+	direccion = models.CharField(max_length=100)
+	google_map = models.CharField(max_length=100)
+		
+	
+	def __unicode__(self):
+		return unicode(self.distrito)	
+		
+class Curso(models.Model):
 	fecha_inicio= models.DateField(auto_now=False)
 	fecha_termino= models.DateField(auto_now=False)
-	cant_horas=models.IntegerField(max_length=11,default=0)
+	cant_horas=models.IntegerField(max_length=3,default=0)	
 	profesor =models.ForeignKey(Profesor)
-	curso =models.ForeignKey(Curso)
+	protoCurso =models.ForeignKey(ProtoCurso)
+	localizacion =models.ForeignKey(Localizacion)
+	precio=models.IntegerField(max_length=3,default=0)	
+	
 	def __unicode__(self):
-		return unicode(self.curso)	
+		return '%s / %s' %(self.protoCurso, self.localizacion)
+
+
+class Categoria(models.Model):
+	nombre = models.CharField(max_length=100)
+	slug = models.SlugField()
+
+	def save(self, *args, **kwargs):
+		self.slug = defaultfilters.slugify(self.nombre)
+		super(Categoria, self).save(*args, **kwargs)
+
+	def __unicode__(self):
+		return unicode(self.nombre)	
+
+class CategoriaProtoCurso(models.Model):
+	protoCurso =models.ForeignKey(ProtoCurso)
+	categoria =models.ForeignKey(Categoria)
+	
+	def __unicode__(self):
+		return unicode(self.categoria)	
 
 class Tema(models.Model):
 	nombre=models.CharField(max_length=100)
 	subtema=models.ForeignKey('Tema',blank=True,null=True)
-	cursoabierto=models.ForeignKey(CursoAbierto)
+	protoCurso=models.ForeignKey(ProtoCurso)
 	orden=models.DecimalField(decimal_places=0, max_digits=2)
+	descripcion=models.CharField(max_length=100)
 	def __unicode__(self):
 		return unicode(self.nombre)
 
@@ -72,7 +98,7 @@ class Material(models.Model):
 		return unicode(self.titulo)
 
 class PreguntaExamen(models.Model):
-	curso =models.ForeignKey(Curso)
+	protoCurso =models.ForeignKey(ProtoCurso)
 	pregunta = models.CharField(max_length=200)
 	def __unicode__(self):
 		return unicode(self.pregunta)
@@ -89,11 +115,11 @@ class Paquete(models.Model):
 	def __unicode__(self):
 		return unicode(self.nombre)
 
-class CursoPaquete(models.Model):
-	curso =models.ForeignKey(Curso)
+class ProtoCursoPaquete(models.Model):
+	protoCurso =models.ForeignKey(ProtoCurso)
 	paquete =models.ForeignKey(Paquete)
 	def __unicode__(self):
-		return '%s en %s' %(self.curso, self.paquete)
+		return '%s en %s' %(self.ProtoCurso, self.paquete)
 
 class Horario(models.Model):
 	dias = (
@@ -108,19 +134,19 @@ class Horario(models.Model):
 	dia=models.CharField(choices=dias,max_length=12)
 	hora_inicio=models.TimeField(auto_now=False)
 	hora_fin=models.TimeField(auto_now=False)
-	cursoabierto=models.ForeignKey(CursoAbierto)
+	curso=models.ForeignKey(Curso)
 	def __unicode__(self):
 		return '%s / %s' %(self.dia, self.hora_inicio)
 
 
 class Matriculado(models.Model):
-	cursoabierto=models.ForeignKey(CursoAbierto)
+	protoCurso=models.ForeignKey(ProtoCurso)
 	alumno=models.ForeignKey(Alumno)
 	def __unicode__(self):
-		return '%s en %s' %(self.cursoabierto, self.alumno)
+		return '%s en %s' %(self.protoCurso, self.alumno)
 
 class Pregunta(models.Model):
-	curso=models.ForeignKey(Curso)
+	protoCurso=models.ForeignKey(ProtoCurso)
 	alumno=models.ForeignKey(Alumno)
 	pregunta = models.CharField(max_length=300)
 	def __unicode__(self):

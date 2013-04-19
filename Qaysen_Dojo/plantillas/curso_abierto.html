@@ -18,11 +18,8 @@ Cursos de Code Web
 {% endblock mas_info %}
 
 {% block cursos_inicio %}
-    {% if user.is_authenticated%}
-        <p>Hola {{user}}</p>
-    {% endif %}
-    <section>
-        <div class="filtros span4">
+    <section class="cursos general">
+        <div class="filtros">
             <legend>Filtrar</legend>
             <ul>
                 Diseño Web:
@@ -43,28 +40,21 @@ Cursos de Code Web
                 <li><input type="checkbox"> Cajamarca</li>
             </ul>
         </div>
-        <div class="lista_cursos span6">
-            {% for curso in cursos %}
+        <div class="lista_cursos">
+            {% for curso in cursos_ab %} 
             <article>
-                <div class="span2">
-                    <img src='{{MEDIA_URL}}{{curso.protoCurso.archivo_url}}'>
-                </div>
-                <div class="span4">
-                    <h3><a href="/cursos/{{curso.protoCurso.slug}}">{{curso.protoCurso}}</a></h3>
-                    <p>{{curso.protoCurso.descripcion}}</p>
+                <img src='{{MEDIA_URL}}{{curso.curso.archivo_url}}' width="100">
+                <div class="informacion_curso">
+                    <h3><a href="/cursos/{{curso.curso.slug}}/">{{curso.curso}}</a></h3>
+                    <p>{{curso.curso.descripcion}}</p>
                     <p>{{curso.fecha_inicio}}</p>
                 </div>
-                <!--<div class="fondito">
+                <div class="fondito">
                     <span>{{curso.lugar}}</span>
                     <span class="inferior"></span>
-                </div>-->
+                </div>
             </article>
             {% endfor %}
-        </div>
-        <div class="span2">
-            <legend>{{tipo|capfirst}}</legend>
-            <p>No te olvides que tambien contamos con algunos {{tipo}} en los cuales puedes participar.</p>
-            <p>Encuentralos en <a href="/{{tipo}}/">{{tipo|capfirst}}.</a> </p>
         </div>
     </section>  
 {% endblock cursos_inicio %}

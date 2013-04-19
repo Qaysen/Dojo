@@ -68,9 +68,11 @@
                 {% csrf_token %}
                     <input type="text" name="username" placeholder="Usuario">
                     <input type="password" name ="password" placeholder="Contraseña">
-                    <input class="login" type="submit" value="Login">
+                    <input type="text" name="anterior" value="{{request.path}}" hidden>
+                    <input class="login" type="submit" value="login">
                 </form>
                 {% endif %}
+                
             </nav>
         </header>
 
