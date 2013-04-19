@@ -1,4 +1,5 @@
 from principal.models import *
+from home.models import *
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
@@ -54,19 +55,22 @@ def nombreusuario(correo):
 	m=correo.split('@')
 	return m[0]
 
+
 def perfil(request,username):
 	usuario=request.user
-	perfil= Alumno.objects.filter(usuario=usuario.id).count()
-	if perfil==0:
-		profesor=Profesor.objects.get(usuario=usuario)
-		dato=usuario
-		dato1=username
-		print profesor.id
-		cursos=CursoAbierto.objects.filter(profesor_id=profesor.id).distinct()
-		return render_to_response('perfilprofesor.html',{'dato':dato,'lista_cursos':cursos,'dato1':dato1,'profesor':profesor}, context_instance=RequestContext(request))
+	if usuario.username==username:
+		bandera= Alumno.objects.filter(usuario=usuario.id).count()
+		if bandera==0:
+			profesor=Profesor.objects.get(usuario=usuario)
+			dato=usuario
+			dato1=username
+			print profesor.id
+			cursos=CursoAbierto.objects.filter(profesor_id=profesor.id).distinct()
+			return render_to_response('perfilprofesor.html',{'dato':dato,'lista_cursos':cursos,'dato1':dato1,'profesor':profesor}, context_instance=RequestContext(request))
+		else:
+			print "la otras sea"	
 	else:
-		print "la otras sea"	
-	return HttpResponseRedirect('/')
+		return HttpResponseRedirect('/')
 
 @login_required(login_url='/')
 def cerrar(request):
@@ -193,17 +197,18 @@ def responder(request,id_curso):
 def examen(request,id_curso):
 	usuario=request.user
 	examen=PreguntaExamen.objects.filter(curso_id=id_curso).order_by('?')[:1]
-	print examen[0].id
-	print examen[0].id
-	print examen[0].id
-
-	for x in examen:
-		print x.pregunta
-		print x.id	
-
-	alternativas=Alternativa.objects.filter(pregunta_id=examen[0].id).order_by('?')
-
+	ex=[x.id for x in examen]
+	alternativas=Alternativa.objects.filter(pregunta_id=ex[0]).order_by('?')
 	return render_to_response('examen.html', {'examen':examen,'alternativas':alternativas,'usuario':usuario},context_instance=RequestContext(request))
+
+
+def profesores(request):
+	lista_profesores=User.objects.all()
+	print lista_profesores[0]
+	return render_to_response('profesores.html', {'profesores':lista_profesores}, context_instance=RequestContext(request))
+
+
+
 
 
      
