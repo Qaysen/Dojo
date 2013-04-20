@@ -512,6 +512,12 @@ li .icon.prereq {
 		width: 75%;
 		margin: 0 auto;
 	}
+	.texto{
+		width: 222px;
+	}
+	.row{
+		margin: 0 0 1em 2em;
+	}
 }
 @media (min-width:480px) and (max-width:767px) {
 	.tablet_img {
@@ -524,6 +530,10 @@ li .icon.prereq {
 		display: inline-block;
 		vertical-align: top;
 	}
+	.row{
+		margin:0 0 2em 4em;
+	}
+
 }
 <<<<<<< HEAD
 .foto2{
@@ -583,6 +593,7 @@ li .icon.prereq {
 	.lista_cursos article img{
 		width: 100%;
 	}
+	
 }
 @media (min-width:768px){
 	.cursos_todos {
@@ -601,6 +612,10 @@ li .icon.prereq {
 	.lista_cursos article img{
 		width: 50%;
 	}
+	.posicionar{
+		margin: 0 0 0 6em;
+	}
+
 }
 /*circulos para las imagenes*/
 .circle{

@@ -87,6 +87,12 @@ def seminarios(request):
 	return render_to_response('seminarios.html', context_instance=RequestContext(request))
 def profesores(request):
 	return render_to_response('profesores.html', context_instance=RequestContext(request))
+def contacto(request):
+	return render_to_response('contacto.html', context_instance=RequestContext(request))
+ 
+def lista_alumnos(request):
+	alumnos = Alumno.objects.all()
+	return render_to_response('lista_alumnos.html',{'alumnos':alumnos}, context_instance=RequestContext(request))
 def dato_curso_abierto(request, id_curso_ab):
 	dato = CursoAbierto.objects.get(pk=id_curso_ab)
 	cursoab = Curso.objects.get(pk=dato.curso_id)

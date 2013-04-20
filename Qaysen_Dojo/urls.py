@@ -26,6 +26,8 @@ urlpatterns = patterns('',
 	url(r'^cursos/tema/(?P<id_subtema>\d+)$','principal.views.material'),
 	url(r'^cerrar/$','principal.views.cerrar'),
 	url(r'^profesores/$','principal.views.profesores'),
+	url(r'^alumnos/$','principal.views.lista_alumnos'),
+	url(r'^contacto/$','principal.views.contacto'),
 	url(r'^(?P<username>[-\w]+)/$','principal.views.perfil'),
     
 
