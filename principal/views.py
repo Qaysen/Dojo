@@ -98,6 +98,9 @@ def cursos(request):
 	tipo = "seminarios"
 	return render_to_response('cursos.html', {'cursos':cursos, 'tipo': tipo}, context_instance=RequestContext(request))
 
+def contacto(request):
+	return render_to_response('contacto.html', context_instance=RequestContext(request))
+
 def seminarios(request):
 	seminarios = Curso.objects.filter(protoCurso__tipo = "Seminario")
 	tipo = "cursos"
@@ -136,7 +139,7 @@ def detallecurso(request, nomcurso):
 	# print a
 	
 
-	return render_to_response('detalle_curso.html',{ 'protocurso':protocurso, 'curso':curso,'temario':padres_hijos },context_instance = RequestContext(request))
+	return render_to_response('detalle_curso.html',{ 'protocurso':protocurso, 'curso':curso,'temario':padres_hijos, 'horario':horario },context_instance = RequestContext(request))
 
 
 def material(request,id_subtema):
@@ -210,12 +213,12 @@ def examen(request,id_curso):
 
 
 def profesores(request):
-	# lista_profesores = Profesor.objects.all()
-	lista_profesores = Profesor.objects.all()
-	# lista_profesores=User.objects.all()
-	# print lista_profesores[0]
-	return render_to_response('profesores.html', {'profesores':lista_profesores}, context_instance=RequestContext(request))
+	profesores = Profesor.objects.all()
+	return render_to_response('profesores.html', {'profesores':profesores}, context_instance=RequestContext(request))
 
+def alumnos(request):
+	alumnos = Alumno.objects.all()
+	return render_to_response('alumnos.html', {'alumnos':alumnos}, context_instance=RequestContext(request))
      
 def descargar(request,pathy):
 	path="Qaysen_Dojo/cargas/"+pathy+""

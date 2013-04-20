@@ -1,0 +1,42 @@
+{% extends "base2.html" %}
+
+{% block titulo %}
+    Alumnos de CodeWeb
+{% endblock titulo %}
+
+{% block presentacion %}
+        <section class="presentacion shadow_bottom">
+            <div class="bienvenida titulo">
+                <h2>Alumnos de CodeWeb</h2>
+            </div>
+        </section>
+{% endblock presentacion %}
+
+{% block cursos_inicio %}
+            <br>
+        <section class="row">
+            <div class="span5 hidden-phone">
+                <legend>Se parte de nuestra comunidad</legend>
+                <p>Se parte de esta gran comunidad y aprende mucho gracias a los cursos y enseñanza que te brindamos.</p>
+                <p>Ingresa a detalle para ver el perfil y sus cuentas de Facebook, Twitter, Google+ y Github, de tus compañeros.</p>
+            </div>
+            <div class="lista_cursos span7">
+                <legend>Alumnos</legend>
+                {% for alumno in alumnos %}
+                <article>
+                    <div class="span2">
+                        <img src="{{MEDIA_URL}}{{alumno.usuario.get_profile.foto}}">
+                    </div>
+                    <div class="span4">
+                        <h3>{{alumno.usuario.username}}</a></h3>
+                        <p><a href="#">@dajdan</a></p>
+                    </div>
+                    <!--<div class="fondito">
+                        <span>{{curso.lugar}}</span>
+                        <span class="inferior"></span>
+                    </div>-->
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+{% endblock cursos_inicio %}

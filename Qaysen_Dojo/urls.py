@@ -39,10 +39,9 @@ urlpatterns = patterns('',
 
 	url(r'^profesores/$','principal.views.profesores'),
 
+	url(r'^alumnos/$','principal.views.alumnos'),
+	url(r'^contacto/$','principal.views.contacto'),
 	url(r'^(?P<username>[-\w]+)/$','principal.views.perfil'),
-	
-    
-
 
 )
 
