@@ -7,8 +7,6 @@ TIPO = (
 	('Curso','Curso')
 )
 
-	
-
 class Alumno(models.Model):
 	usuario 	=models.ForeignKey(User)
 	sobre_mi	=models.CharField(max_length=5000,null=True,blank=True)

@@ -48,8 +48,9 @@ def loginto(request):
 
 # Pagina de inicio
 def inicio(request):
-	cursos_abiertos = Curso.objects.all().order_by("fecha_inicio")
-	return render_to_response('inicio.html', {'cursos_abiertos':cursos_abiertos}, context_instance=RequestContext(request))
+	cursos = Curso.objects.filter(protoCurso__tipo = "Curso")[:3]
+	seminarios = Curso.objects.filter(protoCurso__tipo = "Seminario")[:3]
+	return render_to_response('inicio.html', {'cursos':cursos, 'seminarios':seminarios}, context_instance=RequestContext(request))
 
 def nombreusuario(correo):
 	m=correo.split('@')
@@ -101,7 +102,6 @@ def seminarios(request):
 	seminarios = Curso.objects.filter(protoCurso__tipo = "Seminario")
 	tipo = "cursos"
 	return render_to_response('cursos.html', {'cursos':seminarios, 'tipo': tipo}, context_instance=RequestContext(request))
-
 
 def detallecurso(request, nomcurso):
 	protocurso=ProtoCurso.objects.get(slug=nomcurso)
@@ -210,6 +210,7 @@ def examen(request,id_curso):
 
 
 def profesores(request):
+	# lista_profesores = Profesor.objects.all()
 	lista_profesores = Profesor.objects.all()
 	# lista_profesores=User.objects.all()
 	# print lista_profesores[0]

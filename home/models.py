@@ -9,10 +9,10 @@ GENERO = (
 class userProfile(models.Model):
 
 	def url(self,filename):
-		ruta ="fotos/User/%s/%s"%(self.usuario.username,filename)
+		ruta ="fotos/User/%s/%s"%(self.user.username,filename)
 		return ruta
 
-	usuario 	= models.OneToOneField(User)
+	user 	= models.OneToOneField(User)
 	foto   		= models.ImageField(upload_to=url)
 	genero  	= models.CharField(null=True,blank=True,choices=GENERO,max_length=30)
 	direccion	= models.CharField(null=True,blank=True,max_length=300)
@@ -21,4 +21,4 @@ class userProfile(models.Model):
 	face 		= models.CharField(null=True,blank=True,max_length=100)
 	twitter 	= models.CharField(null=True,blank=True,max_length=100)
 	def __unicode__(self):
-		return self.usuario.username
+		return self.user.username

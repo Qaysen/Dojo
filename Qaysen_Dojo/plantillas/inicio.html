@@ -31,10 +31,10 @@
 		<section class="row">
             <div class="lista_cursos span6">
                 <legend>Cursos Abiertos</legend>
-                {% for curso in cursos_ab %} 
+                {% for curso in cursos %} 
                 <article>
                     <div class="span2">
-                        <img src='{{MEDIA_URL}}{{curso.curso.archivo_url}}'>
+                        <img src='{{MEDIA_URL}}{{curso.protoCurso.archivo_url}}'>
                     </div>
                     <div class="span4">
                         <h3><a href="/cursos/{{curso.id}}">{{curso.curso}}</a></h3>
@@ -54,10 +54,10 @@
 
             <div class="lista_cursos span6">
                 <legend>Seminarios Abiertos</legend>
-                {% for curso in cursos_ab %} 
+                {% for curso in seminarios %} 
                 <article>
                     <div class="span2">
-                        <img src='{{MEDIA_URL}}{{curso.curso.archivo_url}}'>
+                        <img src='{{MEDIA_URL}}{{curso.protoCurso.archivo_url}}'>
                     </div>
                     <div class="span4">
                         <h3><a href="/cursos/{{curso.id}}">{{curso.curso}}</a></h3>
