@@ -110,7 +110,7 @@ def detallecurso(request, nomcurso):
 	protocurso=ProtoCurso.objects.get(slug=nomcurso)
 	curso=Curso.objects.filter(protoCurso=protocurso.id)			
 	tema=Tema.objects.filter(protoCurso=protocurso.id)
-	horario=Horario.objects.all()
+	horario=Horario.objects.filter(curso__protoCurso=protocurso.id)
 	padres=tema.filter(subtema_id=None).order_by("orden")
 	hijos=tema.exclude(subtema_id=None)
 
@@ -135,10 +135,6 @@ def detallecurso(request, nomcurso):
 	a = [hijoss[x].values() for x in hijoss]
 
 	padres_hijos=zip(padres,a)
-
-	# print a
-	
-
 	return render_to_response('detalle_curso.html',{ 'protocurso':protocurso, 'curso':curso,'temario':padres_hijos, 'horario':horario },context_instance = RequestContext(request))
 
 
