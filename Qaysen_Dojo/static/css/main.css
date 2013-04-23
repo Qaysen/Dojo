@@ -596,6 +596,8 @@ li .icon.prereq {
 	margin: 20px 0;
 	color: white;
 	opacity: 0.8;
+	min-height: 30px;
+	overflow: hidden;
 }
 .inscribete:hover {
 	background: #2284a1;
