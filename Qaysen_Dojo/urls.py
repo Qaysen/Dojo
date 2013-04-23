@@ -13,7 +13,9 @@ urlpatterns = patterns('',
 	# Pagina de Inicio
 	url(r'^$', 'principal.views.inicio'),
 	url(r'^registrar/$', 'principal.views.registrarse'),
+
 	url(r'^loginto', 'principal.views.loginto'),
+
 	
 	url(r'^cursos/$','principal.views.cursos'),
 	url(r'^cursos/tema/(?P<id_subtema>\d+)$','principal.views.material'),
