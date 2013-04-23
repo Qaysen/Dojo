@@ -35,7 +35,7 @@ def loginto(request):
 					login(request, acceso)
 					user.save()
 					dato = nombreusuario(user.email)
-					return HttpResponseRedirect('\/%s\/',usuario.username)
+					return HttpResponseRedirect('/%s/'%usuario)
 
 				else:
 					return render_to_response('noactivo.html', context_instance=RequestContext(request))
@@ -74,12 +74,14 @@ def nombreusuario(correo):
 # 		return HttpResponseRedirect('/')
 
 def perfil(request,username):
-	usuario=request.user
-	print usuario
-	# alumno=Alumno.objects.get(id=usuario.id)
-	matricula=Matriculado.objects.filter(alumno_id=usuario.id)
+	usuario=request.user	
+	alumno=Alumno.objects.get(usuario_id=usuario.id)	
+	matricula=Matriculado.objects.filter(alumno_id=alumno.id)
 	
-	return render_to_response('miperfil.html',{'dato':usuario}, context_instance=RequestContext(request))
+	for x in matricula:
+		print x.curso.protoCurso.nombre
+	
+	return render_to_response('miperfil.html',{'dato':usuario, 'matricula':matricula}, context_instance=RequestContext(request))
 
 
 @login_required(login_url='/')
@@ -112,10 +114,10 @@ def contacto(request):
 	return render_to_response('contacto.html', context_instance=RequestContext(request))
 
 def seminarios(request):
-	seminarios = ProtoCurso.objects.filter(tipo = "Seminario")
+	seminarios = Curso.objects.filter(protoCurso__tipo = "Seminario")
 	tipo = "cursos"
-	return render_to_response('seminarios.html', {'seminarios':seminarios, 'tipo': tipo}, context_instance=RequestContext(request))
-
+	mismo = "seminarios"
+	return render_to_response('cursos.html', {'cursos':seminarios, 'tipo': tipo, 'mismo': mismo}, context_instance=RequestContext(request))
 
 def detallecurso(request, nomcurso):
 	protocurso=ProtoCurso.objects.get(slug=nomcurso)

@@ -9,11 +9,11 @@
 		<div class="container">
 			<div class="row"></div>
 			<div class="span2">
-				<img src='http://www.gravatar.com/avatar/a7b4a6cc1ecfd3fadc72c9aa336b8ee2'>
+				<img src='http://sphotos-c.ak.fbcdn.net/hphotos-ak-prn1/11577_477962595605588_1293720914_n.jpg'>
 			</div>
 			<div class="info span7">
 				<h1>{{dato.first_name|capfirst}} {{dato.last_name|capfirst}}</h1>
-				<p>{{alumno.sobre_mi}}</p>
+				<p>{{dato.email}}</p>
 				</div>
 			<div class="social span3">
 				<a href="http://github.com/{{profesor.git}}" target="blank">git</a>
@@ -31,17 +31,14 @@
         <legend>Cursos que llevo:</legend>
 
         <div class="lista_cursos">
-            {% for protocurso in protocurso %} 
+            {% for matricula in matricula %} 
             <article>
-                <img src='{{MEDIA_URL}}{{protocurso.archivo_url}}' width="100">
+                <img src='{{MEDIA_URL}}{{matricula.curso.protoCurso.archivo_url}}' width="100">
                 <div class="informacion_curso">
-                    <h3><a href="/cursos/{{protocurso.slug}}/">{{protocurso.nombre}}</a></h3>
-                    <p>{{protocurso.descripcion}}</p>                 
+                    <h3><a href="/cursos/{{protocurso.slug}}/">{{matricula.curso.protoCurso.nombre}}</a></h3>
+                    <p>{{matricula.curso.protoCurso.descripcion}}</p>                 
                 </div>
-                <div class="fondito">
-                     <span>{{protocurso.tipo}}</span>
-                    <span class="inferior"></span>
-                </div>
+                
             </article>
             {% endfor %}
         </div>
