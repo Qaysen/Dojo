@@ -1,7 +1,7 @@
 from principal.models import *
 from home.models import *
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from principal.forms import *
@@ -103,10 +103,10 @@ def contacto(request):
 	return render_to_response('contacto.html', context_instance=RequestContext(request))
 
 def seminarios(request):
-	seminarios = ProtoCurso.objects.filter(tipo = "Seminario")
+	seminarios = Curso.objects.filter(protoCurso__tipo = "Seminario")
 	tipo = "cursos"
-	return render_to_response('seminarios.html', {'seminarios':seminarios, 'tipo': tipo}, context_instance=RequestContext(request))
-
+	mismo = "seminarios"
+	return render_to_response('cursos.html', {'cursos':seminarios, 'tipo': tipo, 'mismo': mismo}, context_instance=RequestContext(request))
 
 def detallecurso(request, nomcurso):
 	protocurso=ProtoCurso.objects.get(slug=nomcurso)
@@ -239,3 +239,15 @@ def pdf(request):
 def ver(request,path):
 	print path
 	return render_to_response('ver.html', {'path':path} ,context_instance=RequestContext(request))
+
+def inscribirse(request):
+	if request.is_ajax():
+		usuario = request.user
+		clave=int(request.POST['id'])
+		curso = Curso.objects.get(pk=clave)
+		alumno = Alumno.objects.get(usuario=usuario)
+		inscrito = Matriculado(curso=curso, alumno=alumno)
+		inscrito.save()
+		return HttpResponse('felicidades')
+	else:
+		raise Http404

@@ -127,7 +127,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     #'home',
     'principal',
-    #'south',
+    'south',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

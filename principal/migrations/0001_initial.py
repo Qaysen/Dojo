@@ -143,7 +143,7 @@ class Migration(SchemaMigration):
         # Adding model 'Matriculado'
         db.create_table('principal_matriculado', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('protoCurso', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.ProtoCurso'])),
+            ('curso', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.Curso'])),
             ('alumno', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.Alumno'])),
         ))
         db.send_create_signal('principal', ['Matriculado'])
@@ -321,8 +321,8 @@ class Migration(SchemaMigration):
         'principal.matriculado': {
             'Meta': {'object_name': 'Matriculado'},
             'alumno': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['principal.Alumno']"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'protoCurso': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['principal.ProtoCurso']"})
+            'curso': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['principal.Curso']"}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
         },
         'principal.paquete': {
             'Meta': {'object_name': 'Paquete'},

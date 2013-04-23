@@ -3,10 +3,9 @@ body {
 	background-color: #fff;
 	color: #5A5A5A;
 }
-* {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
+h1,h2,h3,h4,h5,h6 {
+	margin: 0;
+	padding: 0;
 }
 p {
 	margin: 0;
@@ -41,12 +40,6 @@ legend {
 }
 .centrar {
 	margin: 0 auto;
-}
-.inferior {
-	height: 5px;
-	z-index: 9999;
-	display: block;
-	background: transparent url(http://static.colourlovers.com/images/v4.0/_/misc/10-black.png) repeat scroll 0 0;
 }
 .sombra_inferior {
 	-webkit-box-shadow: 0 6px 8px -8px #000;
@@ -313,33 +306,11 @@ footer {
 	padding: 5px 20px;
 }
 
-/* Cursos general */
-
-.filtros {
-	width: 20%;
-	margin-right: 30px;
-}
-.filtros ul li {
-	padding-left: 20px;
-}
-.filtros input {
-	margin: 0;
-	padding: 0;
-}
-.filtros, .lista_cursos {
-	display: inline-block;
-	vertical-align: top;
-}
-
 .lista_cursos article {
-	margin: 10px 0px;
-	border: 1px solid #ccc;
-	padding: 10px 0;
-	overflow: hidden;
-	position: relative;
-	z-index: 1;
+	margin-bottom: 15px;
 	background: #f2f2f2;
 	border: 1px solid #e6e6e6;
+	overflow: hidden;
 	/*-webkit-box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
 	-moz-box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
 	box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);*/
@@ -349,12 +320,11 @@ footer {
 	-o-border-radius: 4px;
 	border-radius: 4px;*/
 }
-.lista_cursos h3 {
-	margin: 0;
-	padding: 0;
+.lista_cursos article h3 {
+	margin: 10px 0;
 }
-.lista_cursos h3 a {
-	color: #000;
+.cursos a {
+	color: black;
 }
 .lista_cursos p {
 	display: block;
@@ -376,6 +346,7 @@ footer {
 .silabus {
 }
 .silabus h3 {
+	margin: 15px 0;
 	font-size: 18px;
 	color: #302820;
 }
@@ -462,18 +433,6 @@ li .icon.prereq {
 .perfil img {
 	width: 100%;
 }
-@media (max-width: 479px) {
-	.tablet_img {
-		width: 75%;
-		margin: 0 auto;
-	}
-	.texto{
-		width: 222px;
-	}
-	.row{
-		margin: 0 0 1em 2em;
-	}
-}
 @media (min-width:480px) and (max-width:767px) {
 	.tablet_img {
 		width: 40%;
@@ -488,7 +447,6 @@ li .icon.prereq {
 	.row{
 		margin:0 0 2em 4em;
 	}
-
 }
 .foto2{
 	width: 10em;
@@ -534,7 +492,10 @@ li .icon.prereq {
 	}
 	.lista_cursos .span2 {
 		width: 25% !important;
-		margin-left: 2%;
+		overflow: hidden;
+	}
+	.lista_cursos .span2 img {
+		vertical-align: middle;
 	}
 	.lista_cursos .span4 {
 		width: 65% !important;
@@ -560,18 +521,20 @@ li .icon.prereq {
 		margin-left: 1% !important;
 	}
 	.lista_cursos .span2 {
-		margin: 0 0 0 2% !important;
+		overflow: hidden;
 	}
 	.lista_cursos .span4 {
-		margin: 0 0 0 -10% !important;
+		margin-left: 10px;
 	}
 	.lista_cursos article img{
-		width: 50%;
+		width: 100%;
 	}
 	.posicionar{
 		margin: 0 0 0 6em;
 	}
-
+	.inscribete {
+		margin-top: -5px;
+	}
 }
 /*circulos para las imagenes*/
 .circle{
@@ -592,12 +555,12 @@ li .icon.prereq {
 	-moz-box-shadow: none;
 	box-shadow: none;
 	width: 100%;
-	padding: 20px;
-	margin: 20px 0;
+	padding: 10px;
 	color: white;
 	opacity: 0.8;
 	min-height: 30px;
 	overflow: hidden;
+	font-size: 18px;
 }
 .inscribete:hover {
 	background: #2284a1;
@@ -612,4 +575,38 @@ li .icon.prereq {
 /* Errores */
 .errorlist {
 	color: red;
+}
+
+@media (max-width: 479px) {
+	.tablet_img {
+		width: 75%;
+		margin: 0 auto;
+	}
+	.texto{
+		width: 222px;
+	}
+	.row{
+		margin: 0;
+	}
+	.lista_cursos .span2 {
+		width: 100% !important;
+		margin-left: 0;
+	}
+	.lista_cursos .span2 img {
+		width: 100%;
+	}
+	.lista_cursos .span4 {
+		width: 100% !important;
+		margin-left: 0;
+	}
+	.inscribete {
+		display: block !important;
+		margin: 10px 0;
+	}
+	.lista_cursos article {
+		margin-bottom: 15px;
+		background: none !important;
+		border: 0;
+		overflow: hidden;
+	}
 }
