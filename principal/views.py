@@ -103,10 +103,10 @@ def contacto(request):
 	return render_to_response('contacto.html', context_instance=RequestContext(request))
 
 def seminarios(request):
-	seminarios = Curso.objects.filter(protoCurso__tipo = "Seminario")
+	seminarios = ProtoCurso.objects.filter(tipo = "Seminario")
 	tipo = "cursos"
-	mismo = "seminarios"
-	return render_to_response('cursos.html', {'cursos':seminarios, 'tipo': tipo, 'mismo': mismo}, context_instance=RequestContext(request))
+	return render_to_response('seminarios.html', {'seminarios':seminarios, 'tipo': tipo}, context_instance=RequestContext(request))
+
 
 def detallecurso(request, nomcurso):
 	protocurso=ProtoCurso.objects.get(slug=nomcurso)
