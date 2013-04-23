@@ -30,6 +30,10 @@ urlpatterns = patterns('',
 	url(r'^profesores/$','principal.views.profesores'),
 	url(r'^alumnos/$','principal.views.alumnos'),
 	url(r'^contacto/$','principal.views.contacto'),
+
+	#Inscribirse en un curso
+	url(r'^inscribirse/$','principal.views.inscribirse'),	
+
 	url(r'^(?P<username>[-\w]+)/$','principal.views.perfil'),
 
 

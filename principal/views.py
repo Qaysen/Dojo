@@ -1,7 +1,7 @@
 from principal.models import *
 from home.models import *
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from principal.forms import *
@@ -250,3 +250,15 @@ def pdf(request):
 def ver(request,path):
 	print path
 	return render_to_response('ver.html', {'path':path} ,context_instance=RequestContext(request))
+
+def inscribirse(request):
+	if request.is_ajax():
+		usuario = request.user
+		clave=int(request.POST['id'])
+		curso = Curso.objects.get(pk=clave)
+		alumno = Alumno.objects.get(usuario=usuario)
+		inscrito = Matriculado(curso=curso, alumno=alumno)
+		inscrito.save()
+		return HttpResponse('felicidades')
+	else:
+		raise Http404
