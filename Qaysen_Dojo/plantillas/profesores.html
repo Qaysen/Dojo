@@ -1,14 +1,47 @@
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	{% for profesor in profesores %}
-		<div>
-			{{profesor.usuario.id}} {{profesor.usuario.username}}
-			<img src="{{MEDIA_URL}}{{x.user.get_profile.foto}}">
-		</div>
-	{% endfor %}
+{% extends "base2.html" %}
 
-</body>
-</html>
+{% block titulo %}
+    Code Web
+{% endblock titulo %}
+
+{% block presentacion %}
+        <section class="presentacion shadow_bottom">
+            <div class="bienvenida titulo">
+                <h2>Profesores  </h2>
+                
+            </div>
+            <div class="foto">
+                
+            </div>
+            <span class="inferior"></span>
+        </section>
+{% endblock presentacion %}
+
+{% block cursos_inicio %}
+     	<section class="row">
+     		<div class="span5 hidden-phone">
+            	<legend>Cuenta con nosotros</legend>
+            	<p>Contamos con un equipo humano que trabajan dia a dia desarrollando y diseñando aplicaciones web en distintos lenguajes y plataformas.</p>
+            	<p>Ingresa a detalle para ver su perfil y sus cuentas de Facebook, Twitter, Google+ y Github.</p>
+            </div>
+     		<div class="lista_cursos span7">
+                <legend>Profesores</legend>
+                {% for profesor in profesores %}
+                <article>
+                    <div class="span2">
+                        <img src="{{MEDIA_URL}}{{profesor.usuario.get_profile.foto}}">
+                    </div>
+                    <div class="span4">
+                        <h3>{{profesor.usuario.username}}</a></h3>
+                        <p>{{profesor.desc_laboral}}</p>
+                        <p><a href="#">@dajdan</a></p>
+                    </div>
+                    <!--<div class="fondito">
+                        <span>{{curso.lugar}}</span>
+                        <span class="inferior"></span>
+                    </div>-->
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+{% endblock cursos_inicio %}

@@ -7,8 +7,6 @@ TIPO = (
 	('Curso','Curso')
 )
 
-	
-
 class Alumno(models.Model):
 	usuario 	=models.ForeignKey(User)
 	sobre_mi	=models.CharField(max_length=5000,null=True,blank=True)
@@ -140,10 +138,10 @@ class Horario(models.Model):
 
 
 class Matriculado(models.Model):
-	protoCurso=models.ForeignKey(ProtoCurso)
+	curso=models.ForeignKey(Curso)
 	alumno=models.ForeignKey(Alumno)
 	def __unicode__(self):
-		return '%s en %s' %(self.protoCurso, self.alumno)
+		return '%s en %s' %(self.curso, self.alumno)
 
 class Pregunta(models.Model):
 	protoCurso=models.ForeignKey(ProtoCurso)

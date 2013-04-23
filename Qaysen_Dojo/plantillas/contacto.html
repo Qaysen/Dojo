@@ -1,0 +1,56 @@
+{% extends "base2.html" %}
+
+{% block titulo %}
+    Code Web
+{% endblock titulo %}
+
+{% block presentacion %}
+        <section class="presentacion shadow_bottom">
+            <div class="bienvenida titulo">
+                <h2>Contactanos</h2>
+                
+            </div>
+            
+        </section>
+{% endblock presentacion %}
+
+
+{% block cursos_inicio %}
+<br>
+            <form>
+            <br>
+            <br>
+            <h2>Escribenos y comparte tus opiniones</h2>
+            <hr>
+            <br>    
+            <div class="row">
+             <div class="span6">   
+            <div class="row">
+                <div class="span1"><label>Nombre: </label></div>
+                <div class="span4"><input type="text" class="texto" name="nombre" placeholder="Nombre" size="44"></div>
+            </div>
+            <div class="row">
+                <div class="span1"><label>Email: </label></div>
+                <div class="span4"><input class="texto" type="text" name="email" placeholder="Email" size="44"></div>
+            </div>
+            <div class="row">
+                <div class="span1"><label>Mensaje: </label></div>
+                <div class="span4"><textarea  class="texto" name="comentario" placeholder="Escriba su comentario o sugerencia" rows="4" cols="40"></textarea></div>
+            </div>
+            <div><br><p align="center"><input  type="submit" class="login" value="enviar" > <input type="reset" class="login" value="resetear"></p>
+            </div>
+        </div>
+            <div class="span4">
+                <p class="posicionar">
+                Estaremos al tanto de tus comentarios, consultas y/o sugerencias, solo deja tus datos personales y podremos responderte.</p>
+
+            </div>
+
+            </div>
+
+            </form>
+
+
+
+{% endblock cursos_inicio %}
+

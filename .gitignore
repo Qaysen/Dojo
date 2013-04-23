@@ -1,6 +1,8 @@
 *.pyc
 *.db
 *~
+
 venv
+
 
 .DS_Store

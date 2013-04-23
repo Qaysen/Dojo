@@ -1,0 +1,51 @@
+{% extends "base2.html" %}
+
+{% block titulo %}
+Cursos de Code Web
+{% endblock titulo %}
+
+{% block presentacion %}
+        <section class="presentacion">
+            <div class="container">
+                <div class="row">
+                    <div class="titulo bienvenida">
+                        <h2>Mira todos los seminarios que tenemos para ti!</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock presentacion %}
+
+{% block mas_info %}
+
+{% endblock mas_info %}
+
+{% block cursos_inicio %}
+    <section>
+        <div class="row">
+            <div class="lista_cursos span6">
+                {% for seminario in seminarios %}
+                <article>
+                    <div class="span2">
+                        <img src='{{MEDIA_URL}}{{seminario.archivo_url}}'>
+                    </div>
+                    <div class="span4">
+                        <h3><a href="/cursos/{{seminario.Slug}}">{{seminario.Nombre}}</a></h3>
+                        <p>{{seminario.descripcion}}</p>
+                        <p>{{seminario.fecha_inicio}}</p>
+                        <h2>Inscribirse</h2>
+                    </div>
+                    <!--<div class="fondito">
+                        <span>{{curso.lugar}}</span>
+                        <span class="inferior"></span>
+                    </div>-->
+                </article>
+                {% endfor %}
+            </div>
+            <div class="span3">
+                <legend>Seminarios</legend>
+                <p>Participa de nuestros seminarios gratuitos con tan solo <a href="/registrar/">registrarte</a> e inscribirte </p>
+            </div>
+        </div>
+    </section>  
+{% endblock cursos_inicio %}

@@ -128,6 +128,7 @@ INSTALLED_APPS = (
     'home',
     'principal',
     'south',
+
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

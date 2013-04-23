@@ -6,10 +6,13 @@ Cursos de Code Web
 
 {% block presentacion %}
         <section class="presentacion">
-            <div class="bienvenida titulo">
-                <h2>Mira todos los cursos que tenemos para ti!</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="titulo bienvenida">
+                        <h2>Mira todos los seminarios que tenemos para ti!</h2>
+                    </div>
+                </div>
             </div>
-            
         </section>
 {% endblock presentacion %}
 
@@ -18,53 +21,33 @@ Cursos de Code Web
 {% endblock mas_info %}
 
 {% block cursos_inicio %}
-    {% if user.is_authenticated%}
-        <p>Hola {{user}}</p>
-    {% endif %}
-    <section>
-        <div class="filtros span4">
-            <legend>Filtrar</legend>
-            <ul>
-                Diseño Web:
-                <li><input type="checkbox"> HTML5</li>
-                <li><input type="checkbox"> CSS3</li>
-                <li><input type="checkbox"> Jquery</li>
-                <li><input type="checkbox"> Javascript</li>
-                Desarrollo Web:
-                <li><input type="checkbox"> Django</li>
-                <li><input type="checkbox"> Rails</li>
-                <li><input type="checkbox"> Symfony</li>
-                <li><input type="checkbox"> Sinatra</li>
-                Lugar:
-                <li><input type="checkbox"> Trujillo</li>
-                <li><input type="checkbox"> Chimbote</li>
-                <li><input type="checkbox"> Piura</li>
-                <li><input type="checkbox"> Chiclayo</li>
-                <li><input type="checkbox"> Cajamarca</li>
-            </ul>
-        </div>
-        <div class="lista_cursos span6">
-            {% for curso in cursos %}
-            <article class="" data-proto="{{curso.protoCurso}}">
-                <div class="span2">
-                    <img src='{{MEDIA_URL}}{{curso.protoCurso.archivo_url}}'>
-                </div>
-                <div class="span4">
-                    <h3><a href="/cursos/{{curso.protoCurso.slug}}">{{curso.protoCurso}}</a></h3>
-                    <p>{{curso.protoCurso.descripcion}}</p>
-                    <p>{{curso.fecha_inicio}}</p>
-                </div>
-                <!--<div class="fondito">
-                    <span>{{curso.lugar}}</span>
-                    <span class="inferior"></span>
-                </div>-->
-            </article>
-            {% endfor %}
-        </div>
-        <div class="span2">
-            <legend>{{tipo|capfirst}}</legend>
-            <p>No te olvides que tambien contamos con algunos {{tipo}} en los cuales puedes participar.</p>
-            <p>Encuentralos en <a href="/{{tipo}}/">{{tipo|capfirst}}.</a> </p>
+
+    <section class="cursos">
+        <div class="row">
+            <div class="span6">
+                <legend>{{mismo|capfirst}}</legend>
+                <p>No te olvides que tambien contamos con algunos {{tipo}} en los cuales puedes participar.</p>
+                <p>Encuentralos en <a href="/{{tipo}}/">{{tipo|capfirst}}.</a> </p>
+                <br>
+            </div>
+            <div class="lista_cursos span6">
+                {% for curso in cursos %}
+                <article>
+                    <div class="row">
+                    <div class="span2">
+                        <img src='{{MEDIA_URL}}{{curso.protoCurso.archivo_url}}'>
+                    </div>
+                    <div class="span4">
+                        <h3><a href="/{{mismo}}/{{curso.protoCurso.slug}}">{{curso.protoCurso.nombre}}</a></h3>
+                        <p>{{curso.protoCurso.descripcion}}</p>
+                        <p class="hidden-tablet">{{curso.fecha_inicio}}</p>
+                        <input value="{{curso.id}}" hidden>
+                    </div>
+                    <button class="inscribete span6" href="/inscribirse/">Inscribete</button>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
         </div>
     </section>  
 {% endblock cursos_inicio %}
