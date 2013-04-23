@@ -57,21 +57,30 @@ def nombreusuario(correo):
 	return m[0]
 
 
+# def perfil(request,username):
+# 	usuario=request.user
+# 	if usuario.username==username:
+# 		bandera= Alumno.objects.filter(usuario=usuario.id).count()
+# 		if bandera==0:
+# 			profesor=Profesor.objects.get(usuario=usuario)
+# 			dato=usuario
+# 			dato1=username
+# 			print profesor.id
+# 			cursos=Curso.objects.filter(profesor_id=profesor.id).distinct()
+# 			return render_to_response('perfilprofesor.html',{'dato':dato,'lista_cursos':cursos,'dato1':dato1,'profesor':profesor}, context_instance=RequestContext(request))
+# 		else:
+# 			print "la otras sea"	
+# 	else:
+# 		return HttpResponseRedirect('/')
+
 def perfil(request,username):
 	usuario=request.user
-	if usuario.username==username:
-		bandera= Alumno.objects.filter(usuario=usuario.id).count()
-		if bandera==0:
-			profesor=Profesor.objects.get(usuario=usuario)
-			dato=usuario
-			dato1=username
-			print profesor.id
-			cursos=CursoAbierto.objects.filter(profesor_id=profesor.id).distinct()
-			return render_to_response('perfilprofesor.html',{'dato':dato,'lista_cursos':cursos,'dato1':dato1,'profesor':profesor}, context_instance=RequestContext(request))
-		else:
-			print "la otras sea"	
-	else:
-		return HttpResponseRedirect('/')
+	print usuario
+	# alumno=Alumno.objects.get(id=usuario.id)
+	matricula=Matriculado.objects.filter(alumno_id=usuario.id)
+	
+	return render_to_response('miperfil.html',{'dato':usuario}, context_instance=RequestContext(request))
+
 
 @login_required(login_url='/')
 def cerrar(request):

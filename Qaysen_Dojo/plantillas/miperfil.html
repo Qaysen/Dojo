@@ -1,1 +1,52 @@
-miperfil.html
+{% extends "base3.html" %}
+
+{% block titulo %}
+	{{dato.username}}
+{% endblock %}
+
+{% block perfil %}
+	<section class="perfil">
+		<div class="container">
+			<div class="row"></div>
+			<div class="span2">
+				<img src='http://www.gravatar.com/avatar/a7b4a6cc1ecfd3fadc72c9aa336b8ee2'>
+			</div>
+			<div class="info span7">
+				<h1>{{dato.first_name|capfirst}} {{dato.last_name|capfirst}}</h1>
+				<p>{{alumno.sobre_mi}}</p>
+				</div>
+			<div class="social span3">
+				<a href="http://github.com/{{profesor.git}}" target="blank">git</a>
+				<a href="http://www.facebook.com/{{profesor.face}}" target="blank">face</a>		
+				<a href="http://www.twitter.com/{{profesor.twitter}}" target="blank">twitter</a>
+			</div>	
+		</div>
+	</section>
+	<br>
+{% endblock %}
+
+{% block perfil_mas %}
+	<div class="row">
+	<section class="span6">
+        <legend>Cursos que llevo:</legend>
+
+        <div class="lista_cursos">
+            {% for protocurso in protocurso %} 
+            <article>
+                <img src='{{MEDIA_URL}}{{protocurso.archivo_url}}' width="100">
+                <div class="informacion_curso">
+                    <h3><a href="/cursos/{{protocurso.slug}}/">{{protocurso.nombre}}</a></h3>
+                    <p>{{protocurso.descripcion}}</p>                 
+                </div>
+                <div class="fondito">
+                     <span>{{protocurso.tipo}}</span>
+                    <span class="inferior"></span>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+	</section>
+	
+	</div>
+{% endblock perfil_mas %}
