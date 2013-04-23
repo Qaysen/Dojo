@@ -252,13 +252,24 @@ def ver(request,path):
 	return render_to_response('ver.html', {'path':path} ,context_instance=RequestContext(request))
 
 def inscribirse(request):
-	if request.is_ajax():
-		usuario = request.user
-		clave=int(request.POST['id'])
-		curso = Curso.objects.get(pk=clave)
-		alumno = Alumno.objects.get(usuario=usuario)
-		inscrito = Matriculado(curso=curso, alumno=alumno)
-		inscrito.save()
-		return HttpResponse('felicidades')
-	else:
-		raise Http404
+	if not request.user.is_authenticated(): 
+			return HttpResponse('Logueate')
+    	else:
+    			
+			if request.is_ajax():
+				usuario = request.user
+				clave=int(request.POST['id'])
+				curso = Curso.objects.get(pk=clave)
+				alumno = Alumno.objects.get(usuario=usuario)
+				inscrito = Matriculado(curso=curso, alumno=alumno)
+				cant= Matriculado.objects.filter(curso=curso, alumno=alumno).count()
+				if cant == 0:
+					inscrito.save()
+				return HttpResponse('felicidades')
+			else:
+				raise Http404
+	return HttpResponseRedirect('/')
+
+ 
+    
+        
