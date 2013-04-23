@@ -23,6 +23,7 @@ urlpatterns = patterns('',
 	url(r'^cursos/(?P<nomcurso>[-\w]+)/$','principal.views.detallecurso'),
 
 	url(r'^seminarios/$','principal.views.seminarios'),
+	url(r'^seminarios/(?P<nomcurso>[-\w]+)/$','principal.views.detallecurso'),
 	# url(r'^(?P<pathy>.*)$', 'principal.views.ver'),
 	url(r'^descargar/(?P<pathy>.*)$','principal.views.descargar'),
 	url(r'^pdf/$', 'principal.views.pdf'),
