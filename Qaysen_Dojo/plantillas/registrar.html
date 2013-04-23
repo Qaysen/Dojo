@@ -30,6 +30,16 @@
 					{{ formulario.username.errors }}
 				</div>
 				<div>
+					<label> Nombres:</label>
+					<input type='text' name='first_name' maxlength='30'>
+					{{ formulario.first_name.errors }}
+				</div>
+				<div>
+					<label> Apellidos:</label>
+					<input type='text' name='last_name' maxlength='30'>
+					{{ formulario.last_name.errors }}
+				</div>
+				<div>
 					<label>Email :</label>
 					<input type='email' name='email' maxlength='30'>
 					{{ formulario.email.errors }}
@@ -45,7 +55,7 @@
 					{{ formulario.password2.errors }}
 				</div>
 				<br>
-				<button class="login">
+				<button >
                    	Registrar
                     <span class="inferior"></span>
 				</button>
