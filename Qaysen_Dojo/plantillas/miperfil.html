@@ -1,4 +1,4 @@
-{% extends "base3.html" %}
+{% extends "base2.html" %}
 
 {% block titulo %}
 	{{dato.username}}
@@ -26,24 +26,31 @@
 {% endblock %}
 
 {% block perfil_mas %}
-	<div class="row">
-	<section class="span6">
-        <legend>Cursos que llevo:</legend>
-
-        <div class="lista_cursos">
-            {% for matricula in matricula %} 
-            <article>
-                <img src='{{MEDIA_URL}}{{matricula.curso.protoCurso.archivo_url}}' width="100">
-                <div class="informacion_curso">
-                    <h3><a href="/cursos/{{protocurso.slug}}/">{{matricula.curso.protoCurso.nombre}}</a></h3>
-                    <p>{{matricula.curso.protoCurso.descripcion}}</p>                 
-                </div>
-                
-            </article>
-            {% endfor %}
+	<section class="cursos">
+        <div class="row">
+            <div class="span6">
+                <legend>Aqui encontraras tus inscripciones</legend>
+                <p>No te olvides que tambien contamos con algunos {{tipo}} en los cuales puedes participar.</p>
+                <p>Encuentralos en <a href="/{{tipo}}/">{{tipo|capfirst}}.</a> </p>
+                <br>
+            </div>
+            <div class="lista_cursos span6">
+                {% for matricula in matricula %}
+                <article>
+                    <div class="row">
+                    <div class="span2">
+                        <img src='{{MEDIA_URL}}{{matricula.curso.protoCurso.archivo_url}}'>
+                    </div>
+                    <div class="span4">
+                        <h3><a href="/{{mismo}}/{{matricula.curso.protoCurso.slug}}">{{matricula.curso.protoCurso.nombre}}</a></h3>
+                        <p>{{matricula.curso.protoCurso.descripcion}}</p>
+                        <p class="hidden-tablet">{{curso.fecha_inicio}}</p>
+                    </div>
+                    <button class="inscribete span6" href="/inscribirse/">Inscrito</button>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
         </div>
-
-	</section>
-	
-	</div>
+    </section>  
 {% endblock perfil_mas %}

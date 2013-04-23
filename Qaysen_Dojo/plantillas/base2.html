@@ -35,8 +35,10 @@
                 <nav class="span8">
                     <ul>
                         <li><a href="/cursos/">Cursos</a></li>
+                        <li><a href="/seminarios/">Seminarios</a></li>
 
                     {% if user.is_authenticated %}
+                        <li><a href="/{{user}}/">Mi Perfil</a></li>
                         <li class="login">
                             <a title="" alt="" href="/cerrar/">Cerrar Session</a>
                             <span class="inferior"></span>
@@ -67,7 +69,9 @@
             
         {% endblock presentacion %}
 
-        
+        {% block perfil %}
+            
+        {% endblock perfil %}
 
         <div class="container">
             <br>
@@ -87,6 +91,10 @@
         {% block mapa %}
             
         {% endblock mapa %}
+
+        {% block perfil_mas %}
+            
+        {% endblock perfil_mas %}
 
         </div>
 
