@@ -7,7 +7,7 @@
 {% block presentacion %}
         <section class="presentacion sombra_inferior">
             <div class="bienvenida titulo">
-                <h2>Curso presencial de {{protocurso.nombre}} </h2>
+                <h2>Seminario de {{protocurso.nombre}} </h2>
             </div>
         </section>
 {% endblock presentacion %}
@@ -30,7 +30,7 @@
                   <img src="https://www.edx.org/static/images/social/google-plus-sharing.947c2e39edb9.png">
               </a>
           </div>
-          <button class="inscribete">Inscribete</button>
+          <button class="inscribete" href="/inscribirse/">Inscribete</button>
 
         {% for curso in curso %}          
           <ul>
@@ -111,11 +111,7 @@
             </ul>
              
         </div>
-
-
-        <!-- <div><a href="/cursos/preguntas/{{curso_ab.id}}">Preguntas y Respuestas del Curso</a></div>
-        <div><a href="/cursos/form_pre/{{curso_ab.id}}">Preguntar</a></div>
-        <div><a href="/cursos/responder/{{curso_ab.id}}">Responder</a></div> -->
+        <br>
     </section>  
 {% endblock cursos_inicio %}
 

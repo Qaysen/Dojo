@@ -1,7 +1,7 @@
 from principal.models import *
 from home.models import *
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from principal.forms import *
@@ -35,7 +35,7 @@ def loginto(request):
 					login(request, acceso)
 					user.save()
 					dato = nombreusuario(user.email)
-					return HttpResponseRedirect(anterior)
+					return HttpResponseRedirect('/%s/'%usuario)
 
 				else:
 					return render_to_response('noactivo.html', context_instance=RequestContext(request))
@@ -57,21 +57,32 @@ def nombreusuario(correo):
 	return m[0]
 
 
+# def perfil(request,username):
+# 	usuario=request.user
+# 	if usuario.username==username:
+# 		bandera= Alumno.objects.filter(usuario=usuario.id).count()
+# 		if bandera==0:
+# 			profesor=Profesor.objects.get(usuario=usuario)
+# 			dato=usuario
+# 			dato1=username
+# 			print profesor.id
+# 			cursos=Curso.objects.filter(profesor_id=profesor.id).distinct()
+# 			return render_to_response('perfilprofesor.html',{'dato':dato,'lista_cursos':cursos,'dato1':dato1,'profesor':profesor}, context_instance=RequestContext(request))
+# 		else:
+# 			print "la otras sea"	
+# 	else:
+# 		return HttpResponseRedirect('/')
+
 def perfil(request,username):
-	usuario=request.user
-	if usuario.username==username:
-		bandera= Alumno.objects.filter(usuario=usuario.id).count()
-		if bandera==0:
-			profesor=Profesor.objects.get(usuario=usuario)
-			dato=usuario
-			dato1=username
-			print profesor.id
-			cursos=CursoAbierto.objects.filter(profesor_id=profesor.id).distinct()
-			return render_to_response('perfilprofesor.html',{'dato':dato,'lista_cursos':cursos,'dato1':dato1,'profesor':profesor}, context_instance=RequestContext(request))
-		else:
-			print "la otras sea"	
-	else:
-		return HttpResponseRedirect('/')
+	usuario=request.user	
+	alumno=Alumno.objects.get(usuario_id=usuario.id)	
+	matricula=Matriculado.objects.filter(alumno_id=alumno.id)
+	
+	for x in matricula:
+		print x.curso.protoCurso.nombre
+	
+	return render_to_response('miperfil.html',{'dato':usuario, 'matricula':matricula}, context_instance=RequestContext(request))
+
 
 @login_required(login_url='/')
 def cerrar(request):
@@ -103,10 +114,10 @@ def contacto(request):
 	return render_to_response('contacto.html', context_instance=RequestContext(request))
 
 def seminarios(request):
-	seminarios = ProtoCurso.objects.filter(tipo = "Seminario")
+	seminarios = Curso.objects.filter(protoCurso__tipo = "Seminario")
 	tipo = "cursos"
-	return render_to_response('seminarios.html', {'seminarios':seminarios, 'tipo': tipo}, context_instance=RequestContext(request))
-
+	mismo = "seminarios"
+	return render_to_response('cursos.html', {'cursos':seminarios, 'tipo': tipo, 'mismo': mismo}, context_instance=RequestContext(request))
 
 def detallecurso(request, nomcurso):
 	protocurso=ProtoCurso.objects.get(slug=nomcurso)
@@ -239,3 +250,15 @@ def pdf(request):
 def ver(request,path):
 	print path
 	return render_to_response('ver.html', {'path':path} ,context_instance=RequestContext(request))
+
+def inscribirse(request):
+	if request.is_ajax():
+		usuario = request.user
+		clave=int(request.POST['id'])
+		curso = Curso.objects.get(pk=clave)
+		alumno = Alumno.objects.get(usuario=usuario)
+		inscrito = Matriculado(curso=curso, alumno=alumno)
+		inscrito.save()
+		return HttpResponse('felicidades')
+	else:
+		raise Http404

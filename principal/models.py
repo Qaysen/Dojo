@@ -138,10 +138,10 @@ class Horario(models.Model):
 
 
 class Matriculado(models.Model):
-	protoCurso=models.ForeignKey(ProtoCurso)
+	curso=models.ForeignKey(Curso)
 	alumno=models.ForeignKey(Alumno)
 	def __unicode__(self):
-		return '%s en %s' %(self.protoCurso, self.alumno)
+		return '%s en %s' %(self.curso, self.alumno)
 
 class Pregunta(models.Model):
 	protoCurso=models.ForeignKey(ProtoCurso)

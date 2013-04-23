@@ -9,7 +9,7 @@ Cursos de Code Web
             <div class="container">
                 <div class="row">
                     <div class="titulo bienvenida">
-                        <h2>Mira todos los cursos que tenemos para ti!</h2>
+                        <h2>Mira todos los seminarios que tenemos para ti!</h2>
                     </div>
                 </div>
             </div>
@@ -21,30 +21,31 @@ Cursos de Code Web
 {% endblock mas_info %}
 
 {% block cursos_inicio %}
-    <section>
+    <section class="cursos">
         <div class="row">
+            <div class="span6">
+                <legend>{{mismo|capfirst}}</legend>
+                <p>No te olvides que tambien contamos con algunos {{tipo}} en los cuales puedes participar.</p>
+                <p>Encuentralos en <a href="/{{tipo}}/">{{tipo|capfirst}}.</a> </p>
+                <br>
+            </div>
             <div class="lista_cursos span6">
                 {% for curso in cursos %}
                 <article>
+                    <div class="row">
                     <div class="span2">
                         <img src='{{MEDIA_URL}}{{curso.protoCurso.archivo_url}}'>
                     </div>
                     <div class="span4">
-                        <h3><a href="/{{mismo}}/{{curso.protoCurso.slug}}">{{curso.protoCurso}}</a></h3>
+                        <h3><a href="/{{mismo}}/{{curso.protoCurso.slug}}">{{curso.protoCurso.nombre}}</a></h3>
                         <p>{{curso.protoCurso.descripcion}}</p>
-                        <p>{{curso.fecha_inicio}}</p>
+                        <p class="hidden-tablet">{{curso.fecha_inicio}}</p>
+                        <input value="{{curso.id}}" hidden>
                     </div>
-                    <!--<div class="fondito">
-                        <span>{{curso.lugar}}</span>
-                        <span class="inferior"></span>
-                    </div>-->
+                    <button class="inscribete span6" href="/inscribirse/">Inscribete</button>
+                    </div>
                 </article>
                 {% endfor %}
-            </div>
-            <div class="span3">
-                <legend>{{tipo|capfirst}}</legend>
-                <p>No te olvides que tambien contamos con algunos {{tipo}} en los cuales puedes participar.</p>
-                <p>Encuentralos en <a href="/{{tipo}}/">{{tipo|capfirst}}.</a> </p>
             </div>
         </div>
     </section>  

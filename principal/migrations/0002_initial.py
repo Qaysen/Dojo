@@ -8,163 +8,14 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Alumno'
-        db.create_table('principal_alumno', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('usuario', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('sobre_mi', self.gf('django.db.models.fields.CharField')(max_length=5000, null=True, blank=True)),
-        ))
-        db.send_create_signal('principal', ['Alumno'])
-
-        # Adding model 'Profesor'
-        db.create_table('principal_profesor', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('usuario', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('desc_laboral', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('profesion', self.gf('django.db.models.fields.CharField')(max_length=100)),
-        ))
-        db.send_create_signal('principal', ['Profesor'])
-
-        # Adding model 'ProtoCurso'
-        db.create_table('principal_protocurso', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('nombre', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('descripcion', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('tipo', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('archivo_url', self.gf('django.db.models.fields.files.FileField')(max_length=100)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=100)),
-            ('nivel', self.gf('django.db.models.fields.IntegerField')(default=0, max_length=1)),
-        ))
-        db.send_create_signal('principal', ['ProtoCurso'])
-
-        # Adding model 'Localizacion'
-        db.create_table('principal_localizacion', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('departamento', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('distrito', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('direccion', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('google_map', self.gf('django.db.models.fields.CharField')(max_length=100)),
-        ))
-        db.send_create_signal('principal', ['Localizacion'])
-
-        # Adding model 'Curso'
-        db.create_table('principal_curso', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('fecha_inicio', self.gf('django.db.models.fields.DateField')()),
-            ('fecha_termino', self.gf('django.db.models.fields.DateField')()),
-            ('cant_horas', self.gf('django.db.models.fields.IntegerField')(default=0, max_length=3)),
-            ('profesor', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.Profesor'])),
-            ('protoCurso', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.ProtoCurso'])),
-            ('localizacion', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.Localizacion'])),
-            ('precio', self.gf('django.db.models.fields.IntegerField')(default=0, max_length=3)),
-        ))
-        db.send_create_signal('principal', ['Curso'])
-
-        # Adding model 'Categoria'
-        db.create_table('principal_categoria', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('nombre', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=50)),
-        ))
-        db.send_create_signal('principal', ['Categoria'])
-
-        # Adding model 'CategoriaProtoCurso'
-        db.create_table('principal_categoriaprotocurso', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('protoCurso', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.ProtoCurso'])),
-            ('categoria', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.Categoria'])),
-        ))
-        db.send_create_signal('principal', ['CategoriaProtoCurso'])
-
-        # Adding model 'Tema'
-        db.create_table('principal_tema', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('nombre', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('subtema', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.Tema'], null=True, blank=True)),
-            ('protoCurso', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.ProtoCurso'])),
-            ('orden', self.gf('django.db.models.fields.DecimalField')(max_digits=2, decimal_places=0)),
-            ('descripcion', self.gf('django.db.models.fields.CharField')(max_length=100)),
-        ))
-        db.send_create_signal('principal', ['Tema'])
-
-        # Adding model 'Material'
-        db.create_table('principal_material', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('archivo_url', self.gf('django.db.models.fields.files.FileField')(max_length=100)),
-            ('titulo', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('descripcion', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('tipo', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('tema', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.Tema'])),
-        ))
-        db.send_create_signal('principal', ['Material'])
-
-        # Adding model 'PreguntaExamen'
-        db.create_table('principal_preguntaexamen', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('protoCurso', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.ProtoCurso'])),
-            ('pregunta', self.gf('django.db.models.fields.CharField')(max_length=200)),
-        ))
-        db.send_create_signal('principal', ['PreguntaExamen'])
-
-        # Adding model 'Alternativa'
-        db.create_table('principal_alternativa', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('pregunta', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.PreguntaExamen'])),
-            ('alternativa', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('estado', self.gf('django.db.models.fields.BooleanField')(default=False)),
-        ))
-        db.send_create_signal('principal', ['Alternativa'])
-
-        # Adding model 'Paquete'
-        db.create_table('principal_paquete', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('nombre', self.gf('django.db.models.fields.CharField')(max_length=100)),
-        ))
-        db.send_create_signal('principal', ['Paquete'])
-
-        # Adding model 'ProtoCursoPaquete'
-        db.create_table('principal_protocursopaquete', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('protoCurso', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.ProtoCurso'])),
-            ('paquete', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.Paquete'])),
-        ))
-        db.send_create_signal('principal', ['ProtoCursoPaquete'])
-
-        # Adding model 'Horario'
-        db.create_table('principal_horario', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('dia', self.gf('django.db.models.fields.CharField')(max_length=12)),
-            ('hora_inicio', self.gf('django.db.models.fields.TimeField')()),
-            ('hora_fin', self.gf('django.db.models.fields.TimeField')()),
-            ('curso', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.Curso'])),
-        ))
-        db.send_create_signal('principal', ['Horario'])
 
         # Adding model 'Matriculado'
         db.create_table('principal_matriculado', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('protoCurso', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.ProtoCurso'])),
+            ('curso', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.Curso'])),
             ('alumno', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.Alumno'])),
         ))
         db.send_create_signal('principal', ['Matriculado'])
-
-        # Adding model 'Pregunta'
-        db.create_table('principal_pregunta', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('protoCurso', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.ProtoCurso'])),
-            ('alumno', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.Alumno'])),
-            ('pregunta', self.gf('django.db.models.fields.CharField')(max_length=300)),
-        ))
-        db.send_create_signal('principal', ['Pregunta'])
-
-        # Adding model 'Respuesta'
-        db.create_table('principal_respuesta', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('pregunta', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['principal.Pregunta'])),
-            ('usuario_log', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('respuesta', self.gf('django.db.models.fields.CharField')(max_length=200)),
-        ))
-        db.send_create_signal('principal', ['Respuesta'])
 
 
     def backwards(self, orm):
@@ -321,8 +172,8 @@ class Migration(SchemaMigration):
         'principal.matriculado': {
             'Meta': {'object_name': 'Matriculado'},
             'alumno': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['principal.Alumno']"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'protoCurso': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['principal.ProtoCurso']"})
+            'curso': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['principal.Curso']"}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
         },
         'principal.paquete': {
             'Meta': {'object_name': 'Paquete'},
