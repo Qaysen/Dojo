@@ -201,7 +201,7 @@ input {
 }
 .presentacion .foto img {
 	width: 100%;
-	margin: -30px 20px 20px 20px;
+	margin: -10px 20px 20px 20px;
 }
 
 /* Informacion General */
@@ -582,6 +582,29 @@ li .icon.prereq {
 	box-shadow: 0em 0em 1em #ccc;
 	width: 140px;
 	min-height: 140px;
+}
+
+/*Inscribete*/
+.inscribete {
+	background: #2ba6cb;
+	border: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	width: 100%;
+	padding: 20px;
+	margin: 20px 0;
+	color: white;
+	opacity: 0.8;
+}
+.inscribete:hover {
+	background: #2284a1;
+	opacity: 1;
+}
+
+/* Temas */
+.units a {
+	color: black;
 }
 
 /* Errores */

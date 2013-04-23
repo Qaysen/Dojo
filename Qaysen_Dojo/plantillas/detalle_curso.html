@@ -30,12 +30,18 @@
                   <img src="https://www.edx.org/static/images/social/google-plus-sharing.947c2e39edb9.png">
               </a>
           </div>
-          <br>
+          <button class="inscribete">Inscribete</button>
 
         {% for curso in curso %}          
           <ul>
             <li><div class="icon start"></div><p>Comienzo</p><span class="start-date">{{curso.fecha_inicio}}</span></li>
+            {% for horario in horario %}
+            <li><div class="icon start"></div><p>Hora inicio</p><span class="start-date">{{horario.hora_inicio}}</span></li>
+            {% endfor %}
             <li><div class="icon end"></div><p>Termino</p><span class="final-date">{{curso.fecha_termino}}</span></li>
+            {% for horario in horario %}
+            <li><div class="icon start"></div><p>Hora termino</p><span class="start-date">{{horario.hora_fin}}</span></li>
+            {% endfor %}
             <li><div class="icon effort"></div><p>Horas</p><span class="start-date">{{curso.cant_horas}} horas/mes</span></li>
             <li><div class="icon prereq"></div><p>Pre requisitos</p><span class="start-date">Si</span></li>
             <li><div class="icon prereq"></div><p>Lugar</p><span class="start-date">{{curso.localizacion.direccion}}</span></li>
@@ -43,22 +49,6 @@
             <li><div class="icon prereq"></div><p>Precio</p><span class="start-date">{{curso.precio}}</span></li>
           </ul>
           <br>
-                <legend>Horario</legend>
-                <table>
-                  <tr>
-                    <td>Dia</td>
-                    <td>Hora inicio</td>
-                    <td>Hora término</td>
-                  </tr>
-                  {% for horario in horario %}
-                  <tr>
-                    <td>{{horario.dia}}</td>
-                    <td>{{horario.hora_inicio}}</td>
-                    <td>{{horario.hora_fin}}</td>
-                  </tr>
-                  {% endfor %}
-                </table>
-
           {% endfor %} 
 
       <!--     <ol>

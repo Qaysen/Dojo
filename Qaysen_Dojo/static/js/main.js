@@ -19,12 +19,12 @@ function esconder()
 function login()
 {
 	$("nav ul").hide();
-	$("nav form").show();
+	$("form").show();
 	$(".x_cerrar").show();
 }
 function nav()
 {
 	$("nav ul").show();
-	$("nav form").hide();
+	$("form").hide();
 	$(".x_cerrar").hide();
 }

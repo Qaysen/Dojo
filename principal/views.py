@@ -44,7 +44,7 @@ def loginto(request):
 	else:
 		formulario = AuthenticationForm()
 
-	return HttpResponseRedirect('/')
+	return HttpResponseRedirect('/cursos/')
 
 # Pagina de inicio
 def inicio(request):
@@ -96,7 +96,8 @@ def categcursos(request):
 def cursos(request):
 	cursos = Curso.objects.filter(protoCurso__tipo = "Curso")
 	tipo = "seminarios"
-	return render_to_response('cursos.html', {'cursos':cursos, 'tipo': tipo}, context_instance=RequestContext(request))
+	mismo = "cursos"
+	return render_to_response('cursos.html', {'cursos':cursos, 'tipo': tipo, 'mismo': mismo}, context_instance=RequestContext(request))
 
 def contacto(request):
 	return render_to_response('contacto.html', context_instance=RequestContext(request))
@@ -105,6 +106,7 @@ def seminarios(request):
 	seminarios = ProtoCurso.objects.filter(tipo = "Seminario")
 	tipo = "cursos"
 	return render_to_response('seminarios.html', {'seminarios':seminarios, 'tipo': tipo}, context_instance=RequestContext(request))
+
 
 def detallecurso(request, nomcurso):
 	protocurso=ProtoCurso.objects.get(slug=nomcurso)
