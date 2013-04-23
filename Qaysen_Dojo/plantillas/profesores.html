@@ -3,15 +3,10 @@
 	<title></title>
 </head>
 <body>
-	{% for x in profesores %}
+	{% for profesor in profesores %}
 		<div>
-			{{x.first_name}} {{x.last_name}}
-
-			
-				<img src="{{MEDIA_URL}}{{x.user.get_profile.foto}}">
-				
-		
-
+			{{profesor.usuario.id}} {{profesor.usuario.username}}
+			<img src="{{MEDIA_URL}}{{x.user.get_profile.foto}}">
 		</div>
 	{% endfor %}
 

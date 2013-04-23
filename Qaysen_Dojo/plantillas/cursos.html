@@ -21,8 +21,8 @@ Cursos de Code Web
     {% if user.is_authenticated%}
         <p>Hola {{user}}</p>
     {% endif %}
-    <section class="cursos general">
-        <div class="filtros">
+    <section>
+        <div class="filtros span4">
             <legend>Filtrar</legend>
             <ul>
                 Diseño Web:
@@ -43,21 +43,28 @@ Cursos de Code Web
                 <li><input type="checkbox"> Cajamarca</li>
             </ul>
         </div>
-        <div class="lista_cursos">
-            {% for curso in cursos %} 
-            <article>
-                <img src='{{MEDIA_URL}}{{curso.archivo_url}}' width="100">
-                <div class="informacion_curso">
-                    <h3><a href="/cursos/{{curso.slug}}/">{{curso.nombre}}</a></h3>
-                    <p>{{curso.descripcion}}</p>
-                  <!--   <p>{{curso.fecha_inicio}}</p> -->
+        <div class="lista_cursos span6">
+            {% for curso in cursos %}
+            <article class="" data-proto="{{curso.protoCurso}}">
+                <div class="span2">
+                    <img src='{{MEDIA_URL}}{{curso.protoCurso.archivo_url}}'>
                 </div>
-                <div class="fondito">
-                    <!-- <span>{{curso.lugar}}</span> -->
+                <div class="span4">
+                    <h3><a href="/cursos/{{curso.protoCurso.slug}}">{{curso.protoCurso}}</a></h3>
+                    <p>{{curso.protoCurso.descripcion}}</p>
+                    <p>{{curso.fecha_inicio}}</p>
+                </div>
+                <!--<div class="fondito">
+                    <span>{{curso.lugar}}</span>
                     <span class="inferior"></span>
-                </div>
+                </div>-->
             </article>
             {% endfor %}
+        </div>
+        <div class="span2">
+            <legend>{{tipo|capfirst}}</legend>
+            <p>No te olvides que tambien contamos con algunos {{tipo}} en los cuales puedes participar.</p>
+            <p>Encuentralos en <a href="/{{tipo}}/">{{tipo|capfirst}}.</a> </p>
         </div>
     </section>  
 {% endblock cursos_inicio %}

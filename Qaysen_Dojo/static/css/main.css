@@ -22,6 +22,17 @@ ul, li {
 	padding: 0;
 	list-style: none;
 }
+legend {
+	display: block;
+	width: 100%;
+	padding: 0;
+	margin-bottom: 20px;
+	font-size: 21px;
+	line-height: 40px;
+	color: #333333;
+	border: 0;
+	border-bottom: 1px solid #e5e5e5;
+}
 /* Clases de ayuda */
 .derecha {
 	float: right;
@@ -85,12 +96,7 @@ ul, li {
 /* Logo */
 .cabecera {
 	overflow: hidden;
-	padding: 0 50px;
-	height: 100px;
 	z-index: 100;
-}
-.cabecera h1, .cabecera nav {
-	display: inline-block;
 }
 .cabecera h1 {
 	float: left;
@@ -98,16 +104,15 @@ ul, li {
 	font-family: "Asap","Droid Sans","Open Sans";
 	text-transform: uppercase;
 	font-weight: 700;
-	margin-left: 50px;
 }
 
 /* Navegacion */
 .cabecera nav {
-	margin-right: 50px;
 	font-size: 18px;
 	padding: 20px 0;
 }
 .cabecera ul {
+	float: right !important;
 }
 .cabecera nav ul li {
 	display: inline-block;
@@ -146,25 +151,25 @@ ul, li {
 /* Fomulario de login */
 input {
 	background-color: #ffffff;
-border: 1px solid #cccccc;
--webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
--moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
--webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
--moz-transition: border linear 0.2s, box-shadow linear 0.2s;
--o-transition: border linear 0.2s, box-shadow linear 0.2s;
-transition: border linear 0.2s, box-shadow linear 0.2s;
-display: inline-block;
-height: 30px;
-padding: 4px 6px;
-margin-bottom: 10px;
-font-size: 14px;
-line-height: 20px;
-color: #555555;
-vertical-align: middle;
--webkit-border-radius: 4px;
--moz-border-radius: 4px;
-border-radius: 4px;
+	border: 1px solid #cccccc;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+	-moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+	-o-transition: border linear 0.2s, box-shadow linear 0.2s;
+	transition: border linear 0.2s, box-shadow linear 0.2s;
+	display: inline-block;
+	height: 30px;
+	padding: 4px 6px;
+	margin-bottom: 10px;
+	font-size: 14px;
+	line-height: 20px;
+	color: #555555;
+	vertical-align: middle;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
 }
 
 /* Presentacion */
@@ -176,8 +181,6 @@ border-radius: 4px;
 }
 .presentacion .bienvenida {
 	padding: 40px 0;
-	margin-left: 5%;
-	width: 45%;
 }
 .presentacion .bienvenida h2{
 	margin: 0 !important;
@@ -186,7 +189,7 @@ border-radius: 4px;
 	font-family: "Asap","Droid Sans","Open Sans";
 	text-transform: uppercase;
 	font-weight: 700;
-	font-size: 55px;
+	font-size: 3em;
 	line-height: 55px;
 	text-align: center;
 }
@@ -233,119 +236,27 @@ border-radius: 4px;
 	vertical-align: top;
 }
 .presentacion .foto img {
+	width: 100%;
 	margin: -30px 20px 20px 20px;
 }
 
 /* Informacion General */
 .mas_info {
 	background: #333;
-	min-height: 50px;
-	margin-bottom: 20px;
+	min-height: 70px;
 	text-align: center;
 }
 .mas_info p, .mas_info p a {
 	color: #fff;
-	margin: 0 auto;
-	padding-top: 27px;
-	padding-bottom: 24px;
+	padding-top: 20px;
 	text-shadow: 1px 1px 1px #000;
-	width: 940px;
 }
 .mas_info img {
 	margin-right: 10px;
 }
 
 /* Lista de cursos en el inicio */
-.cursos {
-	margin: 30px auto;
-	padding: 1px 0;
-	width: 90%;
-}
 
-/*.cursos.inicio article {
-	border: 4px solid #fff;
-	display: inline-block;
-	height: 340px;
-	margin: 31px 25px 0;
-	padding: 0;
-	position: relative;
-	width: 220px;
-	display: inline-block;
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	overflow: hidden;
-	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
-	box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
-	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
-	background-color: #fff;
-	color: #444;
-}
-.cursos.inicio .imagen {
-	display: inline-block;
-	height: 340px;
-	margin: 0;
-	padding: 0;
-	position: relative;
-	width: 212px;
-	z-index: 25;
-}
-.html5 {
-	background: url(http://www.electricmayhemsolutions.net/blog/wp-content/uploads/2013/03/HTML5_Badge_512.jpg) no-repeat top left;
-}
-.css3 {
-	background: url(http://www.diseniorweb.com.ar/wp-content/uploads/2012/08/css3.jpg) no-repeat top left;
-}
-.jquery {
-	background: url(http://majorursa.net/sites/default/files/styles/medium/public/field/image/jquery-logo1.png) no-repeat top left;
-}
-.django {
-	background: url(http://londoncyn.ca/wp-content/uploads/2012/07/priority_areas_literacy.jpg) no-repeat top left;
-}
-.cursos.inicio .texto_escondido {
-	color: #fff;
-	height: 95px;
-	overflow: hidden;
-	padding: 10px 16px 0;
-	position: absolute;
-	bottom: 31px;
-	width: 212px;
-	z-index: 20;
-	margin: 0 0 20px 0;
-}
-.cursos.inicio h3 {
-	color: #fff;
-	line-height: 40px;
-	margin: 0;
-	padding: 10px 16px;
-	position: absolute;
-	bottom: 56px;
-	left: 0;
-	text-align: left;
-	width: 212px;
-	z-index: 100;
-}
-.cursos.inicio p.leer_mas {
-	display: block;
-	height: 56px;
-	margin: 0;
-	padding: 17px 16px 0;
-	position: absolute;
-	bottom: 0;
-	width: 212px;
-	z-index: 50;
-}
-.cursos.inicio h3.slide_up { 
-	bottom: 145px; 
-}
-.cursos.inicio a.mas {
-	background: url(http://londoncyn.ca/wp-content/themes/cyn_public/img/more_arrow.png) no-repeat right -38px;
-	height: 17px;
-	padding-right: 27px;
-	width: 17px;
-	color: #fff;
-	text-decoration: none;
-}*/
 
 /* Promocion */
 .promocion {
@@ -357,23 +268,13 @@ border-radius: 4px;
 	text-align: center;
 	margin: 30px auto;
 	width: 82%;
+	overflow: hidden;
 }
 .promocion h3 {
 	padding: 20px;
 	margin: 0;
 }
 
-/* Mapa */
-.mapa {
-	width: 80%;
-	margin: 0 10% 40px 10%;
-}
-.mapa .informacion {
-	display: inline-block;
-	width: 30%;
-	vertical-align: top;
-	margin-right: 20px;
-}
 /* Footer */
 footer {
 	margin-top: 50px;
@@ -459,17 +360,6 @@ footer .codeweb {
 	margin: 0;
 	padding: 5px 20px;
 }
-legend {
-	display: block;
-	width: 100%;
-	padding: 0;
-	margin-bottom: 20px;
-	font-size: 21px;
-	line-height: 40px;
-	color: #333333;
-	border: 0;
-	border-bottom: 1px solid #e5e5e5;
-}
 
 /* Cursos general */
 
@@ -488,27 +378,24 @@ legend {
 	display: inline-block;
 	vertical-align: top;
 }
-.lista_cursos {
-	width: 75%;
-}
-.lista_cursos article {
-	margin: 20px 0px;
-	border: 1px solid #ccc;
-	padding: 10px;
 
+.lista_cursos article {
+	margin: 10px 0px;
+	border: 1px solid #ccc;
+	padding: 10px 0;
+	overflow: hidden;
 	position: relative;
 	z-index: 1;
-
 	background: #fcfcfc;
-border: 1px solid #c8c8c8;
--webkit-box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
--moz-box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
-box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
--webkit-border-radius: 4px;
--moz-border-radius: 4px;
--ms-border-radius: 4px;
--o-border-radius: 4px;
-border-radius: 4px;
+	border: 1px solid #c8c8c8;
+	-webkit-box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
 }
 .lista_cursos h3 {
 	margin: 0;
@@ -517,14 +404,8 @@ border-radius: 4px;
 .lista_cursos p {
 	display: block;
 }
-.lista_cursos .informacion_curso, .lista_cursos img {
-	display: inline-block;
-	vertical-align: top;
-}
-.lista_cursos .informacion_curso {
-	margin-left: 20px;
-}
 .fondito {
+	overflow: visible !important;
 	font-size: 18px;
 	position: absolute;
 	top: -10px;
@@ -538,7 +419,6 @@ border-radius: 4px;
 
 /* Silabus */
 .silabus {
-	width: 67%;
 }
 .silabus h3 {
 	font-size: 18px;
@@ -567,18 +447,10 @@ border-radius: 4px;
 	margin: 0;
 	padding: 0;
 }
-.detalle_info {
-	width: 25%;
-	margin: 0 3% 0 3%;
-}
+
 .detalle_info .img {
 	width: 100%;
-	margin: 0 auto;
 	border-radius: 6px;
-}
-.silabus, .detalle_info {
-	display: inline-block;
-	vertical-align: top;
 }
 .social {
 	width: 150px;
@@ -624,36 +496,71 @@ li .icon.prereq {
 	float: right;
 }
 
-/* Cursos abiertos inicio */
-
-.cursos_abiertos {
-	width: 45%;
-}
-.seminarios_abiertos {
-	margin-left: 3%;	
-	width: 45%;
-}
-
 /* Perfil */
 .perfil {
 	border: 1px solid #d2d2d2;
 	background-color: #f5f5f5;
 }
-.perfil .centrar {
-	width: 90%;
-	margin: 30px auto;
+.perfil > div {
+	padding: 20px 0;
 }
-.perfil img, .perfil .info {
-	display: inline-block;
-	vertical-align: top;
-}
-.perfil .info {
-	margin: 0 0 0 30px;
-	padding: 0;
-}
-.perfil h1, .perfil p {
-	display: block;
-}
-.total {
+.perfil img {
 	width: 100%;
+}
+@media (max-width: 479px) {
+	.tablet_img {
+		width: 75%;
+		margin: 0 auto;
+	}
+}
+@media (min-width:480px) and (max-width:767px) {
+	.tablet_img {
+		width: 40%;
+	}
+	.tablet_info {
+		width: 58%;
+	}
+	.tablet_img, .tablet_info {
+		display: inline-block;
+		vertical-align: top;
+	}
+}
+@media (max-width:767px){
+	.presentacion, .mas_info, footer {
+		margin: 0 -20px 0 -20px;
+		padding: 0 20px 0 20px;
+	}
+	.lista_cursos .span2 {
+		width: 25% !important;
+		margin-left: 2%;
+	}
+	.lista_cursos .span4 {
+		width: 65% !important;
+		margin-left: 5%;
+	}
+	.span2, .span4 {
+		display: inline-block !important;
+		vertical-align: top;
+	}
+	.lista_cursos article img{
+		width: 100%;
+	}
+}
+@media (min-width:768px){
+	.cursos_todos {
+		width: 48%;
+		display: inline-block;
+		vertical-align: top;
+		min-height: 145px;
+		margin-left: 1% !important;
+	}
+	.lista_cursos .span2 {
+		margin: 0 0 0 2% !important;
+	}
+	.lista_cursos .span4 {
+		margin: 0 0 0 -10% !important;
+	}
+	.lista_cursos article img{
+		width: 50%;
+	}
 }

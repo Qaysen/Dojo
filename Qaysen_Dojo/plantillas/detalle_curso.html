@@ -21,9 +21,10 @@
 {% endblock mas_info %}
 
 {% block cursos_inicio %}
-    <section class="cursos detalle">
+    <br>
+    <section class="row">
 
-        <div class="detalle_info">
+        <div class="detalle_info span3">
           <legend>{{protocurso.nombre}} </legend>
           <img class="img" src='{{MEDIA_URL}}{{protocurso.archivo_url}}'>
           <br><br>
@@ -84,7 +85,7 @@
           </ol> -->
         </div>
 
-        <div class="silabus">
+        <div class="silabus span9">
 
             <legend>Temario del curso</legend>
 

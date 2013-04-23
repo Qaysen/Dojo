@@ -16,11 +16,15 @@
         <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/normalize.min.css">
+        <!--<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/unsemantic-grid-responsive-tablet.css">-->
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css">
 
         <script type="text/javascript" src="//use.typekit.net/ynr5uqj.js"></script>
         <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 
     </head>
     <body>
@@ -28,24 +32,23 @@
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
         {% if not user.is_authenticated %}
-        <aside class="oferta">
+        <aside class="oferta hidden-phone">
             <a href="/registrar/">
                 <div class="centrar">
                     <div class="titulo">Oferta</div>
 
                     <div class="descripcion">
-                        <span>Registrate y obten gratis un curso online.Diviertete en la plataforma haciendo preguntas y respondiendo a tus compañeros!</span>
+                        <span>Registrate para que puedas inscribirte en nuestros seminarios.</span>
                     </div>
                 </div>
             </a>  
         </aside>
         {% endif %}
-        <header class="cabecera ">
-            <h1><a href="/">< CODEWEB ></a></h1>
-            <nav class="derecha">
+        <header class="cabecera">
+            <h1 class="span3 offset1"><a href="/">CODEWEB</a></h1>
+            <nav class="span7">
                 <ul>
                     <li><a title="" alt="" href="/cursos/">Cursos</a></li>
-                    <li><a title="" alt="" href="">Lugar</a></li>
 
                 {% if user.is_authenticated %}
                     <li class="login">
@@ -60,47 +63,31 @@
                         <span class="inferior"></span>
                     </li>
                 </ul>
-                <form method="POST" style="display: none; margin-top: 10px;">
+                <a class="x_cerrar login" style="display: none;float:right; margin-left: 5px;">X</a>
+                <form method="POST" style="display: none; margin-top: 10px; float:right">
                 {% csrf_token %}
                     <input type="text" name="username" placeholder="Usuario">
                     <input type="password" name ="password" placeholder="Contraseña">
                     <input class="login" type="submit" value="Login">
                 </form>
-                <a class="x_cerrar login" style="display: none;">X</a>
                 {% endif %}
             </nav>
         </header>
-
-        {% block presentacion %}
-            
-        {% endblock presentacion %}
-
-        {% block mas_info %}
-            
-        {% endblock mas_info %}
-
-        {% block cursos_inicio %}
-            
-        {% endblock cursos_inicio %}
-
-        {% block formulario %}
-            
-        {% endblock formulario %}
-
-        {% block promocion %}
-            
-        {% endblock promocion %}
-
-        {% block mapa %}
-            
-        {% endblock mapa %}
 
         {% block perfil %}
             
         {% endblock perfil %}
 
+        <div class="container">
+
+            {% block perfil_mas %}
+                
+            {% endblock perfil_mas %}
+
+        </div>
+
         <footer>
-            <div class="contenedor">
+            <div class="container">
                 <div class="codeweb izquierda">
                     CodeWeb 2013
                 </div>

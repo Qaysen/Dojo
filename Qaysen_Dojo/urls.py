@@ -19,7 +19,7 @@ urlpatterns = patterns('',
 	#url(r'^$','principal.views.home'),
 	
 
-	url(r'^cursos/$','principal.views.categcursos'),
+	url(r'^cursos/$','principal.views.cursos'),
 	url(r'^cursos/(?P<nomcurso>[-\w]+)/$','principal.views.detallecurso'),
 
 	url(r'^seminarios/$','principal.views.seminarios'),

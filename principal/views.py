@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.servers.basehttp import FileWrapper
 from urllib import unquote
 from django.contrib.auth.forms import  AuthenticationForm
-from reportlab.pdfgen import canvas
+# from reportlab.pdfgen import canvas
 
 
 def loginto(request):
@@ -93,10 +93,20 @@ def categcursos(request):
 # 	cursos_ab = CursoAbierto.objects.filter(curso=id_curso_ab).order_by("fecha_inicio")
 # 	return render_to_response('curso_abierto.html', {'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
 
-def seminarios(request):
-	cursos_ab = Curso.objects.filter(tipo="Seminario").order_by("fecha_inicio")
-	return render_to_response('cursos.html', {'cursos_ab':cursos_ab}, context_instance=RequestContext(request))
+def cursos(request):
+	cursos = Curso.objects.filter(protoCurso__tipo = "Curso")
 
+	a = Curso.objects.get_related().values('protoCurso', 'localizacion').distinct()
+
+	b = 
+	print(a)
+	tipo = "seminarios"
+	return render_to_response('cursos.html', {'cursos':cursos, 'tipo': tipo}, context_instance=RequestContext(request))
+
+def seminarios(request):
+	seminarios = Curso.objects.filter(protoCurso__tipo = "Seminario")
+	tipo = "cursos"
+	return render_to_response('cursos.html', {'cursos':seminarios, 'tipo': tipo}, context_instance=RequestContext(request))
 
 def detallecurso(request, nomcurso):
 	protocurso=ProtoCurso.objects.get(slug=nomcurso)
@@ -205,13 +215,10 @@ def examen(request,id_curso):
 
 
 def profesores(request):
-	lista_profesores=User.objects.all()
-	print lista_profesores[0]
+	lista_profesores = Profesor.objects.all()
+	# lista_profesores=User.objects.all()
+	# print lista_profesores[0]
 	return render_to_response('profesores.html', {'profesores':lista_profesores}, context_instance=RequestContext(request))
-
-
-
-
 
      
 def descargar(request,pathy):
