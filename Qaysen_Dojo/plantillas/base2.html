@@ -17,7 +17,7 @@
         <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css">
 
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="{{STATIC_URL}}js/vendor/modernizr-2.6.2.min.js"></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 
@@ -26,19 +26,6 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-        {% if not user.is_authenticated %}
-        <!--<aside class="oferta hidden-phone">
-            <a href="/registrar/">
-                <div class="centrar">
-                    <div class="titulo">Oferta</div>
-
-                    <div class="descripcion">
-                        <span>Registrate para que puedas inscribirte en nuestros seminarios.</span>
-                    </div>
-                </div>
-            </a>  
-        </aside>-->
-        {% endif %}
         <header class="cabecera">
             <div class="container">
                 <div class="row">
@@ -55,22 +42,23 @@
                             <span class="inferior"></span>
                         </li>
                     </ul>
+                </nav>
                     {% else %}
                         <li><a title="" alt="" href="/registrar">Crear cuenta</a></li>
                         <li class="login">
                             <a title="" alt="">Login</a>
                         </li>
                     </ul>
+                </nav>
                     <a class="x_cerrar login" style="display: none;float:right; margin-left: 5px;">X</a>
-                    <form method="POST" style="display: none; margin: 0; float:right">
+                    <form action="/loginto/" method="POST" style="display: none; margin: 0; float:right">
                     {% csrf_token %}
                         <input type="text" name="username" placeholder="Usuario">
                         <input type="password" name ="password" placeholder="Contraseña">
                         <input type="text" name="anterior" value="{{request.path}}" hidden>
                         <input class="login" type="submit" value="Login">
                     </form>
-                    {% endif %}                    
-                </nav>
+                    {% endif %}
                 </div>
             </div>
         </header>
