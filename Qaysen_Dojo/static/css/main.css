@@ -31,6 +31,14 @@ legend {
 	border: 0;
 	border-bottom: 1px solid #e5e5e5;
 }
+blockquote {
+	padding: 0 0 0 15px;
+	margin: 0 0 20px;
+	font-size: 30px;
+	font-weight: 500;
+	color: #eeeeee;
+	text-align: center;
+}
 /* Clases de ayuda */
 .derecha {
 	float: right;
@@ -236,7 +244,7 @@ input {
 .footer_nav	{
 	background: #33A6C9;
 	margin-top: 50px;
-	min-height: 200px;
+	padding: 20px;
 }
 
 footer {
