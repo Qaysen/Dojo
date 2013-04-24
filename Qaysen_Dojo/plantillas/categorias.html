@@ -23,9 +23,21 @@ Cursos de Code Web
             <legend>Filtrar</legend>
             
             <ul>
-                Diseño Web:
-                 {% for categoria in categoria %} 
-                <li><input type="checkbox"> {{categoria.nombre}}</li>
+                Categorias:
+                {% for categoria in categorias %} 
+                <li><input class="filtro filtro-cat" type="checkbox" value="{{categoria.nombre}}"> {{categoria.nombre}}</li>
+                {% endfor %}
+
+                Lugares:
+                {% for lugar in lugares %} 
+                <li><input class="filtro filtro-cat" type="checkbox" value="{{lugar}}"> {{lugar.distrito}}</li>
+                {% endfor %}
+            </ul>
+            <br>
+            <ul>
+                Localizacion:
+                 {% for localizacion in localizacion %} 
+                <li><input type="checkbox"> {{localizacion.distrito}}</li>
                 {% endfor %}
                
             </ul>

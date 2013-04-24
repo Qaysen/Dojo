@@ -91,10 +91,11 @@ def cerrar(request):
 
 
 def categcursos(request):
-	categoria = Categoria.objects.all()
+	categorias = Categoria.objects.all()
+	lugares = list(Localizacion.objects.all().values('distrito'))
 	protocurso = ProtoCurso.objects.filter(tipo="Curso")
-	localizacion = Localizacion.objects.all()
-	return render_to_response('categorias.html', {'categoria':categoria,'protocurso':protocurso, 'localizacion':localizacion}, context_instance=RequestContext(request))
+	print(lugares)
+	return render_to_response('categorias.html', {'lugares':lugares,'categorias':categorias,'protocurso':protocurso}, context_instance=RequestContext(request))
 
 # def detallecurso(request, nomcurso):
 # 	print nomcurso
@@ -106,6 +107,11 @@ def categcursos(request):
 
 def cursos(request):
 	cursos = Curso.objects.filter(protoCurso__tipo = "Curso")
+
+	a = Curso.objects.get_related().values('protoCurso', 'localizacion').distinct()
+
+	b = 
+	print(a)
 	tipo = "seminarios"
 	mismo = "cursos"
 	return render_to_response('cursos.html', {'cursos':cursos, 'tipo': tipo, 'mismo': mismo}, context_instance=RequestContext(request))
@@ -116,6 +122,7 @@ def contacto(request):
 def seminarios(request):
 	seminarios = Curso.objects.filter(protoCurso__tipo = "Seminario")
 	tipo = "cursos"
+
 	mismo = "seminarios"
 	return render_to_response('cursos.html', {'cursos':seminarios, 'tipo': tipo, 'mismo': mismo}, context_instance=RequestContext(request))
 
@@ -252,13 +259,24 @@ def ver(request,path):
 	return render_to_response('ver.html', {'path':path} ,context_instance=RequestContext(request))
 
 def inscribirse(request):
-	if request.is_ajax():
-		usuario = request.user
-		clave=int(request.POST['id'])
-		curso = Curso.objects.get(pk=clave)
-		alumno = Alumno.objects.get(usuario=usuario)
-		inscrito = Matriculado(curso=curso, alumno=alumno)
-		inscrito.save()
-		return HttpResponse('felicidades')
-	else:
-		raise Http404
+	if not request.user.is_authenticated(): 
+			return HttpResponse('Logueate')
+    	else:
+    			
+			if request.is_ajax():
+				usuario = request.user
+				clave=int(request.POST['id'])
+				curso = Curso.objects.get(pk=clave)
+				alumno = Alumno.objects.get(usuario=usuario)
+				inscrito = Matriculado(curso=curso, alumno=alumno)
+				cant= Matriculado.objects.filter(curso=curso, alumno=alumno).count()
+				if cant == 0:
+					inscrito.save()
+				return HttpResponse('felicidades')
+			else:
+				raise Http404
+	return HttpResponseRedirect('/')
+
+ 
+    
+        
